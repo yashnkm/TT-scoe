@@ -1,0 +1,2282 @@
+{% extends "base.html" %}
+
+{% block title %}AI Assistant - AI Timetable Generator{% endblock %}
+
+{% block extra_css %}
+<style>
+.suggestion-card {
+    border: 1px solid #dee2e6;
+    transition: all 0.3s ease;
+}
+
+.suggestion-card:hover {
+    border-color: #0d6efd;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.suggestion-card .card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.suggestion-card .btn-group {
+    gap: 2px;
+}
+
+.suggestion-card .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.session-preview {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.session-preview:hover {
+    background: #e9ecef;
+    border-color: #0d6efd;
+}
+
+.suggestions-container {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.9);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.chat-message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.chat-message.user {
+    background: #e3f2fd;
+    margin-left: 20px;
+}
+
+.chat-message.system {
+    background: #f5f5f5;
+    margin-right: 20px;
+}
+
+.session-card-mini {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    transition: all 0.2s ease;
+}
+
+.session-card-mini:hover {
+    border-color: #0d6efd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.badge-sm {
+    font-size: 0.6em;
+}
+
+#modifiedTimetableSection {
+    border-left: 4px solid #28a745;
+}
+
+#modifiedTimetableSection .card-header {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+/* Compact chat container */
+.chat-container-compact {
+    height: 250px;
+    overflow-y: auto;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.375rem;
+    padding: 0.75rem;
+    background: var(--bs-body-bg);
+    font-size: 0.85rem;
+}
+
+.chat-message-compact {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.8rem;
+}
+
+.chat-message-compact.user {
+    background: rgba(13, 110, 253, 0.1);
+    border-left: 3px solid var(--bs-primary);
+    margin-left: 1rem;
+}
+
+.chat-message-compact.system {
+    background: rgba(108, 117, 125, 0.1);
+    border-left: 3px solid var(--bs-secondary);
+    margin-right: 1rem;
+}
+
+/* Timetable display styles */
+.timetable-card {
+    border: 2px solid #0d6efd;
+}
+
+.timetable-card .card-header {
+    background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+    color: white;
+}
+
+/* Session card styles */
+.session-cell-content {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.session-cell-content .subject-name {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.session-cell-content .session-info {
+    font-size: 0.75rem;
+    color: #666;
+}
+
+.session-cell-content .badge-type {
+    font-size: 0.6rem;
+    margin-top: 0.25rem;
+    display: inline-block;
+}
+
+/* Saved timetables list styles */
+.saved-timetables-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.saved-timetables-list .list-group-item {
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.saved-timetables-list .list-group-item:hover {
+    border-left-color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-robot text-primary me-2"></i>
+            AI Timetable Modification
+        </h1>
+        <p class="lead mb-4">View your timetable and make AI-powered modifications using natural language</p>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Left Column: Timetable Display -->
+    <div class="col-lg-8">
+        <div class="card timetable-card mb-4">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-calendar-alt me-2"></i>
+                        Current Timetable
+                    </h5>
+                    <div>
+                        <small class="text-light" id="timetableReadyStatus">
+                            <i class="fas fa-info-circle me-1"></i>
+                            <span id="statusText">Loading...</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="aiViewType" class="form-label">View Type</label>
+                        <div>
+                            <input type="radio" class="btn-check" name="aiViewType" id="aiDivisionView" value="division" checked>
+                            <label class="btn btn-outline-primary btn-sm" for="aiDivisionView">
+                                <i class="fas fa-users me-1"></i>Division View
+                            </label>
+                            
+                            <input type="radio" class="btn-check" name="aiViewType" id="aiBatchView" value="batch">
+                            <label class="btn btn-outline-primary btn-sm" for="aiBatchView">
+                                <i class="fas fa-layer-group me-1"></i>Batch View
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="aiViewSelector" class="form-label">Select View</label>
+                        <select class="form-select form-select-sm" id="aiViewSelector">
+                            <option value="">Select a view...</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="table-responsive" id="aiTimetableContainer">
+                    <div class="text-center text-muted py-5">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Load a timetable to view it here
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modified Timetable Section -->
+        <div class="card mt-3" id="modifiedTimetableSection" style="display: none;">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-table me-2"></i>
+                    Modified Timetable
+                </h5>
+                <small class="text-muted">Updated timetable reflecting your applied modifications</small>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="modifiedViewType" class="form-label">View Type</label>
+                        <div>
+                            <input type="radio" class="btn-check" name="modifiedViewType" id="modifiedDivisionView" value="division" checked>
+                            <label class="btn btn-outline-primary btn-sm" for="modifiedDivisionView">
+                                <i class="fas fa-users me-1"></i>Division View
+                            </label>
+                            
+                            <input type="radio" class="btn-check" name="modifiedViewType" id="modifiedBatchView" value="batch">
+                            <label class="btn btn-outline-primary btn-sm" for="modifiedBatchView">
+                                <i class="fas fa-layer-group me-1"></i>Batch View
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="modifiedViewSelector" class="form-label">Select View</label>
+                        <select class="form-select form-select-sm" id="modifiedViewSelector">
+                            <option value="">Select a view...</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Download Buttons -->
+                <div class="row mb-3" id="downloadButtonsRow" style="display: none;">
+                    <div class="col-md-12">
+                        <label class="form-label">Download Complete Timetable</label>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-success btn-sm" onclick="downloadTimetablePDF()">
+                                <i class="fas fa-file-pdf me-1"></i> Download PDF (All Divisions)
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="downloadTimetableExcel()">
+                                <i class="fas fa-file-excel me-1"></i> Download Excel (All Divisions)
+                            </button>
+                        </div>
+                        <small class="text-muted d-block mt-1">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Download all divisions and batches - PDF has each on a separate page, Excel has separate sheets
+                        </small>
+                    </div>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead class="table-dark" id="modifiedTimetableHead">
+                            <tr>
+                                <th>Time</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modifiedTimetableBody">
+                            <tr>
+                                <td colspan="6" class="text-center text-muted">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    Apply a modification to see the updated timetable here
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-3">
+                    <div class="alert alert-info" id="modificationSummary" style="display: none;">
+                        <h6><i class="fas fa-history me-2"></i>Recent Modifications:</h6>
+                        <div id="modificationList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Right Column: Status & Quick Actions -->
+    <div class="col-lg-4">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-tachometer-alt me-2"></i>
+                    Current Status
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="statusInfo">
+                    <div class="status-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-calendar text-secondary me-2" id="timetableIcon"></i>
+                            <span>Timetable Status</span>
+                        </div>
+                        <small class="text-muted d-block mt-1" id="timetableStatus">No timetable loaded</small>
+                    </div>
+                    
+                    <div class="status-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-brain text-secondary me-2" id="aiIcon"></i>
+                            <span>AI Status</span>
+                        </div>
+                        <small class="text-muted d-block mt-1" id="aiStatus">Ready to assist</small>
+                    </div>
+                </div>
+                
+                <button id="loadTimetableBtn" class="btn btn-primary w-100 mb-2" onclick="loadCurrentTimetable()">
+                    <i class="fas fa-download me-2"></i>
+                    Load Current Timetable
+                </button>
+                
+                <button id="saveTimetableBtn" class="btn btn-success w-100 mb-2" onclick="saveCurrentTimetable()" style="display: none;">
+                    <i class="fas fa-save me-2"></i>
+                    Save Timetable
+                </button>
+                
+                <div id="timetableSavedInfo" class="alert alert-success mt-2 mb-2" style="display: none;">
+                    <small>
+                        <i class="fas fa-check-circle me-1"></i>
+                        <strong>Saved:</strong> <span id="savedDateTime"></span>
+                    </small>
+                </div>
+                
+                <div id="noTimetableGuidance" class="alert alert-info mt-3" style="display: none;">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-info-circle me-2 mt-1"></i>
+                        <div>
+                            <strong>No timetable available</strong>
+                            <p class="mb-2 small">To use AI Assistant:</p>
+                            <ol class="small mb-2">
+                                <li>Go to <a href="/generate" class="alert-link">Generate</a> page</li>
+                                <li>Create a new timetable</li>
+                                <li>Click "Enable AI Modifications"</li>
+                            </ol>
+                            <a href="/generate" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-plus me-1"></i>Generate Timetable
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Saved Timetables Section -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-history me-2"></i>
+                    Saved Timetables
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="savedTimetablesList" class="saved-timetables-list">
+                    <div class="text-center text-muted py-3">
+                        <i class="fas fa-spinner fa-spin me-2"></i>Loading saved timetables...
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-outline-primary w-100 mt-2" onclick="refreshSavedTimetables()">
+                    <i class="fas fa-sync me-1"></i>Refresh List
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Box with AI Assistant -->
+        <div class="card mb-3">
+            <div class="card-header bg-info text-white">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-comments me-2"></i>
+                    AI Assistant Chat
+                </h5>
+            </div>
+            <div class="card-body p-2">
+                <div id="aiChatContainer" class="chat-container-compact">
+                    <div class="chat-message-compact system">
+                        <div>
+                            <i class="fas fa-robot me-1"></i>
+                            <strong>AI Assistant</strong><br>
+                            <small>Type your modification requests below. I'll suggest changes and preview them for you.</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="aiChatForm" class="mt-2 d-flex gap-1">
+                    <input type="text" id="aiUserInput" class="form-control form-control-sm" 
+                           placeholder="e.g., 'Dr. Johnson is on leave next week'" disabled>
+                    <button type="submit" id="aiSendBtn" class="btn btn-info btn-sm" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let currentTimetable = null;
+let chatHistory = [];
+
+document.addEventListener('DOMContentLoaded', function() {
+    checkTimetableStatus();
+    setupAIChatForm();
+    setupModifiedTimetableControls();
+    setupAIViewControls();
+    loadSavedTimetables();
+});
+
+function setupAIViewControls() {
+    // Setup radio button change listeners for AI view
+    document.querySelectorAll('input[name="aiViewType"]').forEach(radio => {
+        radio.addEventListener('change', filterAIViewOptions);
+    });
+    
+    // Setup view selector change listener
+    document.getElementById('aiViewSelector').addEventListener('change', updateAITimetableView);
+}
+
+function checkTimetableStatus() {
+    console.log('Checking timetable status...');
+    
+    fetch('/api/current-timetable', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Timetable status response:', data);
+        
+        if (data.success && data.timetable && Object.keys(data.timetable).length > 0) {
+            currentTimetable = data.timetable;
+            updateTimetableStatus(true, `Timetable Available and Ready for Modification`);
+            enableAIFeatures();
+            
+            // Show save button
+            const saveBtn = document.getElementById('saveTimetableBtn');
+            if (saveBtn) saveBtn.style.display = 'block';
+            
+            // Show saved date/time if available
+            if (data.saved_at) {
+                const savedInfo = document.getElementById('timetableSavedInfo');
+                const savedDateTime = document.getElementById('savedDateTime');
+                if (savedInfo && savedDateTime) {
+                    const savedDate = new Date(data.saved_at);
+                    savedDateTime.textContent = savedDate.toLocaleString();
+                    savedInfo.style.display = 'block';
+                }
+            }
+            
+            // Populate and display timetable automatically
+            populateAIViewOptions(currentTimetable);
+            const selector = document.getElementById('aiViewSelector');
+            if (selector.options.length > 1) {
+                selector.selectedIndex = 1;
+                updateAITimetableView();
+            }
+            
+            const loadBtn = document.getElementById('loadTimetableBtn');
+            if (loadBtn) loadBtn.style.display = 'none';
+            
+            console.log('Timetable loaded successfully, AI features enabled');
+        } else {
+            updateTimetableStatus(false, 'No timetable available');
+            const saveBtn = document.getElementById('saveTimetableBtn');
+            if (saveBtn) saveBtn.style.display = 'none';
+            const savedInfo = document.getElementById('timetableSavedInfo');
+            if (savedInfo) savedInfo.style.display = 'none';
+            console.log('No timetable found in session');
+        }
+    })
+    .catch(error => {
+        console.error('Error checking timetable status:', error);
+        updateTimetableStatus(false, 'Error checking timetable');
+    });
+}
+
+function updateTimetableStatus(hasTimetable, message) {
+    const icon = document.getElementById('timetableIcon');
+    const status = document.getElementById('timetableStatus');
+    const guidance = document.getElementById('noTimetableGuidance');
+    const statusText = document.getElementById('statusText');
+    
+    if (hasTimetable) {
+        icon.className = 'fas fa-calendar-check text-success me-2';
+        status.textContent = message;
+        status.className = 'text-success d-block mt-1';
+        statusText.textContent = message;
+        
+        if (guidance) guidance.style.display = 'none';
+    } else {
+        icon.className = 'fas fa-calendar-times text-danger me-2';
+        status.textContent = message;
+        status.className = 'text-danger d-block mt-1';
+        statusText.textContent = message;
+        
+        if (guidance) guidance.style.display = 'block';
+    }
+}
+
+function enableAIFeatures() {
+    console.log('Enabling AI features...');
+    
+    const userInput = document.getElementById('aiUserInput');
+    const sendBtn = document.getElementById('aiSendBtn');
+    
+    userInput.disabled = false;
+    sendBtn.disabled = false;
+    
+    userInput.placeholder = "Type your request... (e.g., 'Dr. Johnson is on leave next week')";
+    
+    const aiIcon = document.getElementById('aiIcon');
+    const aiStatus = document.getElementById('aiStatus');
+    
+    aiIcon.className = 'fas fa-brain text-success me-2';
+    aiStatus.textContent = 'Ready for modifications';
+    aiStatus.className = 'text-success d-block mt-1';
+    
+    setTimeout(() => {
+        userInput.focus();
+    }, 100);
+    
+    console.log('AI features enabled successfully');
+}
+
+function setupAIChatForm() {
+    document.getElementById('aiChatForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        sendAIChatMessage();
+    });
+}
+
+function sendAIChatMessage(customMessage = null, isImprovement = false) {
+    const userInput = document.getElementById('aiUserInput');
+    const message = customMessage || userInput.value.trim();
+    
+    if (!message) return;
+    
+    window.lastAIRequest = message;
+    
+    if (!isImprovement) {
+        addAIChatMessage('user', message);
+    }
+    
+    if (!customMessage) {
+        userInput.value = '';
+    }
+    
+    addAIChatMessage('system', '<i class="fas fa-spinner fa-spin me-2"></i>Processing your request...');
+    
+    // First, get suggestions from AI
+    const requestData = {
+        request: message
+    };
+    
+    if (window.userFeedback && isImprovement) {
+        requestData.user_feedback = window.userFeedback;
+        window.userFeedback = null;
+    }
+    
+    fetch('/api/ai/get-suggestions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        removeLastAIChatMessage();
+        
+        console.log('AI Suggestions received:', data);
+        
+        if (data.success) {
+            displayAISuggestionsUI(data);
+        } else {
+            addAIChatMessage('system', `<span class="text-danger"><i class="fas fa-exclamation-circle me-2"></i>Error: ${data.error}</span>`);
+            
+            if (data.suggestions && Array.isArray(data.suggestions)) {
+                let suggestionsHtml = '<div class="mt-2"><strong>Suggestions:</strong><ul style="font-size: 0.75rem;">';
+                data.suggestions.forEach(suggestion => {
+                    suggestionsHtml += `<li>${suggestion}</li>`;
+                });
+                suggestionsHtml += '</ul></div>';
+                addAIChatMessage('system', suggestionsHtml);
+            }
+        }
+    })
+    .catch(error => {
+        console.error('AI Request failed:', error);
+        removeLastAIChatMessage();
+        addAIChatMessage('system', `<span class="text-danger"><i class="fas fa-exclamation-circle me-2"></i>Connection Error: ${error.message}</span>`);
+    });
+}
+
+function addAIChatMessage(type, content) {
+    const chatContainer = document.getElementById('aiChatContainer');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message-compact ${type}`;
+    
+    if (type === 'user') {
+        messageDiv.innerHTML = `<i class="fas fa-user me-1"></i><strong>You:</strong> ${content}`;
+    } else {
+        messageDiv.innerHTML = content;
+    }
+    
+    chatContainer.appendChild(messageDiv);
+    
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function removeLastAIChatMessage() {
+    const chatContainer = document.getElementById('aiChatContainer');
+    const lastMessage = chatContainer.lastElementChild;
+    if (lastMessage) {
+        chatContainer.removeChild(lastMessage);
+    }
+}
+
+function displayAIChatResponse(data) {
+    let responseHtml = '<i class="fas fa-robot me-1"></i>';
+    
+    if (data.message) {
+        responseHtml += data.message;
+    }
+    
+    if (data.affected_sessions && data.affected_sessions.length > 0) {
+        responseHtml += `<br><strong>Sessions affected: ${data.affected_sessions.length}</strong>`;
+    }
+    
+    if (data.reschedule_suggestions && data.reschedule_suggestions.success && data.reschedule_suggestions.suggestions) {
+        const suggestions = data.reschedule_suggestions.suggestions;
+        
+        if (Array.isArray(suggestions) && suggestions.length > 0) {
+            responseHtml += `<br><div class="alert alert-info mt-1 p-1 small">
+                <strong>Suggestion Available!</strong> Click "Preview" or "Apply" below to view the modified timetable.
+            </div>`;
+            
+            // Store suggestion data globally
+            if (!window.suggestionData) {
+                window.suggestionData = {};
+            }
+            window.suggestionData[0] = {
+                option: suggestions[0],
+                originalData: data
+            };
+        }
+    }
+    
+    if (data.error) {
+        responseHtml += `<br><span class="text-danger">Error: ${data.error}</span>`;
+    }
+    
+    addAIChatMessage('system', responseHtml);
+}
+
+function populateAIViewOptions(timetable) {
+    const viewSelector = document.getElementById('aiViewSelector');
+    const viewType = document.querySelector('input[name="aiViewType"]:checked').value;
+    
+    viewSelector.innerHTML = '<option value="">Select a view...</option>';
+    
+    Object.keys(timetable).forEach(key => {
+        if (viewType === 'division' && !key.includes('Batch')) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = key.replace(/_/g, ' ');
+            viewSelector.appendChild(option);
+        } else if (viewType === 'batch' && key.includes('Batch')) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = key.replace(/_/g, ' ');
+            viewSelector.appendChild(option);
+        }
+    });
+}
+
+function filterAIViewOptions() {
+    if (currentTimetable) {
+        populateAIViewOptions(currentTimetable);
+        updateAITimetableView();
+    }
+}
+
+function updateAITimetableView() {
+    const selectedView = document.getElementById('aiViewSelector').value;
+    if (!selectedView || !currentTimetable || !currentTimetable[selectedView]) {
+        document.getElementById('aiTimetableContainer').innerHTML = 
+            '<div class="text-center text-muted py-5"><i class="fas fa-info-circle me-2"></i>Select a view to display timetable</div>';
+        return;
+    }
+    
+    const viewData = currentTimetable[selectedView];
+    const container = document.getElementById('aiTimetableContainer');
+    
+    const days = Object.keys(viewData);
+    const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    days.sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+    const timeSlots = Object.keys(viewData[days[0]] || {});
+    
+    let html = '<table class="table table-bordered table-sm">';
+    html += '<thead class="table-dark"><tr><th class="text-center" style="width: 10%;">Time</th>';
+    
+    days.forEach(day => {
+        html += `<th class="text-center">${day}</th>`;
+    });
+    
+    html += '</tr></thead><tbody>';
+    
+    timeSlots.forEach(timeSlot => {
+        html += '<tr>';
+        html += `<td class="fw-bold text-center align-middle" style="width: 10%;">${timeSlot}</td>`;
+        
+        // Check if this is a break period (check first day to determine if it's a break)
+        const firstDaySession = viewData[days[0]] && viewData[days[0]][timeSlot];
+        const isBreak = firstDaySession && firstDaySession.type === 'break';
+        
+        if (isBreak) {
+            // Create a single merged cell spanning all day columns
+            const breakType = firstDaySession.break_type || 'break';
+            const breakIcon = breakType === 'lunch' ? 'fa-utensils' : 'fa-coffee';
+            html += `<td colspan="${days.length}" class="break-cell text-center align-middle">`;
+            html += `
+                <div class="break-slot p-3 rounded" style="background-color: rgba(108, 117, 125, 0.15);">
+                    <i class="fas ${breakIcon} me-2"></i>
+                    <strong style="font-size: 1.1em;">${firstDaySession.subject || 'Break'}</strong>
+                </div>
+            `;
+            html += '</td>';
+        } else {
+            // Day columns - normal session rendering
+            days.forEach(day => {
+                html += '<td class="align-top">';
+                const session = viewData[day] && viewData[day][timeSlot];
+                
+                if (session && session.type !== 'break') {
+                    const sessions = Array.isArray(session) ? session : [session];
+                    
+                    sessions.forEach(s => {
+                        if (s && s.type !== 'break') {
+                            html += `
+                                <div class="session-cell-content border rounded p-1 mb-1" style="font-size: 0.8rem;">
+                                    <div class="subject-name">${s.subject || 'N/A'}</div>
+                                    <div class="session-info">
+                                        <i class="fas fa-user" style="font-size: 0.7rem;"></i> ${s.faculty || 'N/A'}<br>
+                                        <i class="fas fa-map-marker-alt" style="font-size: 0.7rem;"></i> ${s.room || 'N/A'}
+                                    </div>
+                                    <span class="badge bg-${s.type === 'theory' ? 'info' : 'warning'} badge-type">${s.type.toUpperCase()}</span>
+                                </div>
+                            `;
+                        }
+                    });
+                } else {
+                    html += '<div class="text-muted text-center" style="font-size: 0.8rem;">-</div>';
+                }
+                
+                html += '</td>';
+            });
+        }
+        
+        html += '</tr>';
+    });
+    
+    html += '</tbody></table>';
+    
+    container.innerHTML = html;
+}
+
+// Reject suggestion and ask for user feedback
+function rejectSuggestion(index) {
+    const suggestionCard = document.getElementById(`suggestion-${index}`);
+    if (suggestionCard) {
+        // Add rejected styling
+        suggestionCard.classList.add('border-danger', 'bg-light');
+        suggestionCard.style.opacity = '0.7';
+        
+        // Show feedback input
+        const feedbackHtml = `
+            <div class="mt-3 p-3 bg-warning-subtle border-warning rounded" id="feedback-${index}">
+                <h6><i class="fas fa-comment me-1"></i>Help us improve suggestions</h6>
+                <p class="mb-2 small">What would you prefer instead? Your feedback helps us generate better options.</p>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="feedbackInput-${index}" 
+                           placeholder="e.g., 'I prefer morning slots' or 'Use different rooms'" 
+                           maxlength="200">
+                    <button class="btn btn-primary" onclick="submitFeedback(${index})">
+                        <i class="fas fa-paper-plane me-1"></i>Get Better Options
+                    </button>
+                </div>
+            </div>
+        `;
+        suggestionCard.insertAdjacentHTML('beforeend', feedbackHtml);
+        
+        // Focus on the input
+        setTimeout(() => {
+            document.getElementById(`feedbackInput-${index}`).focus();
+        }, 100);
+    }
+}
+
+// Submit user feedback and get improved suggestions
+function submitFeedback(index) {
+    const feedbackInput = document.getElementById(`feedbackInput-${index}`);
+    const feedback = feedbackInput.value.trim();
+    
+    if (!feedback) {
+        showAlert('Please provide some feedback to help us improve the suggestions.', 'warning');
+        return;
+    }
+    
+    // Show loading
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    if (loadingOverlay) {
+        loadingOverlay.style.display = 'flex';
+    }
+    
+    // Get the original request data
+    const originalRequest = window.lastAIRequest || 'Please provide better suggestions';
+    const improvedRequest = `${originalRequest}\n\nUser feedback: ${feedback}\n\nPlease provide improved suggestions based on this feedback.`;
+    
+    // Store the feedback for the next request
+    window.userFeedback = feedback;
+    
+    // Send improved request
+    sendChatMessage(improvedRequest, true);
+    
+    // Hide the feedback section
+    const feedbackSection = document.getElementById(`feedback-${index}`);
+    if (feedbackSection) {
+        feedbackSection.remove();
+    }
+}
+
+function formatSuggestion(suggestion) {
+    if (typeof suggestion === 'string') {
+        return suggestion;
+    } else if (typeof suggestion === 'object') {
+        return JSON.stringify(suggestion, null, 2).replace(/\n/g, '<br>').replace(/ /g, '&nbsp;');
+    } else {
+        return String(suggestion);
+    }
+}
+
+function formatReschedulingOptionWithApproval(option, index, originalData) {
+    // Store the data globally to avoid JSON parsing issues
+    if (!window.suggestionData) {
+        window.suggestionData = {};
+    }
+    window.suggestionData[index] = {
+        option: option,
+        originalData: originalData
+    };
+    
+    let html = `
+        <div class="card mb-3 suggestion-card" id="suggestion-${index}">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1">
+                            <span class="badge bg-primary me-2">Option ${option.rank || index + 1}</span>
+                            ${option.description || 'Rescheduling Option'}
+                            ${option.impact_score ? `<span class="badge bg-success ms-2">${option.impact_score}/10</span>` : ''}
+                        </h6>
+                        ${option.notes ? `<small class="text-muted d-block">${option.notes}</small>` : ''}
+                        ${option.feedback_incorporated ? `<small class="text-info d-block mt-1"><i class="fas fa-lightbulb me-1"></i>Based on your feedback: ${option.feedback_incorporated}</small>` : ''}
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button class="btn btn-outline-info" onclick="previewModification(${index})" title="Preview this option">
+                            <i class="fas fa-eye me-1"></i>Preview
+                        </button>
+                        <button class="btn btn-success" onclick="approveModification(${index})" title="Apply this modification">
+                            <i class="fas fa-check me-1"></i>Apply
+                        </button>
+                    </div>
+                    <button class="btn btn-outline-danger btn-sm" onclick="rejectSuggestion(${index})" title="I don't like this option">
+                        <i class="fas fa-times me-1"></i>Reject
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Pros and Cons Section -->
+                ${option.pros || option.cons ? `
+                <div class="row mb-3">
+                    ${option.pros && option.pros.length > 0 ? `
+                    <div class="col-md-6">
+                        <h6 class="text-success"><i class="fas fa-check-circle me-1"></i>Advantages</h6>
+                        <ul class="list-unstyled">
+                            ${option.pros.map(pro => `<li class="text-success"><i class="fas fa-plus me-1"></i>${pro}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+                    ${option.cons && option.cons.length > 0 ? `
+                    <div class="col-md-6">
+                        <h6 class="text-warning"><i class="fas fa-exclamation-triangle me-1"></i>Considerations</h6>
+                        <ul class="list-unstyled">
+                            ${option.cons.map(con => `<li class="text-warning"><i class="fas fa-minus me-1"></i>${con}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+                </div>
+                ` : ''}
+                
+                <!-- Sessions Section -->
+                <h6 class="mb-2"><i class="fas fa-calendar-alt me-1"></i>Session Details</h6>
+                <div class="row">
+    `;
+    
+    if (option.sessions && Array.isArray(option.sessions)) {
+        option.sessions.forEach((session, sessionIndex) => {
+            // Ensure all session properties have default values to avoid undefined
+            const safeSession = {
+                subject: session.subject || 'Unknown Subject',
+                day: session.day || 'TBD',
+                time_slot: session.time_slot || 'TBD',
+                room: session.room || 'TBD',
+                faculty: session.faculty || 'TBD',
+                type: session.type || 'theory'
+            };
+            
+            html += `
+                <div class="col-md-4 mb-2">
+                    <div class="session-preview border rounded p-2">
+                        <strong>${safeSession.subject}</strong><br>
+                        <small>
+                            <i class="fas fa-calendar me-1"></i>${safeSession.day}<br>
+                            <i class="fas fa-clock me-1"></i>${safeSession.time_slot}<br>
+                            <i class="fas fa-map-marker-alt me-1"></i>${safeSession.room}<br>
+                            <i class="fas fa-user me-1"></i>${safeSession.faculty}<br>
+                            <span class="badge bg-${safeSession.type === 'theory' ? 'info' : 'warning'} badge-sm">${safeSession.type.toUpperCase()}</span>
+                        </small>
+                        ${session.notes ? `<div class="text-muted small mt-1">${session.notes}</div>` : ''}
+                    </div>
+                </div>
+            `;
+        });
+    }
+    
+    html += `
+                </div>
+            </div>
+        </div>
+    `;
+    
+    return html;
+}
+
+function formatSuggestionWithApproval(suggestion, index, originalData) {
+    return `
+        <div class="card mb-2 suggestion-card">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>${formatSuggestion(suggestion)}</div>
+                <button class="btn btn-sm btn-success" onclick="approveSimpleSuggestion(${index}, '${suggestion}')">
+                    <i class="fas fa-check me-1"></i>Apply
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+function formatAISuggestionWithApproval(suggestion, index, originalData) {
+    // Store the data globally to avoid JSON parsing issues
+    if (!window.suggestionData) {
+        window.suggestionData = {};
+    }
+    window.suggestionData[index] = {
+        option: suggestion,
+        originalData: originalData
+    };
+    
+    let html = `
+        <div class="card mb-3 suggestion-card" id="suggestion-${index}">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="mb-0">
+                    <span class="badge bg-primary me-2">Option ${suggestion.rank || index + 1}</span>
+                    AI Rescheduling Suggestion
+                </h6>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button class="btn btn-outline-info" onclick="previewAISuggestion(${index})">
+                        <i class="fas fa-eye me-1"></i>Preview
+                    </button>
+                    <button class="btn btn-success" onclick="approveAISuggestion(${index})">
+                        <i class="fas fa-check me-1"></i>Apply
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+    `;
+    
+    // Show rationale if available
+    if (suggestion.rationale) {
+        html += `
+            <div class="alert alert-info mb-3">
+                <h6><i class="fas fa-lightbulb me-2"></i>AI Reasoning:</h6>
+                <p class="mb-0">${suggestion.rationale}</p>
+            </div>
+        `;
+    }
+    
+    // Show reschedule details if available
+    if (suggestion.reschedule) {
+        html += `<h6><i class="fas fa-calendar-alt me-2"></i>Proposed Changes:</h6>`;
+        
+        if (typeof suggestion.reschedule === 'string') {
+            html += `<p>${suggestion.reschedule}</p>`;
+        } else if (typeof suggestion.reschedule === 'object') {
+            html += `<div class="bg-light p-3 rounded">`;
+            Object.entries(suggestion.reschedule).forEach(([key, value]) => {
+                html += `<strong>${key.replace(/_/g, ' ')}:</strong> ${value}<br>`;
+            });
+            html += `</div>`;
+        }
+    }
+    
+    html += `
+            </div>
+        </div>
+    `;
+    
+    return html;
+}
+
+function approveSimpleSuggestion(index, suggestion) {
+    showAlert('Simple suggestion approval - Manual implementation required', 'info');
+    addChatMessage('system', `<div class="alert alert-info">Suggestion "${suggestion}" noted. Please implement manually or contact administrator for automated implementation.</div>`);
+}
+
+function previewAISuggestion(index) {
+    if (!window.suggestionData || !window.suggestionData[index]) {
+        showAlert('Error: Suggestion data not found.', 'danger');
+        return;
+    }
+    
+    const { option, originalData } = window.suggestionData[index];
+    
+    let previewHtml = `
+        <div class="alert alert-primary">
+            <h6><i class="fas fa-eye me-2"></i>Preview: AI Suggestion ${option.rank || index + 1}</h6>
+            <p><strong>This suggestion will:</strong></p>
+            <ul>
+    `;
+    
+    if (originalData.affected_sessions) {
+        previewHtml += `<li>Remove ${originalData.affected_sessions.length} existing sessions for Dr. S. R. Ganorkar</li>`;
+    }
+    
+    if (option.reschedule) {
+        if (typeof option.reschedule === 'string') {
+            previewHtml += `<li>${option.reschedule}</li>`;
+        } else {
+            previewHtml += `<li>Apply the following changes: ${JSON.stringify(option.reschedule)}</li>`;
+        }
+    }
+    
+    previewHtml += `
+            </ul>
+            <p><strong>Note:</strong> This is a text-based suggestion that may require manual implementation.</p>
+        </div>
+    `;
+    
+    addChatMessage('system', previewHtml);
+}
+
+function approveAISuggestion(index) {
+    if (!window.suggestionData || !window.suggestionData[index]) {
+        showAlert('Error: Suggestion data not found.', 'danger');
+        return;
+    }
+    
+    const { option, originalData } = window.suggestionData[index];
+    
+    // For AI suggestions that don't have structured sessions, we need to handle them differently
+    if (!option.sessions && option.reschedule) {
+        // This is a text-based suggestion, try to convert it to actionable modifications
+        const convertedOption = convertTextSuggestionToStructured(option, originalData);
+        
+        if (convertedOption.sessions && convertedOption.sessions.length > 0) {
+            // Use the converted structured data
+            approveModificationWithData(index, convertedOption, originalData);
+        } else {
+            // Show manual implementation message
+            showAlert('This suggestion requires manual implementation. The AI provided general guidance rather than specific session details.', 'warning');
+            addChatMessage('system', `
+                <div class="alert alert-warning">
+                    <h6><i class="fas fa-exclamation-triangle me-2"></i>Manual Implementation Required</h6>
+                    <p><strong>AI Suggestion:</strong> ${option.rationale || 'Apply the suggested changes'}</p>
+                    <p><strong>Proposed Changes:</strong> ${typeof option.reschedule === 'string' ? option.reschedule : JSON.stringify(option.reschedule)}</p>
+                    <p><strong>Next Steps:</strong> Please manually reschedule the affected sessions based on the AI's guidance.</p>
+                </div>
+            `);
+        }
+    } else {
+        // Use the standard approval process
+        approveModificationWithData(index, option, originalData);
+    }
+}
+
+function convertTextSuggestionToStructured(option, originalData) {
+    // Try to extract actionable information from text-based suggestions
+    // This is a basic implementation that could be enhanced
+    
+    const convertedOption = {
+        sessions: [],
+        description: option.rationale || 'AI-suggested modification'
+    };
+    
+    // If we have affected sessions, we can try to create new sessions
+    if (originalData.affected_sessions && originalData.affected_sessions.length > 0) {
+        // For now, create placeholder sessions that maintain the same structure
+        originalData.affected_sessions.forEach((affectedSession, index) => {
+            if (affectedSession.session) {
+                convertedOption.sessions.push({
+                    subject: affectedSession.session.subject,
+                    type: affectedSession.session.type,
+                    faculty: "Substitute Faculty", // Placeholder
+                    room: affectedSession.session.room,
+                    day: "Wednesday", // Default day - should be smarter
+                    time_slot: affectedSession.time_slot
+                });
+            }
+        });
+    }
+    
+    return convertedOption;
+}
+
+function approveModificationWithData(index, option, originalData) {
+    // This is the same as approveModification but with explicit data
+    if (!confirm('Are you sure you want to apply this rescheduling option? This will modify your current timetable.')) {
+        return;
+    }
+    
+    const suggestionCard = document.getElementById(`suggestion-${index}`);
+    if (suggestionCard) {
+        suggestionCard.style.opacity = '0.5';
+        suggestionCard.innerHTML += '<div class="loading-overlay"><i class="fas fa-spinner fa-spin"></i> Applying modification...</div>';
+    }
+    
+    showAlert('Applying timetable modification...', 'info');
+    
+    console.log('Sending modification data:', {
+        modification_type: 'reschedule',
+        option: option,
+        original_data: originalData
+    });
+    
+    fetch('/api/ai/apply-modification', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            modification_type: 'reschedule',
+            option: option,
+            original_data: originalData
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert('Timetable modified successfully! The changes have been applied.', 'success');
+            
+            addChatMessage('system', `
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <strong>Modification Applied Successfully!</strong><br>
+                    ${data.message || 'The timetable has been updated with your selected rescheduling option.'}
+                    <br><br>
+                    <a href="/generate" class="btn btn-sm btn-primary">
+                        <i class="fas fa-eye me-1"></i>View Updated Timetable
+                    </a>
+                </div>
+            `);
+            
+            if (data.modified_timetable) {
+                currentTimetable = data.modified_timetable;
+                updateTimetableStatus(true, 'Timetable updated with modifications');
+                showModifiedTimetableSection(data.modified_timetable, data.modifications_applied || []);
+                
+                setTimeout(() => {
+                    document.getElementById('modifiedTimetableSection').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }, 500);
+            }
+        } else {
+            showAlert(`Error applying modification: ${data.error}`, 'danger');
+            
+            let errorMessage = `<span class="text-danger">Failed to apply modification: ${data.error}</span>`;
+            
+            if (data.debug_info) {
+                errorMessage += `
+                    <div class="mt-2">
+                        <details>
+                            <summary>Debug Information</summary>
+                            <pre class="small">${JSON.stringify(data.debug_info, null, 2)}</pre>
+                        </details>
+                    </div>
+                `;
+            }
+            
+            addChatMessage('system', errorMessage);
+        }
+    })
+    .catch(error => {
+        showAlert(`Error: ${error.message}`, 'danger');
+        addChatMessage('system', `<span class="text-danger">Error applying modification: ${error.message}</span>`);
+    })
+    .finally(() => {
+        if (suggestionCard) {
+            suggestionCard.style.opacity = '1';
+            const loadingOverlay = suggestionCard.querySelector('.loading-overlay');
+            if (loadingOverlay) {
+                loadingOverlay.remove();
+            }
+        }
+    });
+}
+
+function setupModifiedTimetableControls() {
+    document.querySelectorAll('input[name="modifiedViewType"]').forEach(radio => {
+        radio.addEventListener('change', filterModifiedViewOptions);
+    });
+    
+    document.getElementById('modifiedViewSelector').addEventListener('change', updateModifiedTimetableView);
+}
+
+function showModifiedTimetableSection(modifiedTimetable, modifications) {
+    // Show the modified timetable section
+    const section = document.getElementById('modifiedTimetableSection');
+    section.style.display = 'block';
+    
+    // Update the current timetable reference
+    currentTimetable = modifiedTimetable;
+    
+    // Populate view options
+    populateModifiedViewOptions(modifiedTimetable);
+    
+    // Show modification summary
+    displayModificationSummary(modifications);
+    
+    // Auto-select first view and display
+    const viewSelector = document.getElementById('modifiedViewSelector');
+    if (viewSelector.options.length > 1) {
+        viewSelector.selectedIndex = 1; // Select first actual option (skip "Select a view...")
+        updateModifiedTimetableView();
+    }
+    
+    // Show download buttons
+    document.getElementById('downloadButtonsRow').style.display = 'block';
+}
+
+function populateModifiedViewOptions(timetable) {
+    const viewSelector = document.getElementById('modifiedViewSelector');
+    const viewType = document.querySelector('input[name="modifiedViewType"]:checked').value;
+    
+    // Clear existing options
+    viewSelector.innerHTML = '<option value="">Select a view...</option>';
+    
+    // Add options based on timetable keys and view type
+    Object.keys(timetable).forEach(key => {
+        if (viewType === 'division' && !key.includes('Batch')) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = key.replace(/_/g, ' ');
+            viewSelector.appendChild(option);
+        } else if (viewType === 'batch' && key.includes('Batch')) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = key.replace(/_/g, ' ');
+            viewSelector.appendChild(option);
+        }
+    });
+}
+
+function filterModifiedViewOptions() {
+    if (currentTimetable) {
+        populateModifiedViewOptions(currentTimetable);
+        updateModifiedTimetableView();
+    }
+}
+
+function updateModifiedTimetableView() {
+    const selectedView = document.getElementById('modifiedViewSelector').value;
+    if (!selectedView || !currentTimetable || !currentTimetable[selectedView]) return;
+    
+    const viewData = currentTimetable[selectedView];
+    const tbody = document.getElementById('modifiedTimetableBody');
+    const thead = document.getElementById('modifiedTimetableHead');
+    
+    // Clear existing content
+    tbody.innerHTML = '';
+    thead.innerHTML = '';
+    
+    // Get days and time slots from the data
+    const days = Object.keys(viewData);
+    const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    days.sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+    const timeSlots = Object.keys(viewData[days[0]] || {});
+    
+    // Build table header
+    const headRow = document.createElement('tr');
+    const timeTh = document.createElement('th');
+    timeTh.textContent = 'Time';
+    timeTh.className = 'text-center';
+    headRow.appendChild(timeTh);
+    
+    days.forEach(day => {
+        const th = document.createElement('th');
+        th.textContent = day;
+        th.className = 'text-center';
+        headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    
+    // Build table body
+    timeSlots.forEach(timeSlot => {
+        const row = document.createElement('tr');
+        
+        // Time column
+        const timeCell = document.createElement('td');
+        timeCell.className = 'fw-bold text-center align-middle';
+        timeCell.textContent = timeSlot;
+        row.appendChild(timeCell);
+        
+        // Check if this is a break period (check first day to determine if it's a break)
+        const firstDaySession = viewData[days[0]] && viewData[days[0]][timeSlot];
+        const isBreak = firstDaySession && firstDaySession.type === 'break';
+        
+        if (isBreak) {
+            // Create a single merged cell spanning all day columns
+            const breakCell = document.createElement('td');
+            breakCell.colSpan = days.length;
+            breakCell.className = 'break-cell text-center align-middle';
+            const breakType = firstDaySession.break_type || 'break';
+            const breakIcon = breakType === 'lunch' ? 'fa-utensils' : 'fa-coffee';
+            breakCell.innerHTML = `
+                <div class="break-slot p-3 rounded" style="background-color: rgba(108, 117, 125, 0.15);">
+                    <i class="fas ${breakIcon} me-2"></i>
+                    <strong style="font-size: 1.1em;">${firstDaySession.subject || 'Break'}</strong>
+                </div>
+            `;
+            row.appendChild(breakCell);
+        } else {
+            // Day columns - normal session rendering
+            days.forEach(day => {
+                const cell = document.createElement('td');
+                const session = viewData[day] && viewData[day][timeSlot];
+                
+                if (session && session.type !== 'break') {
+                    const sessions = Array.isArray(session) ? session : [session];
+                    let cellContent = '';
+                    
+                    sessions.forEach(s => {
+                        if (s && s.type !== 'break') {
+                            cellContent += `
+                                <div class="session-card-mini p-1 mb-1 border rounded">
+                                    <div class="fw-bold small">${s.subject}</div>
+                                    <div class="text-muted" style="font-size: 0.7em;">
+                                        <i class="fas fa-user me-1"></i>${s.faculty}<br>
+                                        <i class="fas fa-map-marker-alt me-1"></i>${s.room}<br>
+                                        <span class="badge bg-${s.type === 'theory' ? 'info' : 'warning'} badge-sm">${s.type.toUpperCase()}</span>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    });
+                    
+                    cell.innerHTML = cellContent;
+                } else {
+                    cell.innerHTML = '<div class="text-muted text-center">-</div>';
+                }
+                
+                cell.className = 'align-top';
+                row.appendChild(cell);
+            });
+        }
+        
+        tbody.appendChild(row);
+    });
+}
+
+function displayModificationSummary(modifications) {
+    if (!modifications || modifications.length === 0) return;
+    
+    const summaryDiv = document.getElementById('modificationSummary');
+    const listDiv = document.getElementById('modificationList');
+    
+    let summaryHtml = '';
+    modifications.forEach((mod, index) => {
+        const actionColor = mod.action === 'added' ? 'success' : 'warning';
+        const actionIcon = mod.action === 'added' ? 'plus' : 'minus';
+        
+        summaryHtml += `
+            <div class="d-flex align-items-center mb-2">
+                <span class="badge bg-${actionColor} me-2">
+                    <i class="fas fa-${actionIcon} me-1"></i>${mod.action.toUpperCase()}
+                </span>
+                <div>
+                    <strong>${mod.session.subject}</strong> (${mod.session.type}) - ${mod.session.faculty}
+                    <br><small class="text-muted">${mod.location}</small>
+                </div>
+            </div>
+        `;
+    });
+    
+    listDiv.innerHTML = summaryHtml;
+    summaryDiv.style.display = 'block';
+}
+
+function analyzeConflicts() {
+    if (!currentTimetable) {
+        showAlert('Please load a timetable first', 'warning');
+        return;
+    }
+    
+    showLoading('analysisResults');
+    document.getElementById('analysisResults').style.display = 'block';
+    
+    fetch('/api/ai/analyze-conflicts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            timetable: currentTimetable
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        displayAnalysisResults(data);
+    })
+    .catch(error => {
+        document.getElementById('analysisResults').innerHTML = 
+            `<div class="alert alert-danger">Error: ${error.message}</div>`;
+    });
+}
+
+function optimizeWorkload() {
+    fetch('/api/ai/optimize-workload', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            assignments: {}
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        displayWorkloadOptimization(data);
+    })
+    .catch(error => {
+        showAlert(`Error optimizing workload: ${error.message}`, 'danger');
+    });
+}
+
+function displayAnalysisResults(data) {
+    const resultsDiv = document.getElementById('analysisResults');
+    
+    if (data.success) {
+        let html = '<div class="alert alert-info"><h6>Analysis Complete</h6>';
+        
+        if (data.quality_score) {
+            html += `<p><strong>Quality Score:</strong> ${data.quality_score}/100</p>`;
+        }
+        
+        if (data.recommendations && data.recommendations.length > 0) {
+            html += '<strong>Recommendations:</strong><ul>';
+            data.recommendations.forEach(rec => {
+                html += `<li>${rec}</li>`;
+            });
+            html += '</ul>';
+        }
+        
+        html += '</div>';
+        resultsDiv.innerHTML = html;
+    } else {
+        resultsDiv.innerHTML = `<div class="alert alert-danger">Error: ${data.error}</div>`;
+    }
+}
+
+function displayWorkloadOptimization(data) {
+    addChatMessage('system', 
+        `<i class="fas fa-balance-scale me-2"></i>Workload optimization complete. 
+         ${data.success ? 'Found optimization opportunities.' : 'Error: ' + data.error}`
+    );
+}
+
+function loadCurrentTimetable() {
+    const loadBtn = document.getElementById('loadTimetableBtn');
+    const originalText = loadBtn.innerHTML;
+    
+    // Update button to show loading state
+    loadBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Loading...';
+    loadBtn.disabled = true;
+    
+    showAlert('Loading current timetable...', 'info');
+    
+    // First try to get existing timetable from session
+    fetch('/api/current-timetable', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success && data.timetable && Object.keys(data.timetable).length > 0) {
+            // Timetable exists in session
+            currentTimetable = data.timetable;
+            updateTimetableStatus(true, `Timetable loaded successfully (saved ${data.saved_at ? new Date(data.saved_at).toLocaleTimeString() : 'recently'})`);
+            enableAIFeatures();
+            populateAIViewOptions(currentTimetable);
+            showAlert('Timetable loaded successfully! You can now use AI assistance.', 'success');
+            
+            // Show save button
+            const saveBtn = document.getElementById('saveTimetableBtn');
+            if (saveBtn) saveBtn.style.display = 'block';
+            
+            // Show saved date/time if available
+            if (data.saved_at) {
+                const savedInfo = document.getElementById('timetableSavedInfo');
+                const savedDateTime = document.getElementById('savedDateTime');
+                if (savedInfo && savedDateTime) {
+                    const savedDate = new Date(data.saved_at);
+                    savedDateTime.textContent = savedDate.toLocaleString();
+                    savedInfo.style.display = 'block';
+                }
+            }
+            
+            // Hide the load button since timetable is now available
+            loadBtn.style.display = 'none';
+        } else {
+            // No timetable in session, show guidance
+            throw new Error('No timetable found in session. Please go to the Generate page, create a timetable, and click "Enable AI Modifications".');
+        }
+    })
+    .catch(error => {
+        showAlert(`${error.message}`, 'warning');
+        
+        // Reset button state
+        loadBtn.innerHTML = originalText;
+        loadBtn.disabled = false;
+    });
+}
+
+function displayAISuggestionsUI(data) {
+    const suggestions = data.suggestions || {};
+    const options = suggestions.options || [];
+    const totalAffected = suggestions.total_affected || 0;
+    
+    // Show summary
+    let summaryHtml = `<div class="alert alert-info mb-3">
+        <i class="fas fa-info-circle me-2"></i>
+        <strong>Analysis Complete!</strong> Found ${totalAffected} affected session(s).
+        <br><small>Here are 3 recommended modifications:</small>
+    </div>`;
+    
+    addAIChatMessage('system', summaryHtml);
+    
+    // Store the data globally
+    if (!window.currentSuggestionsData) {
+        window.currentSuggestionsData = {};
+    }
+    window.currentSuggestionsData.originalData = data.original_data;
+    window.currentSuggestionsData.affectedSessions = data.affected_sessions;
+    
+    // Display each suggestion as a card
+    if (options && options.length > 0) {
+        options.forEach((option, index) => {
+            const suggestionHtml = formatSuggestionForChat(option, index, data.original_data);
+            addAIChatMessage('system', suggestionHtml);
+            
+            // Store suggestion data
+            window.currentSuggestionsData[index] = option;
+        });
+    }
+    
+    // Show custom input option
+    const customOptionHtml = `<div class="alert alert-secondary mt-3">
+        <h6><i class="fas fa-pencil me-2"></i>Or enter your own modification:</h6>
+        <div class="input-group">
+            <input type="text" class="form-control" id="customModificationInput" 
+                   placeholder="Describe your custom modification..." maxlength="200">
+            <button class="btn btn-primary" onclick="applyCustomModification()">
+                <i class="fas fa-arrow-right me-1"></i>Apply
+            </button>
+        </div>
+    </div>`;
+    
+    addAIChatMessage('system', customOptionHtml);
+}
+
+function formatSuggestionForChat(option, index, originalData) {
+    const impactScore = option.impact_score ? Math.round(option.impact_score * 10) : 75;
+    
+    let html = `<div class="card mb-3 suggestion-card" id="suggestion-${index}" style="border: 2px solid #e9ecef;">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-start">
+                <div class="flex-grow-1">
+                    <h6 class="mb-1">
+                        <span class="badge bg-primary me-2">Option ${index + 1}</span>
+                        ${option.description || 'Rescheduling Option'}
+                    </h6>
+                    <small class="text-muted">${option.notes || ''}</small>
+                </div>
+                <div class="badge bg-success" title="Impact Score">${impactScore}%</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+    `;
+    
+    // Pros
+    if (option.pros && option.pros.length > 0) {
+        html += `<div class="col-md-6">
+            <h6 class="text-success small"><i class="fas fa-check-circle me-1"></i>Advantages</h6>
+            <ul class="small list-unstyled">`;
+        option.pros.forEach(pro => {
+            html += `<li class="text-success"><i class="fas fa-plus me-1"></i>${pro}</li>`;
+        });
+        html += `</ul></div>`;
+    }
+    
+    // Cons
+    if (option.cons && option.cons.length > 0) {
+        html += `<div class="col-md-6">
+            <h6 class="text-warning small"><i class="fas fa-exclamation-triangle me-1"></i>Considerations</h6>
+            <ul class="small list-unstyled">`;
+        option.cons.forEach(con => {
+            html += `<li class="text-warning"><i class="fas fa-minus me-1"></i>${con}</li>`;
+        });
+        html += `</ul></div>`;
+    }
+    
+    html += `</div>
+        <div class="alert alert-light mb-2 small" style="margin: 0.5rem;">
+            <strong><i class="fas fa-calendar-alt me-1"></i>Sessions:</strong> `;
+    
+    if (option.sessions && option.sessions.length > 0) {
+        const sessions = option.sessions.slice(0, 2); // Show first 2
+        sessions.forEach(session => {
+            html += `<br><i class="fas fa-clock me-1"></i>${session.day} ${session.time_slot} - ${session.subject}`;
+        });
+        if (option.sessions.length > 2) {
+            html += `<br><small class="text-muted">+${option.sessions.length - 2} more sessions</small>`;
+        }
+    }
+    html += `</div>
+        </div>
+        <div class="card-footer bg-light">
+            <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-success" onclick="selectSuggestion(${index})" title="Apply this suggestion">
+                    <i class="fas fa-check me-1"></i>Select This Option
+                </button>
+                <button class="btn btn-sm btn-outline-info" onclick="toggleSessionDetails(${index})" title="View all sessions">
+                    <i class="fas fa-eye me-1"></i>View Details
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" onclick="rejectSuggestionWithFeedback(${index})" title="Reject and provide feedback">
+                    <i class="fas fa-times me-1"></i>Not Good
+                </button>
+            </div>
+        </div>
+    </div>`;
+    
+    return html;
+}
+
+function toggleSessionDetails(index) {
+    const card = document.getElementById(`suggestion-${index}`);
+    let detailsDiv = card.querySelector('.session-details-full');
+    
+    if (detailsDiv) {
+        detailsDiv.remove();
+        return;
+    }
+    
+    const option = window.currentSuggestionsData[index];
+    let detailsHtml = `<div class="session-details-full alert alert-info small mt-2">
+        <strong><i class="fas fa-list me-1"></i>All Sessions:</strong>
+        <table class="table table-sm mt-2 mb-0">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Faculty</th>
+                    <th>Room</th>
+                </tr>
+            </thead>
+            <tbody>`;
+    
+    if (option.sessions && option.sessions.length > 0) {
+        option.sessions.forEach(session => {
+            detailsHtml += `<tr>
+                <td>${session.subject}</td>
+                <td>${session.day}</td>
+                <td>${session.time_slot}</td>
+                <td>${session.faculty}</td>
+                <td>${session.room}</td>
+            </tr>`;
+        });
+    }
+    
+    detailsHtml += `</tbody></table></div>`;
+    
+    const cardBody = card.querySelector('.card-body');
+    cardBody.insertAdjacentHTML('afterend', detailsHtml);
+}
+
+function selectSuggestion(index) {
+    if (!confirm('Are you sure you want to apply this modification to your timetable?')) {
+        return;
+    }
+    
+    const option = window.currentSuggestionsData[index];
+    const originalData = window.currentSuggestionsData.originalData;
+    
+    if (!option) {
+        showAlert('Error: Suggestion not found', 'danger');
+        return;
+    }
+    
+    addAIChatMessage('system', '<i class="fas fa-spinner fa-spin me-2"></i>Applying modification to your timetable...');
+    
+    // Apply the modification
+    applyModificationWithData('reschedule', option, originalData);
+}
+
+function rejectSuggestionWithFeedback(index) {
+    const card = document.getElementById(`suggestion-${index}`);
+    let feedbackDiv = card.querySelector('.feedback-input-section');
+    
+    if (feedbackDiv) {
+        feedbackDiv.remove();
+        return;
+    }
+    
+    const feedbackHtml = `<div class="feedback-input-section alert alert-warning small mt-2">
+        <h6><i class="fas fa-comment me-1"></i>Help us improve</h6>
+        <p class="mb-2 small">What would you prefer instead?</p>
+        <div class="input-group">
+            <input type="text" class="form-control form-control-sm" id="feedback-${index}" 
+                   placeholder="e.g., 'I prefer afternoon slots' or 'Try different faculty'">
+            <button class="btn btn-primary btn-sm" onclick="submitSuggestionFeedback(${index})">
+                <i class="fas fa-paper-plane me-1"></i>Get Better Options
+            </button>
+        </div>
+    </div>`;
+    
+    const cardBody = card.querySelector('.card-body');
+    cardBody.insertAdjacentHTML('afterend', feedbackHtml);
+    
+    setTimeout(() => {
+        document.getElementById(`feedback-${index}`).focus();
+    }, 100);
+}
+
+function submitSuggestionFeedback(index) {
+    const feedbackInput = document.getElementById(`feedback-${index}`);
+    const feedback = feedbackInput.value.trim();
+    
+    if (!feedback) {
+        showAlert('Please provide feedback to help improve suggestions', 'warning');
+        return;
+    }
+    
+    // Store feedback and re-process the last request
+    const lastRequest = window.lastAIRequest || 'Please provide better suggestions';
+    const improvedRequest = `${lastRequest}\n\nUser feedback: ${feedback}`;
+    
+    // Clear the current suggestions
+    const card = document.getElementById(`suggestion-${index}`);
+    if (card) {
+        card.closest('.chat-message-compact')?.remove();
+    }
+    
+    // Remove custom input section
+    const customInputs = document.querySelectorAll('#customModificationInput');
+    customInputs.forEach(input => input.closest('.chat-message-compact')?.remove());
+    
+    // Send new request with feedback
+    addAIChatMessage('system', '<i class="fas fa-spinner fa-spin me-2"></i>Generating better suggestions based on your feedback...');
+    sendAIChatMessage(improvedRequest, true);
+}
+
+function applyCustomModification() {
+    const customInput = document.getElementById('customModificationInput');
+    const customRequest = customInput.value.trim();
+    
+    if (!customRequest) {
+        showAlert('Please enter your modification details', 'warning');
+        return;
+    }
+    
+    // Send as a new chat message
+    addAIChatMessage('user', `Custom: ${customRequest}`);
+    customInput.value = '';
+    
+    // Process the custom request to get new suggestions
+    addAIChatMessage('system', '<i class="fas fa-spinner fa-spin me-2"></i>Processing your custom modification...');
+    sendAIChatMessage(customRequest, false);
+}
+
+function applyModificationWithData(type, option, originalData) {
+    fetch('/api/ai/apply-modification', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            modification_type: type,
+            option: option,
+            original_data: originalData
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            removeLastAIChatMessage();
+            showAlert('Modification applied successfully! ✓', 'success');
+            
+            addAIChatMessage('system', `<div class="alert alert-success">
+                <i class="fas fa-check-circle me-2"></i>
+                <strong>Success!</strong> Your timetable has been updated.
+                <br><small>${data.message || 'The selected modification has been applied.'}</small>
+                <br><br>
+                <a href="/generate" class="btn btn-sm btn-primary">
+                    <i class="fas fa-eye me-1"></i>View Updated Timetable
+                </a>
+            </div>`);
+            
+            // Update current timetable
+            if (data.modified_timetable) {
+                currentTimetable = data.modified_timetable;
+                showModifiedTimetableSection(data.modified_timetable, data.modifications_applied || []);
+            }
+        } else {
+            removeLastAIChatMessage();
+            showAlert(`Error: ${data.error}`, 'danger');
+            addAIChatMessage('system', `<span class="text-danger"><i class="fas fa-exclamation-circle me-2"></i>Error: ${data.error}</span>`);
+        }
+    })
+    .catch(error => {
+        removeLastAIChatMessage();
+        showAlert(`Error: ${error.message}`, 'danger');
+        addAIChatMessage('system', `<span class="text-danger"><i class="fas fa-exclamation-circle me-2"></i>Error: ${error.message}</span>`);
+    });
+}
+
+// Download functions for modified timetable - exports ALL divisions/batches
+function downloadTimetablePDF() {
+    if (!currentTimetable || Object.keys(currentTimetable).length === 0) {
+        showAlert('No timetable available to download', 'warning');
+        return;
+    }
+    
+    showAlert('Generating PDF with all divisions... Please wait', 'info');
+    
+    fetch('/api/timetable/export/pdf', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            timetable: currentTimetable
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to generate PDF');
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Complete_Timetable_All_Divisions_${new Date().getTime()}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        showAlert('PDF with all divisions downloaded successfully! ✓', 'success');
+    })
+    .catch(error => {
+        console.error('Error downloading PDF:', error);
+        showAlert('Error generating PDF: ' + error.message, 'danger');
+    });
+}
+
+function downloadTimetableExcel() {
+    if (!currentTimetable || Object.keys(currentTimetable).length === 0) {
+        showAlert('No timetable available to download', 'warning');
+        return;
+    }
+    
+    showAlert('Generating Excel file with all divisions... Please wait', 'info');
+    
+    fetch('/api/timetable/export/excel', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            timetable: currentTimetable
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to generate Excel file');
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Complete_Timetable_All_Divisions_${new Date().getTime()}.xlsx`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        showAlert('Excel file with all divisions downloaded successfully! ✓', 'success');
+    })
+    .catch(error => {
+        console.error('Error downloading Excel:', error);
+        showAlert('Error generating Excel file: ' + error.message, 'danger');
+    });
+}
+
+// Save timetable permanently
+function saveCurrentTimetable() {
+    if (!currentTimetable || Object.keys(currentTimetable).length === 0) {
+        showAlert('No timetable available to save', 'warning');
+        return;
+    }
+    
+    // Prompt for name
+    const name = prompt('Enter a name for this timetable (optional):', `Timetable ${new Date().toLocaleDateString()}`);
+    
+    if (name === null) {
+        return; // User cancelled
+    }
+    
+    const saveBtn = document.getElementById('saveTimetableBtn');
+    const originalText = saveBtn.innerHTML;
+    saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Saving...';
+    saveBtn.disabled = true;
+    
+    fetch('/api/timetable/save-permanent', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            timetable: currentTimetable,
+            name: name || null
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert('Timetable saved successfully! ✓', 'success');
+            
+            // Update saved date/time display
+            const savedInfo = document.getElementById('timetableSavedInfo');
+            const savedDateTime = document.getElementById('savedDateTime');
+            if (savedInfo && savedDateTime) {
+                const savedDate = new Date(data.timetable.saved_at);
+                savedDateTime.textContent = savedDate.toLocaleString();
+                savedInfo.style.display = 'block';
+            }
+            
+            // Refresh saved timetables list
+            loadSavedTimetables();
+        } else {
+            showAlert(`Error saving timetable: ${data.error}`, 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('Error saving timetable:', error);
+        showAlert('Error saving timetable: ' + error.message, 'danger');
+    })
+    .finally(() => {
+        saveBtn.innerHTML = originalText;
+        saveBtn.disabled = false;
+    });
+}
+
+// Load saved timetables list
+function loadSavedTimetables() {
+    const listContainer = document.getElementById('savedTimetablesList');
+    
+    fetch('/api/timetable/saved-list', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            displaySavedTimetables(data.timetables);
+        } else {
+            listContainer.innerHTML = '<div class="text-danger">Error loading saved timetables</div>';
+        }
+    })
+    .catch(error => {
+        console.error('Error loading saved timetables:', error);
+        listContainer.innerHTML = '<div class="text-danger">Error loading saved timetables</div>';
+    });
+}
+
+// Store all timetables and display state
+let allSavedTimetables = [];
+let showingAllTimetables = false;
+
+// Display saved timetables
+function displaySavedTimetables(timetables) {
+    const listContainer = document.getElementById('savedTimetablesList');
+    
+    // Store all timetables globally
+    allSavedTimetables = timetables || [];
+    
+    if (!timetables || timetables.length === 0) {
+        listContainer.innerHTML = '<div class="text-center text-muted py-3"><i class="fas fa-inbox me-2"></i>No saved timetables yet</div>';
+        // Reset state
+        showingAllTimetables = false;
+        return;
+    }
+    
+    // Determine how many to show (2 by default, or all if showingAllTimetables is true)
+    const timetablesToShow = showingAllTimetables ? timetables : timetables.slice(0, 2);
+    const hasMore = timetables.length > 2;
+    
+    let html = '<div class="list-group">';
+    
+    timetablesToShow.forEach(tt => {
+        const savedDate = new Date(tt.saved_at);
+        html += `
+            <div class="list-group-item">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1">${tt.name || 'Unnamed Timetable'}</h6>
+                        <small class="text-muted">
+                            <i class="fas fa-clock me-1"></i>${savedDate.toLocaleString()}
+                        </small>
+                    </div>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button class="btn btn-outline-primary" onclick="loadSavedTimetable(${tt.id})" title="Load this timetable">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" onclick="deleteSavedTimetable(${tt.id})" title="Delete this timetable">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    html += '</div>';
+    
+    // Add "See More" / "Show Less" button if there are more than 2 timetables
+    if (hasMore) {
+        html += `
+            <button class="btn btn-sm btn-outline-secondary w-100 mt-2" onclick="toggleTimetablesView()" id="toggleTimetablesBtn">
+                <i class="fas ${showingAllTimetables ? 'fa-chevron-up' : 'fa-chevron-down'} me-1"></i>
+                ${showingAllTimetables ? 'Show Less' : `See More (${timetables.length - 2} more)`}
+            </button>
+        `;
+    }
+    
+    listContainer.innerHTML = html;
+}
+
+// Toggle between showing 2 and showing all timetables
+function toggleTimetablesView() {
+    showingAllTimetables = !showingAllTimetables;
+    displaySavedTimetables(allSavedTimetables);
+}
+
+// Load a saved timetable
+function loadSavedTimetable(timetableId) {
+    if (!confirm('Load this timetable? This will replace your current timetable.')) {
+        return;
+    }
+    
+    fetch(`/api/timetable/load-saved/${timetableId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert('Timetable loaded successfully! ✓', 'success');
+            currentTimetable = data.timetable;
+            
+            // Update UI
+            updateTimetableStatus(true, 'Timetable loaded from saved list');
+            enableAIFeatures();
+            
+            // Show save button
+            const saveBtn = document.getElementById('saveTimetableBtn');
+            if (saveBtn) saveBtn.style.display = 'block';
+            
+            // Update saved date/time
+            const savedInfo = document.getElementById('timetableSavedInfo');
+            const savedDateTime = document.getElementById('savedDateTime');
+            if (savedInfo && savedDateTime) {
+                const savedDate = new Date(data.saved_at);
+                savedDateTime.textContent = savedDate.toLocaleString();
+                savedInfo.style.display = 'block';
+            }
+            
+            // Populate and display timetable
+            populateAIViewOptions(currentTimetable);
+            const selector = document.getElementById('aiViewSelector');
+            if (selector.options.length > 1) {
+                selector.selectedIndex = 1;
+                updateAITimetableView();
+            }
+            
+            const loadBtn = document.getElementById('loadTimetableBtn');
+            if (loadBtn) loadBtn.style.display = 'none';
+        } else {
+            showAlert(`Error loading timetable: ${data.error}`, 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('Error loading saved timetable:', error);
+        showAlert('Error loading timetable: ' + error.message, 'danger');
+    });
+}
+
+// Delete a saved timetable
+function deleteSavedTimetable(timetableId) {
+    if (!confirm('Are you sure you want to delete this saved timetable?')) {
+        return;
+    }
+    
+    fetch(`/api/timetable/delete-saved/${timetableId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert('Timetable deleted successfully', 'success');
+            loadSavedTimetables(); // Refresh list
+        } else {
+            showAlert(`Error deleting timetable: ${data.error}`, 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('Error deleting saved timetable:', error);
+        showAlert('Error deleting timetable: ' + error.message, 'danger');
+    });
+}
+
+// Refresh saved timetables list
+function refreshSavedTimetables() {
+    // Reset to default view (show only 2) when refreshing
+    showingAllTimetables = false;
+    loadSavedTimetables();
+    showAlert('Saved timetables list refreshed', 'info');
+}
+</script>
+
+<style>
+.chat-container {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.375rem;
+    padding: 1rem;
+    background: var(--bs-body-bg);
+}
+
+.chat-message {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+}
+
+.chat-message.user {
+    background: rgba(13, 110, 253, 0.1);
+    border-left: 4px solid var(--bs-primary);
+    margin-left: 2rem;
+}
+
+.chat-message.system {
+    background: rgba(108, 117, 125, 0.1);
+    border-left: 4px solid var(--bs-secondary);
+    margin-right: 2rem;
+}
+
+.message-content {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.status-item {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background: var(--bs-secondary-bg);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .chat-container {
+        height: 300px;
+    }
+    
+    .chat-message.user {
+        margin-left: 1rem;
+    }
+    
+    .chat-message.system {
+        margin-right: 1rem;
+    }
+}
+</style>
+{% endblock %}

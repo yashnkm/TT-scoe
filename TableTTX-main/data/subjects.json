@@ -1,0 +1,472 @@
+{
+  "subjects": [
+    {
+      "name": "Data Structures & Algorithms",
+      "type": "theory",
+      "code": "PCC-201-ITT",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 1,
+      "id": 7
+    },
+    {
+      "name": "Object Oriented Programming",
+      "type": "theory",
+      "code": "PCC-202-ITT",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 1,
+      "id": 8
+    },
+    {
+      "name": "Basics of Computer Network",
+      "type": "theory",
+      "code": "PCC-203-ITT",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 1,
+      "id": 9
+    },
+    {
+      "name": "Data Structures & Algorithms Lab",
+      "type": "practical",
+      "code": "PCC-204-ITT",
+      "hours_per_week": 4,
+      "year": 2,
+      "semester": 1,
+      "id": 10
+    },
+    {
+      "name": "Object Oriented Programming Lab",
+      "type": "practical",
+      "code": "\u0420\u0421\u0421-205-IT\u0422",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 1,
+      "id": 11
+    },
+    {
+      "name": "Digital Electronics and Logic Design",
+      "type": "theory",
+      "code": "MDM-221-ITT",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 1,
+      "id": 12
+    },
+    {
+      "name": "Principles of Management & Entrepreneurship",
+      "type": "tutorial",
+      "code": "EEM-231-ITT",
+      "hours_per_week": 1,
+      "year": 2,
+      "semester": 1,
+      "id": 13
+    },
+    {
+      "name": "Principles of Management & Entrepreneurship",
+      "type": "practical",
+      "code": "EEM-231-ITT",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 1,
+      "id": 14
+    },
+    {
+      "name": "Computer Graphics",
+      "type": "theory",
+      "code": "PCC-252-ITT",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 2,
+      "id": 14
+    },
+    {
+      "name": "Database Management System Lab",
+      "type": "practical",
+      "code": "PCC-254-ITT",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 2,
+      "id": 16
+    },
+    {
+      "name": "Processor Architecture",
+      "type": "theory",
+      "code": "MDM-271-ITT",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 2,
+      "id": 18
+    },
+    {
+      "name": "Digital Marketing and social media",
+      "type": "practical",
+      "code": "VSE-281-ITT",
+      "hours_per_week": 4,
+      "year": 2,
+      "semester": 2,
+      "id": 19
+    },
+    {
+      "name": "Modern Indian Language (Marathi/Hindi)",
+      "type": "practical",
+      "code": "AEC-282-ITT",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 2,
+      "id": 21
+    },
+    {
+      "name": "E-Commerce",
+      "type": "tutorial",
+      "code": "EEM-283-ITT",
+      "hours_per_week": 1,
+      "year": 2,
+      "semester": 2,
+      "id": 22
+    },
+    {
+      "name": "E-Commerce",
+      "type": "practical",
+      "code": "EEM-283-ITT",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 2,
+      "id": 23
+    },
+    {
+      "name": "Environmental Studies",
+      "type": "theory",
+      "code": "VEC-284-1TT",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 2,
+      "id": 24
+    },
+    {
+      "name": "Theory of Computation",
+      "type": "theory",
+      "code": "314441",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 1,
+      "id": 25
+    },
+    {
+      "name": "Operating Systems",
+      "type": "theory",
+      "code": "314442",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 1,
+      "id": 26
+    },
+    {
+      "name": "Machine Learning",
+      "type": "theory",
+      "code": "314443",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 1,
+      "id": 27
+    },
+    {
+      "name": "Human Computer Interaction",
+      "type": "theory",
+      "code": "314444",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 1,
+      "id": 28
+    },
+    {
+      "name": "Elective-I",
+      "type": "theory",
+      "code": "314445",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 1,
+      "id": 29
+    },
+    {
+      "name": "Operating Systems Lab",
+      "type": "practical",
+      "code": "314446",
+      "hours_per_week": 4,
+      "year": 3,
+      "semester": 1,
+      "id": 30
+    },
+    {
+      "name": "Human Computer Interaction-Lab",
+      "type": "practical",
+      "code": "314447",
+      "hours_per_week": 2,
+      "year": 3,
+      "semester": 1,
+      "id": 31
+    },
+    {
+      "name": "Laboratory Practice-l",
+      "type": "practical",
+      "code": "314448",
+      "hours_per_week": 4,
+      "year": 3,
+      "semester": 1,
+      "id": 32
+    },
+    {
+      "name": "Seminar",
+      "type": "practical",
+      "code": "314449",
+      "hours_per_week": 1,
+      "year": 3,
+      "semester": 1,
+      "id": 33
+    },
+    {
+      "name": "Computer Networks& Security",
+      "type": "theory",
+      "code": "314451",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 2,
+      "id": 34
+    },
+    {
+      "name": "Data Science and Big Data Analytics",
+      "type": "theory",
+      "code": "314452",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 2,
+      "id": 35
+    },
+    {
+      "name": "Web Application Development",
+      "type": "theory",
+      "code": "314453",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 2,
+      "id": 36
+    },
+    {
+      "name": "Elective-II",
+      "type": "theory",
+      "code": "314454",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 2,
+      "id": 37
+    },
+    {
+      "name": "Internship",
+      "type": "practical",
+      "code": "314455",
+      "hours_per_week": 4,
+      "year": 3,
+      "semester": 2,
+      "id": 38
+    },
+    {
+      "name": "Computer Networks& Security-Lab",
+      "type": "practical",
+      "code": "314456",
+      "hours_per_week": 4,
+      "year": 3,
+      "semester": 2,
+      "id": 39
+    },
+    {
+      "name": "DS & BDA-Lab",
+      "type": "practical",
+      "code": "314457",
+      "hours_per_week": 2,
+      "year": 3,
+      "semester": 2,
+      "id": 40
+    },
+    {
+      "name": "Laboratory Practice-II",
+      "type": "practical",
+      "code": "314458",
+      "hours_per_week": 4,
+      "year": 3,
+      "semester": 2,
+      "id": 41
+    },
+    {
+      "name": "Information and Storage Retrieval",
+      "type": "theory",
+      "code": "414441",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 1,
+      "id": 42
+    },
+    {
+      "name": "Software Project Management",
+      "type": "theory",
+      "code": "414442",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 1,
+      "id": 43
+    },
+    {
+      "name": "Deep Learning",
+      "type": "theory",
+      "code": "414443",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 1,
+      "id": 44
+    },
+    {
+      "name": "Elective III",
+      "type": "theory",
+      "code": "414444",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 1,
+      "id": 45
+    },
+    {
+      "name": "Elective IV",
+      "type": "theory",
+      "code": "414445",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 1,
+      "id": 46
+    },
+    {
+      "name": "Lab Practice III",
+      "type": "practical",
+      "code": "414446",
+      "hours_per_week": 4,
+      "year": 4,
+      "semester": 1,
+      "id": 47
+    },
+    {
+      "name": "Lab Practice IV",
+      "type": "practical",
+      "code": "414447",
+      "hours_per_week": 2,
+      "year": 4,
+      "semester": 1,
+      "id": 48
+    },
+    {
+      "name": "Project Stage-1",
+      "type": "tutorial",
+      "code": "414448",
+      "hours_per_week": 2,
+      "year": 4,
+      "semester": 1,
+      "id": 49
+    },
+    {
+      "name": "Distributed Systems",
+      "type": "theory",
+      "code": "414450",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 2,
+      "id": 50
+    },
+    {
+      "name": "Elective V",
+      "type": "theory",
+      "code": "414451",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 2,
+      "id": 51
+    },
+    {
+      "name": "Elective VI",
+      "type": "theory",
+      "code": "414452",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 2,
+      "id": 52
+    },
+    {
+      "name": "Startup and Entrepreneurship",
+      "type": "tutorial",
+      "code": "414453",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 2,
+      "id": 53
+    },
+    {
+      "name": "Lab Practice V",
+      "type": "practical",
+      "code": "414454",
+      "hours_per_week": 4,
+      "year": 4,
+      "semester": 2,
+      "id": 54
+    },
+    {
+      "name": "Lab Practice VI",
+      "type": "practical",
+      "code": "414455",
+      "hours_per_week": 2,
+      "year": 4,
+      "semester": 2,
+      "id": 55
+    },
+    {
+      "name": "Project Stage II",
+      "type": "practical",
+      "code": "414456",
+      "hours_per_week": 10,
+      "year": 4,
+      "semester": 2,
+      "id": 56
+    },
+    {
+      "name": "Community Engagement Project",
+      "type": "practical",
+      "code": "CEF-241-IT\u0422",
+      "hours_per_week": 4,
+      "year": 2,
+      "semester": 1,
+      "id": 49
+    },
+    {
+      "name": "Database Management System",
+      "type": "theory",
+      "code": "PCC-251-ITT ",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 2,
+      "id": 50
+    },
+    {
+      "name": "Probability & Statistics",
+      "type": "theory",
+      "code": "PCC-253-ITT ",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 2,
+      "id": 51
+    },
+    {
+      "name": "Computer Graphics Lab",
+      "type": "practical",
+      "code": "PCC-255-ITT ",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 2,
+      "id": 52
+    }
+  ]
+}

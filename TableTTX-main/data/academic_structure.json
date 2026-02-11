@@ -1,0 +1,23 @@
+{
+  "years": 4,
+  "divisions_per_year": 2,
+  "batches_per_division": 4,
+  "theory_duration": 60,
+  "practical_duration": 120,
+  "time_slots": [
+    "09:15-10:15",
+    "10:15-11:15",
+    "11:30-12:30",
+    "12:30-13:30",
+    "14:30-15:30",
+    "15:30-16:30",
+    "16:30-17:30"
+  ],
+  "days": [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday"
+  ]
+}

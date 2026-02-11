@@ -1,0 +1,578 @@
+{% extends "base.html" %}
+
+{% block title %}Generated Timetable - AI Timetable Generator{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1>
+                    <i class="fas fa-calendar-alt text-primary me-2"></i>
+                    Generated Timetable
+                </h1>
+                <p class="lead">AI-powered unified timetable with theory and practical sessions</p>
+            </div>
+            <div>
+                <button class="btn btn-primary me-2" onclick="enableAIModifications()">
+                    <i class="fas fa-robot me-2"></i>Enable AI Modifications
+                </button>
+                <button class="btn btn-success me-2" onclick="exportTimetable()">
+                    <i class="fas fa-download me-2"></i>Export
+                </button>
+                <a href="{{ url_for('generate') }}" class="btn btn-secondary">
+                    <i class="fas fa-redo me-2"></i>Generate New
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if result.success %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-filter me-2"></i>
+                        Timetable Views
+                    </h5>
+                    <div class="btn-group" role="group">
+                        <input type="radio" class="btn-check" name="viewType" id="divisionView" value="division" checked>
+                        <label class="btn btn-outline-primary" for="divisionView">
+                            <i class="fas fa-users me-1"></i>Division View
+                        </label>
+                        
+                        <input type="radio" class="btn-check" name="viewType" id="batchView" value="batch">
+                        <label class="btn btn-outline-primary" for="batchView">
+                            <i class="fas fa-layer-group me-1"></i>Batch View
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="viewSelector" class="form-label">Select View:</label>
+                        <select class="form-select" id="viewSelector">
+                            {% for key in result.timetable.keys() %}
+                                <option value="{{ key }}">{{ key.replace('_', ' ') }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0" id="currentViewTitle">
+                    <i class="fas fa-table me-2"></i>
+                    Year 1 Division A
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered timetable-table" id="timetableTable">
+                        <thead class="table-dark" id="timetableHead">
+                            <tr>
+                                <th>Time</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                                <th>Saturday</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timetableBody">
+                            <!-- Timetable content will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-chart-pie me-2"></i>
+                    Timetable Statistics
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <i class="fas fa-calendar-check text-primary fa-2x mb-2"></i>
+                            <h4 id="totalSessions">0</h4>
+                            <small class="text-muted">Total Sessions</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <i class="fas fa-book text-info fa-2x mb-2"></i>
+                            <h4 id="theorySessions">0</h4>
+                            <small class="text-muted">Theory Sessions</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <i class="fas fa-flask text-warning fa-2x mb-2"></i>
+                            <h4 id="practicalSessions">0</h4>
+                            <small class="text-muted">Practical Sessions</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card">
+                            <i class="fas fa-percentage text-success fa-2x mb-2"></i>
+                            <h4 id="utilizationRate">0%</h4>
+                            <small class="text-muted">Slot Utilization</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Assistant Integration -->
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="alert alert-info">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <i class="fas fa-robot me-2"></i>
+                                    <strong>AI Assistant Ready:</strong> This timetable is available for AI-powered modifications and optimizations.
+                                </div>
+                                <a href="{{ url_for('ai_assistant_page') }}" class="btn btn-primary">
+                                    <i class="fas fa-brain me-2"></i>Open AI Assistant
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body text-center py-5">
+                <i class="fas fa-exclamation-triangle text-warning fa-4x mb-3"></i>
+                <h4>Timetable Generation Failed</h4>
+                <p class="text-muted mb-4">{{ result.error }}</p>
+                <a href="{{ url_for('generate') }}" class="btn btn-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Generation
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Hidden data for JavaScript -->
+<script type="application/json" id="timetableData">{{ result.timetable | tojson | safe }}</script>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let timetableData = {};
+let currentView = '';
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Load timetable data
+    try {
+        timetableData = JSON.parse(document.getElementById('timetableData').textContent);
+        
+        // Set up event listeners
+        document.getElementById('viewSelector').addEventListener('change', updateTimetableView);
+        document.querySelectorAll('input[name="viewType"]').forEach(radio => {
+            radio.addEventListener('change', filterViewOptions);
+        });
+        
+        // Initialize view
+        filterViewOptions();
+        updateTimetableView();
+        calculateStatistics();
+        
+    } catch (error) {
+        console.error('Error loading timetable data:', error);
+    }
+});
+
+function filterViewOptions() {
+    const viewType = document.querySelector('input[name="viewType"]:checked').value;
+    const selector = document.getElementById('viewSelector');
+    
+    // Clear current options
+    selector.innerHTML = '';
+    
+    // Filter and add options based on view type
+    Object.keys(timetableData).forEach(key => {
+        if (viewType === 'division' && !key.includes('Batch')) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = key.replace(/_/g, ' ');
+            selector.appendChild(option);
+        } else if (viewType === 'batch' && key.includes('Batch')) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = key.replace(/_/g, ' ');
+            selector.appendChild(option);
+        }
+    });
+    
+    // Update view
+    updateTimetableView();
+}
+
+function updateTimetableView() {
+    const selectedView = document.getElementById('viewSelector').value;
+    if (!selectedView || !timetableData[selectedView]) return;
+    
+    currentView = selectedView;
+    document.getElementById('currentViewTitle').innerHTML = 
+        '<i class="fas fa-table me-2"></i>' + selectedView.replace(/_/g, ' ');
+    
+    const viewData = timetableData[selectedView];
+    const tbody = document.getElementById('timetableBody');
+    tbody.innerHTML = '';
+    
+    // Derive actual days from view data rather than hardcoding
+    const days = Object.keys(viewData);
+    const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    days.sort((a,b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+    const timeSlots = Object.keys(viewData[days[0]] || {});
+
+    // Rebuild table head to reflect actual configured days
+    const thead = document.getElementById('timetableHead');
+    thead.innerHTML = '';
+    const headRow = document.createElement('tr');
+    const timeTh = document.createElement('th');
+    timeTh.textContent = 'Time';
+    headRow.appendChild(timeTh);
+    days.forEach(d => {
+        const th = document.createElement('th');
+        th.textContent = d;
+        headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+    
+    // Track cells to skip due to rowspan (key: "slotIndex-dayIndex")
+    const skipCells = {};
+
+    timeSlots.forEach((timeSlot, slotIndex) => {
+        const row = document.createElement('tr');
+
+        // Time column
+        const timeCell = document.createElement('td');
+        timeCell.className = 'fw-bold text-center align-middle';
+        timeCell.textContent = timeSlot;
+        row.appendChild(timeCell);
+
+        // Check if this is a break period (check first day to determine if it's a break)
+        const firstDaySession = viewData[days[0]] && viewData[days[0]][timeSlot];
+        const isBreak = firstDaySession && firstDaySession.type === 'break';
+
+        if (isBreak) {
+            // Create a single merged cell spanning all day columns
+            const breakCell = document.createElement('td');
+            breakCell.colSpan = days.length;
+            breakCell.className = 'break-cell text-center align-middle';
+            const breakType = firstDaySession.break_type || 'break';
+            const breakIcon = breakType === 'lunch' ? 'fa-utensils' : 'fa-coffee';
+            breakCell.innerHTML = `
+                <div class="break-slot p-3 rounded" style="background-color: rgba(108, 117, 125, 0.15);">
+                    <i class="fas ${breakIcon} me-2"></i>
+                    <strong style="font-size: 1.1em;">${firstDaySession.subject}</strong>
+                </div>
+            `;
+            row.appendChild(breakCell);
+        } else {
+            // Day columns - normal session rendering
+            days.forEach((day, dayIndex) => {
+                // Skip this cell if it was merged by a rowspan from a previous row
+                const cellKey = `${slotIndex}-${dayIndex}`;
+                if (skipCells[cellKey]) {
+                    return; // Don't create a <td>, the rowspan from above covers it
+                }
+
+                const cell = document.createElement('td');
+                const session = viewData[day] && viewData[day][timeSlot];
+
+                if (session && session.type !== 'break') {
+                    // Canonicalize to array for aggregation
+                    const arr = Array.isArray(session) ? session : [session];
+                    // Separate theory and practical entries
+                    const theoryItems = arr.filter(s => s.type === 'theory' || s.type === 'tutorial');
+                    const practicalItems = arr.filter(s => s.type !== 'theory' && s.type !== 'tutorial' && s.type !== 'break');
+                    const htmlParts = [];
+
+                    // Check if this cell has a multi-slot practical starting here
+                    let practicalSpan = 1;
+                    if (practicalItems.length > 0) {
+                        const sample = practicalItems[0];
+                        if (sample.slot_position === 'start' && sample.span > 1) {
+                            practicalSpan = sample.span;
+                        }
+                    }
+
+                    // If this is a continuation slot, skip (shouldn't normally reach here due to skipCells)
+                    const isContinuation = arr.some(s => s.slot_position === 'continuation');
+                    if (isContinuation) {
+                        // This shouldn't happen since we skip via skipCells, but just in case
+                        return;
+                    }
+
+                    // Apply rowspan for multi-slot practicals
+                    if (practicalSpan > 1) {
+                        // Calculate actual rowspan accounting for break rows in between
+                        let actualRowspan = 1;
+                        for (let offset = 1; offset < practicalSpan; offset++) {
+                            const nextSlotIdx = slotIndex + offset;
+                            if (nextSlotIdx < timeSlots.length) {
+                                const nextSlotSession = viewData[days[0]] && viewData[days[0]][timeSlots[nextSlotIdx]];
+                                const nextIsBreak = nextSlotSession && nextSlotSession.type === 'break';
+                                if (!nextIsBreak) {
+                                    actualRowspan++;
+                                    // Mark the cell below to be skipped
+                                    skipCells[`${nextSlotIdx}-${dayIndex}`] = true;
+                                }
+                            }
+                        }
+                        cell.rowSpan = actualRowspan;
+                        cell.className = 'align-middle';
+                    }
+
+                    // Render theory individually
+                    theoryItems.forEach(s => {
+                        htmlParts.push(`
+                            <div class="session-card ${s.type}">
+                                <div class="session-subject">${s.subject}</div>
+                                <div class="session-details">
+                                    <small class="d-block"><i class="fas fa-user me-1"></i>${s.faculty}</small>
+                                    <small class="d-block"><i class="fas fa-map-marker-alt me-1"></i>${s.room}</small>
+                                    <span class="badge bg-info mt-1">${s.type.toUpperCase()}</span>
+                                </div>
+                            </div>
+                        `);
+                    });
+                    // Render practicals with duration info
+                    if (practicalItems.length > 0) {
+                        const sample = practicalItems[0];
+                        const durationLabel = practicalSpan > 1 ? ` (${practicalSpan} hrs)` : '';
+                        htmlParts.push(`
+                            <div class="session-card practical">
+                                <div class="session-subject">${sample.subject}${durationLabel}</div>
+                                <div class="session-details">
+                                    <small class="d-block"><i class="fas fa-user me-1"></i>${sample.faculty}</small>
+                                    <small class="d-block"><i class="fas fa-map-marker-alt me-1"></i>${sample.room}</small>
+                                    <span class="badge bg-warning mt-1">PRACTICAL</span>
+                                </div>
+                            </div>
+                        `);
+                    }
+                    cell.innerHTML = htmlParts.join('');
+                } else {
+                    cell.innerHTML = '<div class="empty-slot">Free</div>';
+                }
+
+                row.appendChild(cell);
+            });
+        }
+
+        tbody.appendChild(row);
+    });
+}
+
+function calculateStatistics() {
+    let totalSessions = 0;
+    let theorySessions = 0;
+    let practicalSessions = 0;
+    let totalSlots = 0;
+    let usedSlots = 0;
+
+    Object.values(timetableData).forEach(viewData => {
+        Object.values(viewData).forEach(dayData => {
+            Object.values(dayData).forEach(session => {
+                totalSlots++;
+                if (session && session.type !== 'break') {
+                    usedSlots++;
+                    // Skip continuation slots to avoid double-counting practicals
+                    if (session.slot_position === 'continuation') return;
+                    totalSessions++;
+                    if (session.type === 'theory' || session.type === 'tutorial') {
+                        theorySessions++;
+                    } else {
+                        practicalSessions++;
+                    }
+                }
+            });
+        });
+    });
+
+    const utilization = totalSlots > 0 ? Math.round((usedSlots / totalSlots) * 100) : 0;
+
+    document.getElementById('totalSessions').textContent = totalSessions;
+    document.getElementById('theorySessions').textContent = theorySessions;
+    document.getElementById('practicalSessions').textContent = practicalSessions;
+    document.getElementById('utilizationRate').textContent = utilization + '%';
+}
+
+function enableAIModifications() {
+    // Save current timetable for AI operations
+    if (!timetableData || Object.keys(timetableData).length === 0) {
+        showAlert('No timetable data available to save', 'danger');
+        return;
+    }
+    
+    showAlert('Saving timetable for AI modifications...', 'info');
+    
+    fetch('/api/save-timetable', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            timetable: timetableData
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert('Timetable saved successfully! Redirecting to AI Assistant...', 'success');
+            setTimeout(() => {
+                window.location.href = '/ai-assistant';
+            }, 1500);
+        } else {
+            showAlert('Error saving timetable for AI modifications', 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('Error saving timetable:', error);
+        showAlert(`Error: ${error.message}`, 'danger');
+    });
+}
+
+function exportTimetable() {
+    // Export formatted Excel for all views (supports merged breaks & styling)
+    if (!timetableData || Object.keys(timetableData).length === 0) {
+        showAlert('No timetable available to download', 'warning');
+        return;
+    }
+    
+    showAlert('Generating Excel file... Please wait', 'info');
+    
+    fetch('/api/timetable/export/excel', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            timetable: timetableData
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to generate Excel file');
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Complete_Timetable_All_Divisions_${new Date().getTime()}.xlsx`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        showAlert('Excel file downloaded successfully! ✓', 'success');
+    })
+    .catch(error => {
+        console.error('Error downloading Excel:', error);
+        showAlert('Error generating Excel file: ' + error.message, 'danger');
+    });
+}
+</script>
+
+<style>
+.session-card {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border-left: 4px solid;
+    background: var(--bs-light);
+    min-height: 80px;
+}
+
+.session-card.theory {
+    border-left-color: var(--bs-info);
+    background: rgba(13, 202, 240, 0.1);
+}
+
+.session-card.practical {
+    border-left-color: var(--bs-warning);
+    background: rgba(255, 193, 7, 0.1);
+}
+
+.session-subject {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.session-details small {
+    font-size: 0.75rem;
+    color: var(--bs-secondary);
+}
+
+.empty-slot {
+    text-align: center;
+    color: var(--bs-secondary);
+    font-style: italic;
+    padding: 1rem;
+}
+
+.timetable-table td {
+    vertical-align: top;
+    min-width: 150px;
+}
+
+.timetable-table td .session-card + .session-card {
+    margin-top: 0.25rem;
+}
+
+.stat-card {
+    padding: 1rem;
+}
+
+.stat-card h4 {
+    margin: 0.5rem 0;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .timetable-table {
+        font-size: 0.875rem;
+    }
+    
+    .session-card {
+        min-height: 60px;
+        padding: 0.25rem;
+    }
+    
+    .session-subject {
+        font-size: 0.8rem;
+    }
+}
+</style>
+{% endblock %}

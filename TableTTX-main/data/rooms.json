@@ -1,0 +1,108 @@
+{
+  "rooms": [
+    {
+      "name": "CR41",
+      "type": "classroom",
+      "capacity": 60,
+      "building": "",
+      "equipment": "",
+      "id": 1
+    },
+    {
+      "name": "CR44",
+      "type": "classroom",
+      "capacity": 60,
+      "building": "",
+      "equipment": "",
+      "id": 2
+    },
+    {
+      "name": "CR45",
+      "type": "classroom",
+      "capacity": 60,
+      "building": "",
+      "equipment": "",
+      "id": 3
+    },
+    {
+      "name": "CR46",
+      "type": "classroom",
+      "capacity": 60,
+      "building": "",
+      "equipment": "",
+      "id": 4
+    },
+    {
+      "name": "Lab No. 34",
+      "type": "lab",
+      "capacity": 20,
+      "building": "",
+      "equipment": "",
+      "id": 5
+    },
+    {
+      "name": "Lab No. 35",
+      "type": "lab",
+      "capacity": 20,
+      "building": "",
+      "equipment": "",
+      "id": 6
+    },
+    {
+      "name": "Lab No. 36",
+      "type": "lab",
+      "capacity": 20,
+      "building": "",
+      "equipment": "",
+      "id": 7
+    },
+    {
+      "name": "Lab No. 38",
+      "type": "lab",
+      "capacity": 20,
+      "building": "",
+      "equipment": "",
+      "id": 8
+    },
+    {
+      "name": "Lab No. 39",
+      "type": "lab",
+      "capacity": 20,
+      "building": "",
+      "equipment": "",
+      "id": 9
+    },
+    {
+      "name": "Lab No. 40",
+      "type": "lab",
+      "capacity": 20,
+      "building": "",
+      "equipment": "",
+      "id": 10
+    },
+    {
+      "name": "Lab No. 42",
+      "type": "both",
+      "capacity": 60,
+      "building": "",
+      "equipment": "Seminar Hall",
+      "id": 11
+    },
+    {
+      "name": "Office Building 3rd Floor",
+      "type": "lab",
+      "capacity": 20,
+      "building": "",
+      "equipment": "",
+      "id": 12
+    },
+    {
+      "name": "Office Building 2nd Floor",
+      "type": "lab",
+      "capacity": 20,
+      "building": "",
+      "equipment": "",
+      "id": 13
+    }
+  ]
+}

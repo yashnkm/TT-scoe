@@ -1,0 +1,439 @@
+{% extends "base.html" %}
+
+{% block title %}Schedule Modifications - AI Timetable Generator{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-edit text-primary me-2"></i>
+            Schedule Modifications
+        </h1>
+        <p class="lead mb-4">Manage and track timetable changes with AI assistance</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-history me-2"></i>
+                    Recent Modifications
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="modificationsHistory">
+                    <div class="text-center text-muted py-4">
+                        <i class="fas fa-clock fa-2x mb-2"></i>
+                        <p>No modifications recorded yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-plus me-2"></i>
+                    New Modification Request
+                </h5>
+            </div>
+            <div class="card-body">
+                <form id="modificationForm">
+                    <div class="mb-3">
+                        <label for="modificationType" class="form-label">Modification Type *</label>
+                        <select class="form-select" id="modificationType" required>
+                            <option value="">Select type</option>
+                            <option value="faculty_leave">Faculty Leave</option>
+                            <option value="room_unavailable">Room Unavailable</option>
+                            <option value="session_reschedule">Session Reschedule</option>
+                            <option value="emergency_change">Emergency Change</option>
+                            <option value="optimization">Schedule Optimization</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="modificationDescription" class="form-label">Description *</label>
+                        <textarea class="form-control" id="modificationDescription" rows="3" required
+                                  placeholder="Describe the modification needed (e.g., 'Dr. Smith is on sick leave from Monday to Wednesday')"></textarea>
+                    </div>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="urgencyLevel" class="form-label">Urgency Level</label>
+                            <select class="form-select" id="urgencyLevel">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                                <option value="emergency">Emergency</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="effectiveDate" class="form-label">Effective Date</label>
+                            <input type="date" class="form-control" id="effectiveDate">
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary me-2">
+                            <i class="fas fa-brain me-2"></i>Process with AI
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                            <i class="fas fa-redo me-2"></i>Reset
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-chart-pie me-2"></i>
+                    Modification Statistics
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <div class="stat-item">
+                            <h4 class="text-primary" id="totalModifications">0</h4>
+                            <small class="text-muted">Total</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-item">
+                            <h4 class="text-warning" id="pendingModifications">0</h4>
+                            <small class="text-muted">Pending</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-users me-2"></i>
+                    Affected Entities
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="affectedEntities">
+                    <div class="text-muted">
+                        <small>Select a modification to see affected entities</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-lightbulb me-2"></i>
+                    AI Recommendations
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="aiRecommendations">
+                    <div class="text-muted">
+                        <small>AI recommendations will appear here</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modification Details Modal -->
+<div class="modal fade" id="modificationModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">
+                    <i class="fas fa-info-circle me-2"></i>Modification Details
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" id="approveBtn" style="display: none;">
+                    <i class="fas fa-check me-2"></i>Approve
+                </button>
+                <button type="button" class="btn btn-danger" id="rejectBtn" style="display: none;">
+                    <i class="fas fa-times me-2"></i>Reject
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let modifications = [];
+
+document.addEventListener('DOMContentLoaded', function() {
+    setupModificationForm();
+    loadModifications();
+    updateStatistics();
+});
+
+function setupModificationForm() {
+    document.getElementById('modificationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        processModification();
+    });
+    
+    // Set default date to today
+    document.getElementById('effectiveDate').value = new Date().toISOString().split('T')[0];
+}
+
+function processModification() {
+    const form = document.getElementById('modificationForm');
+    const formData = new FormData(form);
+    
+    const modification = {
+        type: formData.get('modificationType'),
+        description: formData.get('modificationDescription'),
+        urgency: formData.get('urgencyLevel'),
+        effectiveDate: formData.get('effectiveDate'),
+        timestamp: new Date().toISOString(),
+        status: 'processing'
+    };
+    
+    if (!modification.type || !modification.description) {
+        showAlert('Please fill in all required fields', 'warning');
+        return;
+    }
+    
+    // Show processing status
+    showAlert('Processing modification request with AI...', 'info');
+    
+    // Send to AI for processing
+    fetch('/api/ai/process-request', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            request: modification.description
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        modification.aiResponse = data;
+        modification.status = data.success !== false ? 'completed' : 'failed';
+        
+        // Add to modifications list
+        modifications.unshift(modification);
+        
+        // Update UI
+        displayModifications();
+        updateStatistics();
+        resetForm();
+        
+        if (data.success !== false) {
+            showModificationDetails(modification);
+            showAlert('Modification processed successfully!', 'success');
+        } else {
+            showAlert(`Error processing modification: ${data.error}`, 'danger');
+        }
+    })
+    .catch(error => {
+        modification.status = 'failed';
+        modification.error = error.message;
+        modifications.unshift(modification);
+        
+        displayModifications();
+        updateStatistics();
+        showAlert(`Error: ${error.message}`, 'danger');
+    });
+}
+
+function displayModifications() {
+    const container = document.getElementById('modificationsHistory');
+    
+    if (modifications.length === 0) {
+        container.innerHTML = `
+            <div class="text-center text-muted py-4">
+                <i class="fas fa-clock fa-2x mb-2"></i>
+                <p>No modifications recorded yet</p>
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '';
+    modifications.slice(0, 10).forEach((mod, index) => {
+        const statusColor = getStatusColor(mod.status);
+        const urgencyIcon = getUrgencyIcon(mod.urgency);
+        
+        html += `
+            <div class="modification-item mb-3 p-3 border rounded" onclick="showModificationDetails(modifications[${index}])">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div class="flex-grow-1">
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="badge bg-${statusColor} me-2">${mod.status}</span>
+                            <span class="badge bg-secondary me-2">${mod.type.replace('_', ' ')}</span>
+                            ${urgencyIcon}
+                        </div>
+                        <p class="mb-1">${mod.description}</p>
+                        <small class="text-muted">
+                            <i class="fas fa-clock me-1"></i>
+                            ${new Date(mod.timestamp).toLocaleString()}
+                        </small>
+                    </div>
+                    <div class="text-end">
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+}
+
+function showModificationDetails(modification) {
+    const modal = new bootstrap.Modal(document.getElementById('modificationModal'));
+    
+    document.getElementById('modalTitle').innerHTML = 
+        `<i class="fas fa-info-circle me-2"></i>${modification.type.replace('_', ' ')} - ${modification.status}`;
+    
+    let bodyHtml = `
+        <div class="row">
+            <div class="col-md-6">
+                <strong>Type:</strong> ${modification.type.replace('_', ' ')}<br>
+                <strong>Urgency:</strong> ${modification.urgency}<br>
+                <strong>Status:</strong> <span class="badge bg-${getStatusColor(modification.status)}">${modification.status}</span><br>
+                <strong>Effective Date:</strong> ${modification.effectiveDate || 'Not specified'}<br>
+                <strong>Submitted:</strong> ${new Date(modification.timestamp).toLocaleString()}
+            </div>
+            <div class="col-md-6">
+                <strong>Description:</strong><br>
+                <p class="text-muted">${modification.description}</p>
+            </div>
+        </div>
+    `;
+    
+    if (modification.aiResponse) {
+        bodyHtml += '<hr><h6>AI Analysis:</h6>';
+        
+        if (modification.aiResponse.action) {
+            bodyHtml += `<p><strong>Action:</strong> ${modification.aiResponse.action}</p>`;
+        }
+        
+        if (modification.aiResponse.message) {
+            bodyHtml += `<p><strong>Result:</strong> ${modification.aiResponse.message}</p>`;
+        }
+        
+        if (modification.aiResponse.affected_sessions && modification.aiResponse.affected_sessions.length > 0) {
+            bodyHtml += `<p><strong>Affected Sessions:</strong> ${modification.aiResponse.affected_sessions.length}</p>`;
+        }
+        
+        if (modification.aiResponse.error) {
+            bodyHtml += `<div class="alert alert-danger"><strong>Error:</strong> ${modification.aiResponse.error}</div>`;
+        }
+    }
+    
+    document.getElementById('modalBody').innerHTML = bodyHtml;
+    modal.show();
+}
+
+function getStatusColor(status) {
+    switch (status) {
+        case 'completed': return 'success';
+        case 'processing': return 'warning';
+        case 'failed': return 'danger';
+        case 'pending': return 'secondary';
+        default: return 'secondary';
+    }
+}
+
+function getUrgencyIcon(urgency) {
+    switch (urgency) {
+        case 'emergency': return '<i class="fas fa-exclamation-triangle text-danger"></i>';
+        case 'high': return '<i class="fas fa-exclamation text-warning"></i>';
+        case 'medium': return '<i class="fas fa-minus text-info"></i>';
+        case 'low': return '<i class="fas fa-minus text-secondary"></i>';
+        default: return '';
+    }
+}
+
+function updateStatistics() {
+    document.getElementById('totalModifications').textContent = modifications.length;
+    document.getElementById('pendingModifications').textContent = 
+        modifications.filter(m => m.status === 'pending' || m.status === 'processing').length;
+}
+
+function resetForm() {
+    document.getElementById('modificationForm').reset();
+    document.getElementById('effectiveDate').value = new Date().toISOString().split('T')[0];
+}
+
+function loadModifications() {
+    // Load from localStorage for demo purposes
+    const saved = localStorage.getItem('timetable_modifications');
+    if (saved) {
+        try {
+            modifications = JSON.parse(saved);
+            displayModifications();
+            updateStatistics();
+        } catch (e) {
+            console.error('Error loading modifications:', e);
+        }
+    }
+}
+
+function saveModifications() {
+    // Save to localStorage for demo purposes
+    localStorage.setItem('timetable_modifications', JSON.stringify(modifications));
+}
+
+// Auto-save modifications when they change
+const originalPush = modifications.push;
+modifications.push = function(...items) {
+    const result = originalPush.apply(this, items);
+    saveModifications();
+    return result;
+};
+
+const originalUnshift = modifications.unshift;
+modifications.unshift = function(...items) {
+    const result = originalUnshift.apply(this, items);
+    saveModifications();
+    return result;
+};
+</script>
+
+<style>
+.modification-item {
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.modification-item:hover {
+    background-color: var(--bs-secondary-bg);
+    transform: translateY(-1px);
+}
+
+.stat-item {
+    padding: 0.5rem;
+}
+
+.stat-item h4 {
+    margin: 0;
+    font-weight: bold;
+}
+</style>
+{% endblock %}

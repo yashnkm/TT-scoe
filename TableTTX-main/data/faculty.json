@@ -1,0 +1,141 @@
+{
+  "faculty": [
+    {
+      "name": "Dr. S. R. Ganorkar",
+      "initials": "SRG",
+      "department": "IT",
+      "subjects": [
+        {
+          "subject_id": 44,
+          "year": 4,
+          "semester": 1,
+          "divisions": [],
+          "batches": []
+        }
+      ],
+      "hours_per_week": 3,
+      "id": 1
+    },
+    {
+      "name": "Asst.Prof.N. H. Deshpande",
+      "initials": "NHD",
+      "department": "IT",
+      "subjects": [
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1,
+            2
+          ],
+          "batches": []
+        },
+        {
+          "subject_id": 11,
+          "year": 2,
+          "semester": 1,
+          "divisions": [],
+          "batches": []
+        }
+      ],
+      "hours_per_week": 5,
+      "id": 2
+    },
+    {
+      "name": "Asst.Prof.S.S.Gadekar",
+      "initials": "SSG",
+      "department": "IT",
+      "subjects": [
+        25,
+        32,
+        42
+      ],
+      "max_hours_per_week": 20,
+      "id": 3
+    },
+    {
+      "name": "Asst.Prof.A.D. Tawlare",
+      "initials": "ADT",
+      "department": "IT",
+      "subjects": [
+        7,
+        10,
+        45
+      ],
+      "max_hours_per_week": 20,
+      "id": 4
+    },
+    {
+      "name": "Asst.Prof.M.S. Bhosale",
+      "initials": "MSB",
+      "department": "IT",
+      "subjects": [
+        12,
+        13,
+        14,
+        46
+      ],
+      "max_hours_per_week": 20,
+      "id": 5
+    },
+    {
+      "name": "Asst.Prof.S.L Dawkhar",
+      "initials": "SLD",
+      "department": "IT",
+      "subjects": [
+        28,
+        31,
+        48
+      ],
+      "max_hours_per_week": 20,
+      "id": 6
+    },
+    {
+      "name": "Asst.Prof.J.S. Pawar",
+      "initials": "JSP",
+      "department": "IT",
+      "subjects": [
+        7,
+        10,
+        27
+      ],
+      "max_hours_per_week": 20,
+      "id": 7
+    },
+    {
+      "name": "Asst.Prof.A.S. Shinde",
+      "initials": "ASS",
+      "department": "IT",
+      "subjects": [
+        26,
+        30
+      ],
+      "max_hours_per_week": 20,
+      "id": 8
+    },
+    {
+      "name": "Asst.Prof.S. H. Thengil",
+      "initials": "SHT",
+      "department": "IT",
+      "subjects": [
+        29,
+        32,
+        43
+      ],
+      "max_hours_per_week": 20,
+      "id": 9
+    },
+    {
+      "name": "Asst.Prof.D.G.Jadahv",
+      "initials": "DGJ",
+      "department": "IT",
+      "subjects": [
+        9,
+        47
+      ],
+      "max_hours_per_week": 20,
+      "id": 10
+    }
+  ]
+}

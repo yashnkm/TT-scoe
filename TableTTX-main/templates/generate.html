@@ -1,0 +1,324 @@
+{% extends "base.html" %}
+
+{% block title %}Generate Timetable - AI Timetable Generator{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-magic text-primary me-2"></i>
+            Generate Timetable
+        </h1>
+        <p class="lead mb-4">Use AI-powered constraint satisfaction to create your unified timetable</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-robot me-2"></i>
+                    AI Timetable Generation
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-4">
+                    <h6>How It Works</h6>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="step-number me-3">1</div>
+                                <div>
+                                    <strong>Constraint Analysis</strong>
+                                    <p class="text-muted mb-0">Analyzes faculty, room, and time constraints</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="step-number me-3">2</div>
+                                <div>
+                                    <strong>Optimization</strong>
+                                    <p class="text-muted mb-0">Uses OR-Tools CSP solver for optimization</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="step-number me-3">3</div>
+                                <div>
+                                    <strong>Conflict Resolution</strong>
+                                    <p class="text-muted mb-0">Automatically resolves scheduling conflicts</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="step-number me-3">4</div>
+                                <div>
+                                    <strong>Unified Output</strong>
+                                    <p class="text-muted mb-0">Generates combined theory + practical timetable</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <form method="POST">
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Select Semester</label>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="semester_mode" id="sem_odd" value="odd" checked>
+                                    <label class="form-check-label" for="sem_odd">Odd (Sem 1)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="semester_mode" id="sem_even" value="even">
+                                    <label class="form-check-label" for="sem_even">Even (Sem 2)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg" id="generateBtn">
+                            <i class="fas fa-magic me-2"></i>
+                            <span id="generateText">Generate Timetable</span>
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="mt-4">
+                    <small class="text-muted">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Generation may take a few seconds depending on the complexity of your constraints.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-check-circle me-2"></i>
+                    Requirements Check
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="requirementsCheck">
+                    <div class="requirement-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-spinner fa-spin text-secondary me-2" id="structureIcon"></i>
+                            <span>Academic Structure</span>
+                        </div>
+                        <small class="text-muted d-block mt-1" id="structureStatus">Checking...</small>
+                    </div>
+                    
+                    <div class="requirement-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-spinner fa-spin text-secondary me-2" id="subjectsIcon"></i>
+                            <span>Subjects</span>
+                        </div>
+                        <small class="text-muted d-block mt-1" id="subjectsStatus">Checking...</small>
+                    </div>
+                    
+                    <div class="requirement-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-spinner fa-spin text-secondary me-2" id="facultyIcon"></i>
+                            <span>Faculty</span>
+                        </div>
+                        <small class="text-muted d-block mt-1" id="facultyStatus">Checking...</small>
+                    </div>
+                    
+                    <div class="requirement-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-spinner fa-spin text-secondary me-2" id="roomsIcon"></i>
+                            <span>Rooms</span>
+                        </div>
+                        <small class="text-muted d-block mt-1" id="roomsStatus">Checking...</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-lightbulb me-2"></i>
+                    Generation Tips
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        Ensure all subjects have assigned faculty
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        Have sufficient rooms for sessions
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        Balance faculty workload
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        Check time slot availability
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-chart-bar me-2"></i>
+                    Features of Generated Timetable
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="feature-card text-center p-3">
+                            <i class="fas fa-calendar-check text-primary fa-2x mb-2"></i>
+                            <h6>Unified View</h6>
+                            <small class="text-muted">Theory and practical sessions in one timetable</small>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="feature-card text-center p-3">
+                            <i class="fas fa-shield-alt text-success fa-2x mb-2"></i>
+                            <h6>Conflict-Free</h6>
+                            <small class="text-muted">No faculty, room, or student conflicts</small>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="feature-card text-center p-3">
+                            <i class="fas fa-balance-scale text-info fa-2x mb-2"></i>
+                            <h6>Balanced Load</h6>
+                            <small class="text-muted">Even distribution of workload</small>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="feature-card text-center p-3">
+                            <i class="fas fa-filter text-warning fa-2x mb-2"></i>
+                            <h6>Multiple Views</h6>
+                            <small class="text-muted">Division, faculty, and room views</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    checkRequirements();
+    
+    // Handle form submission
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const btn = document.getElementById('generateBtn');
+        const text = document.getElementById('generateText');
+        
+        btn.disabled = true;
+        text.textContent = 'Generating...';
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>' + text.textContent;
+    });
+});
+
+async function checkRequirements() {
+    try {
+        // Check academic structure
+        const structureResponse = await fetch('/api/structure');
+        const structure = await structureResponse.json();
+        updateRequirementStatus('structure', structure.years > 0, `${structure.years} years, ${structure.divisions_per_year} divisions`);
+        
+        // Check subjects
+        const subjectsResponse = await fetch('/api/subjects');
+        const subjectsData = await subjectsResponse.json();
+        const subjects = subjectsData.subjects || [];
+        updateRequirementStatus('subjects', subjects.length > 0, `${subjects.length} subjects configured`);
+        
+        // Check faculty
+        const facultyResponse = await fetch('/api/faculty');
+        const facultyData = await facultyResponse.json();
+        const faculty = facultyData.faculty || [];
+        updateRequirementStatus('faculty', faculty.length > 0, `${faculty.length} faculty members`);
+        
+        // Check rooms
+        const roomsResponse = await fetch('/api/rooms');
+        const roomsData = await roomsResponse.json();
+        const rooms = roomsData.rooms || [];
+        updateRequirementStatus('rooms', rooms.length > 0, `${rooms.length} rooms available`);
+        
+        // Enable/disable generate button
+        const allGood = structure.years > 0 && subjects.length > 0 && faculty.length > 0 && rooms.length > 0;
+        document.getElementById('generateBtn').disabled = !allGood;
+        
+    } catch (error) {
+        console.error('Error checking requirements:', error);
+    }
+}
+
+function updateRequirementStatus(type, isGood, message) {
+    const icon = document.getElementById(type + 'Icon');
+    const status = document.getElementById(type + 'Status');
+    
+    if (isGood) {
+        icon.className = 'fas fa-check-circle text-success me-2';
+        status.textContent = message;
+        status.className = 'text-success d-block mt-1';
+    } else {
+        icon.className = 'fas fa-exclamation-triangle text-danger me-2';
+        status.textContent = 'Not configured';
+        status.className = 'text-danger d-block mt-1';
+    }
+}
+</script>
+
+<style>
+.step-number {
+    width: 2rem;
+    height: 2rem;
+    background: var(--bs-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.feature-card {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.375rem;
+    transition: transform 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-2px);
+}
+
+.requirement-item {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background: var(--bs-light);
+}
+</style>
+{% endblock %}

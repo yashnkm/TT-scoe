@@ -1,0 +1,7 @@
+flask
+gunicorn
+openai
+ortools
+python-dotenv
+reportlab
+openpyxl
