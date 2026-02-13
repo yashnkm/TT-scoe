@@ -780,11 +780,30 @@ function updateAITimetableView() {
                 html += '<td class="align-top">';
                 const session = viewData[day] && viewData[day][timeSlot];
                 
-                if (session && session.type !== 'break') {
+                if (session && session.type === 'practical_block') {
+                    // Render practical block with batch details
+                    if (session.slot_position !== 'continuation') {
+                        const batchData = session.batches || {};
+                        const span = session.span || 1;
+                        const durationLabel = span > 1 ? ` (${span} hrs)` : '';
+                        html += `<div class="border rounded p-1 mb-1" style="font-size: 0.75rem; border-left: 3px solid #e67e22 !important; background: rgba(230,126,34,0.08);">`;
+                        html += `<div class="fw-bold" style="color: #e67e22;"><i class="fas fa-flask me-1"></i>Practicals${durationLabel}</div>`;
+                        Object.keys(batchData).sort().forEach(bNum => {
+                            const bLetter = String.fromCharCode(64 + parseInt(bNum));
+                            const bInfo = batchData[bNum];
+                            if (bInfo) {
+                                html += `<div><strong>B${bLetter}:</strong> ${bInfo.subject} <span class="text-muted">(${bInfo.room})</span></div>`;
+                            } else {
+                                html += `<div class="text-muted"><strong>B${bLetter}:</strong> Free</div>`;
+                            }
+                        });
+                        html += `</div>`;
+                    }
+                } else if (session && session.type !== 'break') {
                     const sessions = Array.isArray(session) ? session : [session];
-                    
+
                     sessions.forEach(s => {
-                        if (s && s.type !== 'break') {
+                        if (s && s.type !== 'break' && s.slot_position !== 'continuation') {
                             html += `
                                 <div class="session-cell-content border rounded p-1 mb-1" style="font-size: 0.8rem;">
                                     <div class="subject-name">${s.subject || 'N/A'}</div>
@@ -792,7 +811,7 @@ function updateAITimetableView() {
                                         <i class="fas fa-user" style="font-size: 0.7rem;"></i> ${s.faculty || 'N/A'}<br>
                                         <i class="fas fa-map-marker-alt" style="font-size: 0.7rem;"></i> ${s.room || 'N/A'}
                                     </div>
-                                    <span class="badge bg-${s.type === 'theory' ? 'info' : 'warning'} badge-type">${s.type.toUpperCase()}</span>
+                                    <span class="badge bg-${s.type === 'theory' ? 'info' : 'warning'} badge-type">${(s.type || '').toUpperCase()}</span>
                                 </div>
                             `;
                         }
@@ -800,7 +819,7 @@ function updateAITimetableView() {
                 } else {
                     html += '<div class="text-muted text-center" style="font-size: 0.8rem;">-</div>';
                 }
-                
+
                 html += '</td>';
             });
         }
@@ -1396,25 +1415,44 @@ function updateModifiedTimetableView() {
                 const cell = document.createElement('td');
                 const session = viewData[day] && viewData[day][timeSlot];
                 
-                if (session && session.type !== 'break') {
+                if (session && session.type === 'practical_block') {
+                    if (session.slot_position !== 'continuation') {
+                        const batchData = session.batches || {};
+                        const span = session.span || 1;
+                        const durationLabel = span > 1 ? ` (${span} hrs)` : '';
+                        let cellContent = `<div class="p-1 mb-1 border rounded" style="font-size: 0.7em; border-left: 3px solid #e67e22 !important; background: rgba(230,126,34,0.08);">`;
+                        cellContent += `<div class="fw-bold" style="color: #e67e22;"><i class="fas fa-flask me-1"></i>Practicals${durationLabel}</div>`;
+                        Object.keys(batchData).sort().forEach(bNum => {
+                            const bLetter = String.fromCharCode(64 + parseInt(bNum));
+                            const bInfo = batchData[bNum];
+                            if (bInfo) {
+                                cellContent += `<div><strong>B${bLetter}:</strong> ${bInfo.subject} <span class="text-muted">(${bInfo.room})</span></div>`;
+                            } else {
+                                cellContent += `<div class="text-muted"><strong>B${bLetter}:</strong> Free</div>`;
+                            }
+                        });
+                        cellContent += `</div>`;
+                        cell.innerHTML = cellContent;
+                    }
+                } else if (session && session.type !== 'break') {
                     const sessions = Array.isArray(session) ? session : [session];
                     let cellContent = '';
-                    
+
                     sessions.forEach(s => {
-                        if (s && s.type !== 'break') {
+                        if (s && s.type !== 'break' && s.slot_position !== 'continuation') {
                             cellContent += `
                                 <div class="session-card-mini p-1 mb-1 border rounded">
                                     <div class="fw-bold small">${s.subject}</div>
                                     <div class="text-muted" style="font-size: 0.7em;">
                                         <i class="fas fa-user me-1"></i>${s.faculty}<br>
                                         <i class="fas fa-map-marker-alt me-1"></i>${s.room}<br>
-                                        <span class="badge bg-${s.type === 'theory' ? 'info' : 'warning'} badge-sm">${s.type.toUpperCase()}</span>
+                                        <span class="badge bg-${s.type === 'theory' ? 'info' : 'warning'} badge-sm">${(s.type || '').toUpperCase()}</span>
                                     </div>
                                 </div>
                             `;
                         }
                     });
-                    
+
                     cell.innerHTML = cellContent;
                 } else {
                     cell.innerHTML = '<div class="text-muted text-center">-</div>';

@@ -43,7 +43,7 @@
                         <label class="btn btn-outline-primary" for="divisionView">
                             <i class="fas fa-users me-1"></i>Division View
                         </label>
-                        
+
                         <input type="radio" class="btn-check" name="viewType" id="batchView" value="batch">
                         <label class="btn btn-outline-primary" for="batchView">
                             <i class="fas fa-layer-group me-1"></i>Batch View
@@ -140,7 +140,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- AI Assistant Integration -->
                 <div class="row mt-3">
                     <div class="col-12">
@@ -192,18 +192,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load timetable data
     try {
         timetableData = JSON.parse(document.getElementById('timetableData').textContent);
-        
+
         // Set up event listeners
         document.getElementById('viewSelector').addEventListener('change', updateTimetableView);
         document.querySelectorAll('input[name="viewType"]').forEach(radio => {
             radio.addEventListener('change', filterViewOptions);
         });
-        
+
         // Initialize view
         filterViewOptions();
         updateTimetableView();
         calculateStatistics();
-        
+
     } catch (error) {
         console.error('Error loading timetable data:', error);
     }
@@ -212,10 +212,10 @@ document.addEventListener('DOMContentLoaded', function() {
 function filterViewOptions() {
     const viewType = document.querySelector('input[name="viewType"]:checked').value;
     const selector = document.getElementById('viewSelector');
-    
+
     // Clear current options
     selector.innerHTML = '';
-    
+
     // Filter and add options based on view type
     Object.keys(timetableData).forEach(key => {
         if (viewType === 'division' && !key.includes('Batch')) {
@@ -230,7 +230,7 @@ function filterViewOptions() {
             selector.appendChild(option);
         }
     });
-    
+
     // Update view
     updateTimetableView();
 }
@@ -238,15 +238,15 @@ function filterViewOptions() {
 function updateTimetableView() {
     const selectedView = document.getElementById('viewSelector').value;
     if (!selectedView || !timetableData[selectedView]) return;
-    
+
     currentView = selectedView;
-    document.getElementById('currentViewTitle').innerHTML = 
+    document.getElementById('currentViewTitle').innerHTML =
         '<i class="fas fa-table me-2"></i>' + selectedView.replace(/_/g, ' ');
-    
+
     const viewData = timetableData[selectedView];
     const tbody = document.getElementById('timetableBody');
     tbody.innerHTML = '';
-    
+
     // Derive actual days from view data rather than hardcoding
     const days = Object.keys(viewData);
     const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -266,7 +266,7 @@ function updateTimetableView() {
         headRow.appendChild(th);
     });
     thead.appendChild(headRow);
-    
+
     // Track cells to skip due to rowspan (key: "slotIndex-dayIndex")
     const skipCells = {};
 
@@ -309,12 +309,70 @@ function updateTimetableView() {
                 const cell = document.createElement('td');
                 const session = viewData[day] && viewData[day][timeSlot];
 
-                if (session && session.type !== 'break') {
-                    // Canonicalize to array for aggregation
+                if (session && session.type === 'practical_block') {
+                    // --- PRACTICAL BLOCK: show all batches side-by-side ---
+                    if (session.slot_position === 'continuation') {
+                        // Skip — covered by rowspan from start block
+                        return;
+                    }
+
+                    const blockSpan = session.span || 1;
+
+                    // Apply rowspan for multi-slot practical blocks
+                    if (blockSpan > 1) {
+                        let actualRowspan = 1;
+                        for (let offset = 1; offset < blockSpan; offset++) {
+                            const nextSlotIdx = slotIndex + offset;
+                            if (nextSlotIdx < timeSlots.length) {
+                                const nextSlotSession = viewData[days[0]] && viewData[days[0]][timeSlots[nextSlotIdx]];
+                                const nextIsBreak = nextSlotSession && nextSlotSession.type === 'break';
+                                if (!nextIsBreak) {
+                                    actualRowspan++;
+                                    skipCells[`${nextSlotIdx}-${dayIndex}`] = true;
+                                }
+                            }
+                        }
+                        cell.rowSpan = actualRowspan;
+                    }
+                    cell.className = 'align-middle';
+
+                    const durationLabel = blockSpan > 1 ? ` (${blockSpan} hrs)` : '';
+                    let batchHtml = `<div class="session-card practical-block">`;
+                    batchHtml += `<div class="practical-block-header"><i class="fas fa-flask me-1"></i>Practicals${durationLabel}</div>`;
+                    batchHtml += `<div class="practical-block-batches">`;
+
+                    const batchData = session.batches || {};
+                    const batchNums = Object.keys(batchData).sort();
+
+                    batchNums.forEach(bNum => {
+                        const bLetter = String.fromCharCode(64 + parseInt(bNum));
+                        const bInfo = batchData[bNum];
+                        if (bInfo) {
+                            batchHtml += `
+                                <div class="batch-item">
+                                    <span class="batch-label">Batch ${bLetter}:</span>
+                                    <span class="batch-subject">${bInfo.subject}</span>
+                                    <small class="batch-details">${bInfo.faculty} | ${bInfo.room}</small>
+                                </div>
+                            `;
+                        } else {
+                            batchHtml += `
+                                <div class="batch-item batch-free">
+                                    <span class="batch-label">Batch ${bLetter}:</span>
+                                    <span class="batch-subject text-muted">Free</span>
+                                </div>
+                            `;
+                        }
+                    });
+
+                    batchHtml += `</div></div>`;
+                    cell.innerHTML = batchHtml;
+
+                } else if (session && session.type !== 'break') {
+                    // --- THEORY / TUTORIAL / INDIVIDUAL PRACTICAL (batch view) ---
                     const arr = Array.isArray(session) ? session : [session];
-                    // Separate theory and practical entries
                     const theoryItems = arr.filter(s => s.type === 'theory' || s.type === 'tutorial');
-                    const practicalItems = arr.filter(s => s.type !== 'theory' && s.type !== 'tutorial' && s.type !== 'break');
+                    const practicalItems = arr.filter(s => s.type !== 'theory' && s.type !== 'tutorial' && s.type !== 'break' && s.type !== 'practical_block');
                     const htmlParts = [];
 
                     // Check if this cell has a multi-slot practical starting here
@@ -326,16 +384,14 @@ function updateTimetableView() {
                         }
                     }
 
-                    // If this is a continuation slot, skip (shouldn't normally reach here due to skipCells)
+                    // If this is a continuation slot, skip
                     const isContinuation = arr.some(s => s.slot_position === 'continuation');
                     if (isContinuation) {
-                        // This shouldn't happen since we skip via skipCells, but just in case
                         return;
                     }
 
                     // Apply rowspan for multi-slot practicals
                     if (practicalSpan > 1) {
-                        // Calculate actual rowspan accounting for break rows in between
                         let actualRowspan = 1;
                         for (let offset = 1; offset < practicalSpan; offset++) {
                             const nextSlotIdx = slotIndex + offset;
@@ -344,7 +400,6 @@ function updateTimetableView() {
                                 const nextIsBreak = nextSlotSession && nextSlotSession.type === 'break';
                                 if (!nextIsBreak) {
                                     actualRowspan++;
-                                    // Mark the cell below to be skipped
                                     skipCells[`${nextSlotIdx}-${dayIndex}`] = true;
                                 }
                             }
@@ -401,20 +456,35 @@ function calculateStatistics() {
     let totalSlots = 0;
     let usedSlots = 0;
 
-    Object.values(timetableData).forEach(viewData => {
+    // Only count division views (not batch views) to avoid double-counting
+    Object.entries(timetableData).forEach(([key, viewData]) => {
+        if (key.includes('Batch')) return; // Skip batch views for stats
+
         Object.values(viewData).forEach(dayData => {
             Object.values(dayData).forEach(session => {
+                if (!session) { totalSlots++; return; }
                 totalSlots++;
-                if (session && session.type !== 'break') {
+
+                if (session.type === 'break') return;
+
+                // Skip continuation slots
+                if (session.slot_position === 'continuation') {
                     usedSlots++;
-                    // Skip continuation slots to avoid double-counting practicals
-                    if (session.slot_position === 'continuation') return;
+                    return;
+                }
+
+                usedSlots++;
+
+                if (session.type === 'practical_block') {
+                    // Count as 1 practical session for the division
                     totalSessions++;
-                    if (session.type === 'theory' || session.type === 'tutorial') {
-                        theorySessions++;
-                    } else {
-                        practicalSessions++;
-                    }
+                    practicalSessions++;
+                } else if (session.type === 'theory' || session.type === 'tutorial') {
+                    totalSessions++;
+                    theorySessions++;
+                } else {
+                    totalSessions++;
+                    practicalSessions++;
                 }
             });
         });
@@ -434,9 +504,9 @@ function enableAIModifications() {
         showAlert('No timetable data available to save', 'danger');
         return;
     }
-    
+
     showAlert('Saving timetable for AI modifications...', 'info');
-    
+
     fetch('/api/save-timetable', {
         method: 'POST',
         headers: {
@@ -469,9 +539,9 @@ function exportTimetable() {
         showAlert('No timetable available to download', 'warning');
         return;
     }
-    
+
     showAlert('Generating Excel file... Please wait', 'info');
-    
+
     fetch('/api/timetable/export/excel', {
         method: 'POST',
         headers: {
@@ -496,7 +566,7 @@ function exportTimetable() {
         a.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
-        showAlert('Excel file downloaded successfully! ✓', 'success');
+        showAlert('Excel file downloaded successfully!', 'success');
     })
     .catch(error => {
         console.error('Error downloading Excel:', error);
@@ -522,6 +592,61 @@ function exportTimetable() {
 .session-card.practical {
     border-left-color: var(--bs-warning);
     background: rgba(255, 193, 7, 0.1);
+}
+
+.session-card.practical-block {
+    border-left-color: #e67e22;
+    background: rgba(230, 126, 34, 0.08);
+    min-height: auto;
+    padding: 0.4rem;
+}
+
+.practical-block-header {
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #e67e22;
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid rgba(230, 126, 34, 0.3);
+}
+
+.practical-block-batches {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.batch-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem;
+    padding: 0.15rem 0.3rem;
+    border-radius: 0.2rem;
+    background: rgba(255, 255, 255, 0.6);
+    font-size: 0.78rem;
+}
+
+.batch-item.batch-free {
+    opacity: 0.6;
+}
+
+.batch-label {
+    font-weight: 600;
+    color: #2c3e50;
+    min-width: 55px;
+}
+
+.batch-subject {
+    font-weight: 500;
+    color: #34495e;
+}
+
+.batch-details {
+    display: block;
+    width: 100%;
+    font-size: 0.7rem;
+    color: #7f8c8d;
 }
 
 .session-subject {
@@ -564,14 +689,18 @@ function exportTimetable() {
     .timetable-table {
         font-size: 0.875rem;
     }
-    
+
     .session-card {
         min-height: 60px;
         padding: 0.25rem;
     }
-    
+
     .session-subject {
         font-size: 0.8rem;
+    }
+
+    .batch-item {
+        font-size: 0.7rem;
     }
 }
 </style>

@@ -881,10 +881,27 @@ def export_timetable_pdf():
                                     cell_text.append('↑ (contd.)')
                                     continue
 
+                                session_type = session.get('type', '')
+
+                                # Handle practical_block type (division view)
+                                if session_type == 'practical_block':
+                                    span = session.get('span', 1)
+                                    duration_label = f" ({span} hrs)" if span > 1 else ""
+                                    cell_text.append(f"Practicals{duration_label}")
+                                    batches = session.get('batches', {})
+                                    for b_num in sorted(batches.keys(), key=lambda x: int(x)):
+                                        b_letter = chr(64 + int(b_num))
+                                        b_info = batches[b_num]
+                                        if b_info:
+                                            cell_text.append(f"Batch {b_letter}: {b_info.get('subject', '')} ({b_info.get('room', '')})")
+                                        else:
+                                            cell_text.append(f"Batch {b_letter}: Free")
+                                    cell_text.append('')
+                                    continue
+
                                 subject = session.get('subject', '')
                                 faculty = session.get('faculty', '')
                                 room = session.get('room', '')
-                                session_type = session.get('type', '')
                                 span = session.get('span', 1)
 
                                 duration_label = f" ({span} hrs)" if span > 1 else ""
@@ -1143,10 +1160,27 @@ def export_timetable_excel():
                                         cell_text.append('↑ (contd.)')
                                         continue
 
+                                    session_type = session_item.get('type', '')
+
+                                    # Handle practical_block type (division view)
+                                    if session_type == 'practical_block':
+                                        span = session_item.get('span', 1)
+                                        duration_label = f" ({span} hrs)" if span > 1 else ""
+                                        cell_text.append(f"Practicals{duration_label}")
+                                        batches = session_item.get('batches', {})
+                                        for b_num in sorted(batches.keys(), key=lambda x: int(x)):
+                                            b_letter = chr(64 + int(b_num))
+                                            b_info = batches[b_num]
+                                            if b_info:
+                                                cell_text.append(f"Batch {b_letter}: {b_info.get('subject', '')} ({b_info.get('room', '')})")
+                                            else:
+                                                cell_text.append(f"Batch {b_letter}: Free")
+                                        cell_text.append('')
+                                        continue
+
                                     subject = session_item.get('subject', '')
                                     faculty = session_item.get('faculty', '')
                                     room = session_item.get('room', '')
-                                    session_type = session_item.get('type', '')
                                     span = session_item.get('span', 1)
 
                                     duration_label = f" ({span} hrs)" if span > 1 else ""
