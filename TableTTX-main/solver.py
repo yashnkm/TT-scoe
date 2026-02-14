@@ -303,7 +303,7 @@ class SimpleTimetableSolver:
 
         # --- 5. Faculty overload check ---
         for fac in faculty:
-            fac_name = fac.get("name", "Unknown")
+            fac_name = fac.get("name", "Unknown").strip()
             theory_load = 0
             fac_subjects = fac.get("subjects", []) or []
 
@@ -990,38 +990,48 @@ class SimpleTimetableSolver:
         return faculty_assignment, room_assignment
 
     def _assign_faculty_for_session(self, session, faculty_list, day, spanned_slots, used_faculty):
-        """Pick a faculty member for this session that isn't already used at any of its slots."""
+        """Pick a faculty member for this session that isn't already used at any of its slots.
+        Prefer faculty with explicit division match over wildcard (empty) divisions.
+        """
         div_map = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5}
         div_num = div_map.get(session["division"], 1)
 
-        for fac in faculty_list:
-            subjects = fac.get("subjects", []) or []
-            can_teach = False
+        # Two passes: first explicit division match, then wildcard (empty divisions)
+        for require_explicit in [True, False]:
+            for fac in faculty_list:
+                subjects = fac.get("subjects", []) or []
+                can_teach = False
 
-            if subjects and not isinstance(subjects[0], dict):
-                if session["subject_id"] in subjects:
-                    can_teach = True
-            else:
-                for assignment in subjects:
-                    if assignment.get("subject_id") == session["subject_id"]:
-                        allowed_divs = assignment.get("divisions", [])
-                        if not allowed_divs or div_num in allowed_divs:
-                            can_teach = True
+                if subjects and not isinstance(subjects[0], dict):
+                    if session["subject_id"] in subjects:
+                        can_teach = True
+                else:
+                    for assignment in subjects:
+                        if assignment.get("subject_id") == session["subject_id"]:
+                            allowed_divs = assignment.get("divisions", [])
+                            if require_explicit:
+                                # First pass: only accept explicit division match
+                                if allowed_divs and div_num in allowed_divs:
+                                    can_teach = True
+                            else:
+                                # Second pass: accept wildcard (empty) divisions too
+                                if not allowed_divs or div_num in allowed_divs:
+                                    can_teach = True
+                            break
+
+                if not can_teach:
+                    continue
+
+                # Check if this faculty is free at all spanned slots
+                fac_name = fac.get("name", "Unassigned").strip()
+                is_free = True
+                for slot in spanned_slots:
+                    if (day, slot) in used_faculty and fac_name in used_faculty[(day, slot)]:
+                        is_free = False
                         break
 
-            if not can_teach:
-                continue
-
-            # Check if this faculty is free at all spanned slots
-            fac_name = fac.get("name", "Unassigned")
-            is_free = True
-            for slot in spanned_slots:
-                if (day, slot) in used_faculty and fac_name in used_faculty[(day, slot)]:
-                    is_free = False
-                    break
-
-            if is_free:
-                return fac_name
+                if is_free:
+                    return fac_name
 
         return "Unassigned"
 

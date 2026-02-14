@@ -1281,7 +1281,7 @@
               "batches": {
                 "1": {
                   "subject": "PSDL Lab ",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 34",
                   "code": "214455"
                 },
@@ -1302,7 +1302,7 @@
               "batches": {
                 "1": {
                   "subject": "PSDL Lab ",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 34",
                   "code": "214455"
                 },
@@ -1329,14 +1329,14 @@
             "11:30-12:30": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
@@ -1383,7 +1383,7 @@
             "16:30-17:30": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             }
@@ -1452,14 +1452,14 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
             "12:30-13:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
@@ -1474,7 +1474,7 @@
             "14:30-15:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -1490,7 +1490,7 @@
                 "2": null,
                 "3": {
                   "subject": "PSDL Lab ",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 35",
                   "code": "214455"
                 },
@@ -1516,7 +1516,7 @@
                 "2": null,
                 "3": {
                   "subject": "PSDL Lab ",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 35",
                   "code": "214455"
                 },
@@ -1535,14 +1535,14 @@
             "09:15-10:15": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
             "10:15-11:15": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -1557,14 +1557,14 @@
             "11:30-12:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
             "12:30-13:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -1581,7 +1581,7 @@
               "batches": {
                 "1": {
                   "subject": "Computer Graphics Lab",
-                  "faculty": "A A Banerjee ",
+                  "faculty": "A A Banerjee",
                   "room": "Lab No. 34",
                   "code": "214457"
                 },
@@ -1599,7 +1599,7 @@
                 "2": null,
                 "3": {
                   "subject": "DBMS Lab ",
-                  "faculty": "J S Pawar ",
+                  "faculty": "J S Pawar",
                   "room": "Lab No. 35",
                   "code": "214456"
                 },
@@ -1615,7 +1615,7 @@
                 "2": null,
                 "3": {
                   "subject": "DBMS Lab ",
-                  "faculty": "J S Pawar ",
+                  "faculty": "J S Pawar",
                   "room": "Lab No. 35",
                   "code": "214456"
                 },
@@ -1629,14 +1629,14 @@
             "09:15-10:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             },
@@ -1651,7 +1651,7 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
@@ -1667,7 +1667,7 @@
             "14:30-15:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             },
@@ -1678,7 +1678,7 @@
                 "2": null,
                 "3": {
                   "subject": "Computer Graphics Lab",
-                  "faculty": "A A Banerjee ",
+                  "faculty": "A A Banerjee",
                   "room": "Lab No. 34",
                   "code": "214457"
                 },
@@ -1694,7 +1694,7 @@
                 "2": null,
                 "3": {
                   "subject": "Computer Graphics Lab",
-                  "faculty": "A A Banerjee ",
+                  "faculty": "A A Banerjee",
                   "room": "Lab No. 34",
                   "code": "214457"
                 },
@@ -1763,7 +1763,7 @@
                 "3": null,
                 "4": {
                   "subject": "DBMS Lab ",
-                  "faculty": "J S Pawar ",
+                  "faculty": "J S Pawar",
                   "room": "Lab No. 34",
                   "code": "214456"
                 }
@@ -1779,7 +1779,7 @@
                 "3": null,
                 "4": {
                   "subject": "DBMS Lab ",
-                  "faculty": "J S Pawar ",
+                  "faculty": "J S Pawar",
                   "room": "Lab No. 34",
                   "code": "214456"
                 }
@@ -1801,7 +1801,7 @@
                 "1": null,
                 "2": {
                   "subject": "Computer Graphics Lab",
-                  "faculty": "A A Banerjee ",
+                  "faculty": "A A Banerjee",
                   "room": "Lab No. 34",
                   "code": "214457"
                 },
@@ -1817,7 +1817,7 @@
                 "1": null,
                 "2": {
                   "subject": "Computer Graphics Lab",
-                  "faculty": "A A Banerjee ",
+                  "faculty": "A A Banerjee",
                   "room": "Lab No. 34",
                   "code": "214457"
                 },
@@ -1830,7 +1830,7 @@
             "16:30-17:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             }
@@ -1841,7 +1841,7 @@
             "09:15-10:15": {
               "subject": "PSDL Lab ",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Lab No. 34",
               "code": "214455",
               "batch": 1,
@@ -1852,7 +1852,7 @@
             "10:15-11:15": {
               "subject": "PSDL Lab ",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Lab No. 34",
               "code": "214455",
               "batch": 1,
@@ -1871,14 +1871,14 @@
             "11:30-12:30": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
@@ -1895,7 +1895,7 @@
             "16:30-17:30": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             }
@@ -1934,14 +1934,14 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
             "12:30-13:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
@@ -1956,7 +1956,7 @@
             "14:30-15:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -1987,14 +1987,14 @@
             "09:15-10:15": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
             "10:15-11:15": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -2009,14 +2009,14 @@
             "11:30-12:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
             "12:30-13:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -2031,7 +2031,7 @@
             "14:30-15:30": {
               "subject": "Computer Graphics Lab",
               "type": "practical",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "Lab No. 34",
               "code": "214457",
               "batch": 1,
@@ -2042,7 +2042,7 @@
             "15:30-16:30": {
               "subject": "Computer Graphics Lab",
               "type": "practical",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "Lab No. 34",
               "code": "214457",
               "batch": 1,
@@ -2056,14 +2056,14 @@
             "09:15-10:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             },
@@ -2078,7 +2078,7 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
@@ -2094,7 +2094,7 @@
             "14:30-15:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             },
@@ -2127,7 +2127,7 @@
             "16:30-17:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             }
@@ -2168,14 +2168,14 @@
             "11:30-12:30": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
@@ -2192,7 +2192,7 @@
             "16:30-17:30": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             }
@@ -2231,14 +2231,14 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
             "12:30-13:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
@@ -2253,7 +2253,7 @@
             "14:30-15:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -2264,14 +2264,14 @@
             "09:15-10:15": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
             "10:15-11:15": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -2286,14 +2286,14 @@
             "11:30-12:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
             "12:30-13:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -2313,14 +2313,14 @@
             "09:15-10:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             },
@@ -2335,7 +2335,7 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
@@ -2351,7 +2351,7 @@
             "14:30-15:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             },
@@ -2402,7 +2402,7 @@
             "14:30-15:30": {
               "subject": "Computer Graphics Lab",
               "type": "practical",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "Lab No. 34",
               "code": "214457",
               "batch": 2,
@@ -2413,7 +2413,7 @@
             "15:30-16:30": {
               "subject": "Computer Graphics Lab",
               "type": "practical",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "Lab No. 34",
               "code": "214457",
               "batch": 2,
@@ -2424,7 +2424,7 @@
             "16:30-17:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             }
@@ -2445,14 +2445,14 @@
             "11:30-12:30": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
@@ -2469,7 +2469,7 @@
             "16:30-17:30": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             }
@@ -2508,14 +2508,14 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
             "12:30-13:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
@@ -2530,14 +2530,14 @@
             "14:30-15:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
             "15:30-16:30": {
               "subject": "PSDL Lab ",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Lab No. 35",
               "code": "214455",
               "batch": 3,
@@ -2548,7 +2548,7 @@
             "16:30-17:30": {
               "subject": "PSDL Lab ",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Lab No. 35",
               "code": "214455",
               "batch": 3,
@@ -2561,14 +2561,14 @@
             "09:15-10:15": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
             "10:15-11:15": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -2583,14 +2583,14 @@
             "11:30-12:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
             "12:30-13:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -2606,7 +2606,7 @@
             "15:30-16:30": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "Lab No. 35",
               "code": "214456",
               "batch": 3,
@@ -2617,7 +2617,7 @@
             "16:30-17:30": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "Lab No. 35",
               "code": "214456",
               "batch": 3,
@@ -2630,14 +2630,14 @@
             "09:15-10:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             },
@@ -2652,7 +2652,7 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
@@ -2668,14 +2668,14 @@
             "14:30-15:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             },
             "15:30-16:30": {
               "subject": "Computer Graphics Lab",
               "type": "practical",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "Lab No. 34",
               "code": "214457",
               "batch": 3,
@@ -2686,7 +2686,7 @@
             "16:30-17:30": {
               "subject": "Computer Graphics Lab",
               "type": "practical",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "Lab No. 34",
               "code": "214457",
               "batch": 3,
@@ -2721,7 +2721,7 @@
             "16:30-17:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             }
@@ -2742,14 +2742,14 @@
             "11:30-12:30": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
@@ -2786,7 +2786,7 @@
             "16:30-17:30": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             }
@@ -2805,14 +2805,14 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
             "12:30-13:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
@@ -2827,7 +2827,7 @@
             "14:30-15:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -2858,14 +2858,14 @@
             "09:15-10:15": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
             "10:15-11:15": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -2880,14 +2880,14 @@
             "11:30-12:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "207003"
             },
             "12:30-13:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR41",
               "code": "214454"
             },
@@ -2907,14 +2907,14 @@
             "09:15-10:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "CR41",
               "code": "214452"
             },
@@ -2929,7 +2929,7 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "214453"
             },
@@ -2945,7 +2945,7 @@
             "14:30-15:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             },
@@ -2986,7 +2986,7 @@
             "11:30-12:30": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "Lab No. 34",
               "code": "214456",
               "batch": 4,
@@ -2997,7 +2997,7 @@
             "12:30-13:30": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "Lab No. 34",
               "code": "214456",
               "batch": 4,
@@ -3018,7 +3018,7 @@
             "16:30-17:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR41",
               "code": "214451"
             }
@@ -3032,7 +3032,7 @@
                 "1": null,
                 "2": {
                   "subject": "DBMS Lab ",
-                  "faculty": "A S Shinde ",
+                  "faculty": "A S Shinde",
                   "room": "Lab No. 36",
                   "code": "214456"
                 },
@@ -3053,7 +3053,7 @@
                 "1": null,
                 "2": {
                   "subject": "DBMS Lab ",
-                  "faculty": "A S Shinde ",
+                  "faculty": "A S Shinde",
                   "room": "Lab No. 36",
                   "code": "214456"
                 },
@@ -3079,7 +3079,7 @@
             "11:30-12:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             },
@@ -3095,7 +3095,7 @@
             "14:30-15:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR41",
               "code": "214453"
             },
@@ -3105,13 +3105,13 @@
                 "1": null,
                 "2": {
                   "subject": "Computer Graphics Lab",
-                  "faculty": "S P Palekar ",
+                  "faculty": "S P Palekar",
                   "room": "Lab No. 35",
                   "code": "214457"
                 },
                 "3": {
                   "subject": "PSDL Lab ",
-                  "faculty": "M S Bhosale ",
+                  "faculty": "M S Bhosale",
                   "room": "Lab No. 36",
                   "code": "214455"
                 },
@@ -3126,13 +3126,13 @@
                 "1": null,
                 "2": {
                   "subject": "Computer Graphics Lab",
-                  "faculty": "S P Palekar ",
+                  "faculty": "S P Palekar",
                   "room": "Lab No. 35",
                   "code": "214457"
                 },
                 "3": {
                   "subject": "PSDL Lab ",
-                  "faculty": "M S Bhosale ",
+                  "faculty": "M S Bhosale",
                   "room": "Lab No. 36",
                   "code": "214455"
                 },
@@ -3146,14 +3146,14 @@
             "09:15-10:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR41",
               "code": "214451"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "214452"
             },
@@ -3170,13 +3170,13 @@
               "batches": {
                 "1": {
                   "subject": "DBMS Lab ",
-                  "faculty": "A S Shinde ",
+                  "faculty": "A S Shinde",
                   "room": "Lab No. 34",
                   "code": "214456"
                 },
                 "2": {
                   "subject": "PSDL Lab ",
-                  "faculty": "M S Bhosale ",
+                  "faculty": "M S Bhosale",
                   "room": "Lab No. 35",
                   "code": "214455"
                 },
@@ -3196,13 +3196,13 @@
               "batches": {
                 "1": {
                   "subject": "DBMS Lab ",
-                  "faculty": "A S Shinde ",
+                  "faculty": "A S Shinde",
                   "room": "Lab No. 34",
                   "code": "214456"
                 },
                 "2": {
                   "subject": "PSDL Lab ",
-                  "faculty": "M S Bhosale ",
+                  "faculty": "M S Bhosale",
                   "room": "Lab No. 35",
                   "code": "214455"
                 },
@@ -3228,7 +3228,7 @@
             "14:30-15:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "214451"
             },
@@ -3237,7 +3237,7 @@
               "batches": {
                 "1": {
                   "subject": "DBMS Lab ",
-                  "faculty": "A S Shinde ",
+                  "faculty": "A S Shinde",
                   "room": "Lab No. 38",
                   "code": "214456"
                 },
@@ -3253,7 +3253,7 @@
               "batches": {
                 "1": {
                   "subject": "DBMS Lab ",
-                  "faculty": "A S Shinde ",
+                  "faculty": "A S Shinde",
                   "room": "Lab No. 38",
                   "code": "214456"
                 },
@@ -3269,14 +3269,14 @@
             "09:15-10:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR44",
               "code": "214452"
             },
             "10:15-11:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "214451"
             },
@@ -3291,14 +3291,14 @@
             "11:30-12:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "207003"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "207003"
             },
@@ -3318,7 +3318,7 @@
                 "3": null,
                 "4": {
                   "subject": "PSDL Lab ",
-                  "faculty": "M S Bhosale ",
+                  "faculty": "M S Bhosale",
                   "room": "Lab No. 38",
                   "code": "214455"
                 }
@@ -3333,7 +3333,7 @@
                 "2": null,
                 "3": {
                   "subject": "Computer Graphics Lab",
-                  "faculty": "S P Palekar ",
+                  "faculty": "S P Palekar",
                   "room": "Lab No. 36",
                   "code": "214457"
                 },
@@ -3349,7 +3349,7 @@
                 "2": null,
                 "3": {
                   "subject": "Computer Graphics Lab",
-                  "faculty": "S P Palekar ",
+                  "faculty": "S P Palekar",
                   "room": "Lab No. 36",
                   "code": "214457"
                 },
@@ -3365,7 +3365,7 @@
               "batches": {
                 "1": {
                   "subject": "Computer Graphics Lab",
-                  "faculty": "S P Palekar ",
+                  "faculty": "S P Palekar",
                   "room": "Lab No. 34",
                   "code": "214457"
                 },
@@ -3386,7 +3386,7 @@
               "batches": {
                 "1": {
                   "subject": "Computer Graphics Lab",
-                  "faculty": "S P Palekar ",
+                  "faculty": "S P Palekar",
                   "room": "Lab No. 34",
                   "code": "214457"
                 },
@@ -3413,14 +3413,14 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR44",
               "code": "214453"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR41",
               "code": "207003"
             },
@@ -3435,7 +3435,7 @@
             "14:30-15:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             },
@@ -3446,7 +3446,7 @@
                 "2": null,
                 "3": {
                   "subject": "DBMS Lab ",
-                  "faculty": "A S Shinde ",
+                  "faculty": "A S Shinde",
                   "room": "Lab No. 35",
                   "code": "214456"
                 },
@@ -3462,7 +3462,7 @@
                 "2": null,
                 "3": {
                   "subject": "DBMS Lab ",
-                  "faculty": "A S Shinde ",
+                  "faculty": "A S Shinde",
                   "room": "Lab No. 35",
                   "code": "214456"
                 },
@@ -3476,14 +3476,14 @@
             "09:15-10:15": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR41",
               "code": "214453"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "214452"
             },
@@ -3501,7 +3501,7 @@
                 "1": null,
                 "2": {
                   "subject": "DBMS Lab ",
-                  "faculty": "A S Shinde ",
+                  "faculty": "A S Shinde",
                   "room": "Lab No. 35",
                   "code": "214456"
                 },
@@ -3522,7 +3522,7 @@
                 "1": null,
                 "2": {
                   "subject": "DBMS Lab ",
-                  "faculty": "A S Shinde ",
+                  "faculty": "A S Shinde",
                   "room": "Lab No. 35",
                   "code": "214456"
                 },
@@ -3550,7 +3550,7 @@
               "batches": {
                 "1": {
                   "subject": "PSDL Lab ",
-                  "faculty": "M S Bhosale ",
+                  "faculty": "M S Bhosale",
                   "room": "Lab No. 35",
                   "code": "214455"
                 },
@@ -3566,7 +3566,7 @@
               "batches": {
                 "1": {
                   "subject": "PSDL Lab ",
-                  "faculty": "M S Bhosale ",
+                  "faculty": "M S Bhosale",
                   "room": "Lab No. 35",
                   "code": "214455"
                 },
@@ -3580,7 +3580,7 @@
             "16:30-17:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             }
@@ -3601,7 +3601,7 @@
             "11:30-12:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             },
@@ -3617,7 +3617,7 @@
             "14:30-15:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR41",
               "code": "214453"
             },
@@ -3628,14 +3628,14 @@
             "09:15-10:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR41",
               "code": "214451"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "214452"
             },
@@ -3650,7 +3650,7 @@
             "11:30-12:30": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "Lab No. 34",
               "code": "214456",
               "batch": 1,
@@ -3661,7 +3661,7 @@
             "12:30-13:30": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "Lab No. 34",
               "code": "214456",
               "batch": 1,
@@ -3680,14 +3680,14 @@
             "14:30-15:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "214451"
             },
             "15:30-16:30": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "Lab No. 38",
               "code": "214456",
               "batch": 1,
@@ -3698,7 +3698,7 @@
             "16:30-17:30": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "Lab No. 38",
               "code": "214456",
               "batch": 1,
@@ -3711,14 +3711,14 @@
             "09:15-10:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR44",
               "code": "214452"
             },
             "10:15-11:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "214451"
             },
@@ -3733,14 +3733,14 @@
             "11:30-12:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "207003"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "207003"
             },
@@ -3760,7 +3760,7 @@
             "09:15-10:15": {
               "subject": "Computer Graphics Lab",
               "type": "practical",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "Lab No. 34",
               "code": "214457",
               "batch": 1,
@@ -3771,7 +3771,7 @@
             "10:15-11:15": {
               "subject": "Computer Graphics Lab",
               "type": "practical",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "Lab No. 34",
               "code": "214457",
               "batch": 1,
@@ -3790,14 +3790,14 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR44",
               "code": "214453"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR41",
               "code": "207003"
             },
@@ -3812,7 +3812,7 @@
             "14:30-15:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             },
@@ -3823,14 +3823,14 @@
             "09:15-10:15": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR41",
               "code": "214453"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "214452"
             },
@@ -3855,7 +3855,7 @@
             "14:30-15:30": {
               "subject": "PSDL Lab ",
               "type": "practical",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "Lab No. 35",
               "code": "214455",
               "batch": 1,
@@ -3866,7 +3866,7 @@
             "15:30-16:30": {
               "subject": "PSDL Lab ",
               "type": "practical",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "Lab No. 35",
               "code": "214455",
               "batch": 1,
@@ -3877,7 +3877,7 @@
             "16:30-17:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             }
@@ -3888,7 +3888,7 @@
             "09:15-10:15": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "Lab No. 36",
               "code": "214456",
               "batch": 2,
@@ -3899,7 +3899,7 @@
             "10:15-11:15": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "Lab No. 36",
               "code": "214456",
               "batch": 2,
@@ -3918,7 +3918,7 @@
             "11:30-12:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             },
@@ -3934,14 +3934,14 @@
             "14:30-15:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR41",
               "code": "214453"
             },
             "15:30-16:30": {
               "subject": "Computer Graphics Lab",
               "type": "practical",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "Lab No. 35",
               "code": "214457",
               "batch": 2,
@@ -3952,7 +3952,7 @@
             "16:30-17:30": {
               "subject": "Computer Graphics Lab",
               "type": "practical",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "Lab No. 35",
               "code": "214457",
               "batch": 2,
@@ -3965,14 +3965,14 @@
             "09:15-10:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR41",
               "code": "214451"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "214452"
             },
@@ -3987,7 +3987,7 @@
             "11:30-12:30": {
               "subject": "PSDL Lab ",
               "type": "practical",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "Lab No. 35",
               "code": "214455",
               "batch": 2,
@@ -3998,7 +3998,7 @@
             "12:30-13:30": {
               "subject": "PSDL Lab ",
               "type": "practical",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "Lab No. 35",
               "code": "214455",
               "batch": 2,
@@ -4017,7 +4017,7 @@
             "14:30-15:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "214451"
             },
@@ -4028,14 +4028,14 @@
             "09:15-10:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR44",
               "code": "214452"
             },
             "10:15-11:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "214451"
             },
@@ -4050,14 +4050,14 @@
             "11:30-12:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "207003"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "207003"
             },
@@ -4087,14 +4087,14 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR44",
               "code": "214453"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR41",
               "code": "207003"
             },
@@ -4109,7 +4109,7 @@
             "14:30-15:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             },
@@ -4120,14 +4120,14 @@
             "09:15-10:15": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR41",
               "code": "214453"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "214452"
             },
@@ -4142,7 +4142,7 @@
             "11:30-12:30": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "Lab No. 35",
               "code": "214456",
               "batch": 2,
@@ -4153,7 +4153,7 @@
             "12:30-13:30": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "Lab No. 35",
               "code": "214456",
               "batch": 2,
@@ -4174,7 +4174,7 @@
             "16:30-17:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             }
@@ -4195,7 +4195,7 @@
             "11:30-12:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             },
@@ -4211,14 +4211,14 @@
             "14:30-15:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR41",
               "code": "214453"
             },
             "15:30-16:30": {
               "subject": "PSDL Lab ",
               "type": "practical",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "Lab No. 36",
               "code": "214455",
               "batch": 3,
@@ -4229,7 +4229,7 @@
             "16:30-17:30": {
               "subject": "PSDL Lab ",
               "type": "practical",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "Lab No. 36",
               "code": "214455",
               "batch": 3,
@@ -4242,14 +4242,14 @@
             "09:15-10:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR41",
               "code": "214451"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "214452"
             },
@@ -4274,7 +4274,7 @@
             "14:30-15:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "214451"
             },
@@ -4285,14 +4285,14 @@
             "09:15-10:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR44",
               "code": "214452"
             },
             "10:15-11:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "214451"
             },
@@ -4307,14 +4307,14 @@
             "11:30-12:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "207003"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "207003"
             },
@@ -4330,7 +4330,7 @@
             "15:30-16:30": {
               "subject": "Computer Graphics Lab",
               "type": "practical",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "Lab No. 36",
               "code": "214457",
               "batch": 3,
@@ -4341,7 +4341,7 @@
             "16:30-17:30": {
               "subject": "Computer Graphics Lab",
               "type": "practical",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "Lab No. 36",
               "code": "214457",
               "batch": 3,
@@ -4364,14 +4364,14 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR44",
               "code": "214453"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR41",
               "code": "207003"
             },
@@ -4386,14 +4386,14 @@
             "14:30-15:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             },
             "15:30-16:30": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "Lab No. 35",
               "code": "214456",
               "batch": 3,
@@ -4404,7 +4404,7 @@
             "16:30-17:30": {
               "subject": "DBMS Lab ",
               "type": "practical",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "Lab No. 35",
               "code": "214456",
               "batch": 3,
@@ -4417,14 +4417,14 @@
             "09:15-10:15": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR41",
               "code": "214453"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "214452"
             },
@@ -4471,7 +4471,7 @@
             "16:30-17:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             }
@@ -4512,7 +4512,7 @@
             "11:30-12:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             },
@@ -4528,7 +4528,7 @@
             "14:30-15:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR41",
               "code": "214453"
             },
@@ -4539,14 +4539,14 @@
             "09:15-10:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR41",
               "code": "214451"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "214452"
             },
@@ -4591,7 +4591,7 @@
             "14:30-15:30": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "214451"
             },
@@ -4602,14 +4602,14 @@
             "09:15-10:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR44",
               "code": "214452"
             },
             "10:15-11:15": {
               "subject": "Processor Architecture ",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "214451"
             },
@@ -4624,14 +4624,14 @@
             "11:30-12:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "207003"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "207003"
             },
@@ -4646,7 +4646,7 @@
             "14:30-15:30": {
               "subject": "PSDL Lab ",
               "type": "practical",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "Lab No. 38",
               "code": "214455",
               "batch": 4,
@@ -4657,7 +4657,7 @@
             "15:30-16:30": {
               "subject": "PSDL Lab ",
               "type": "practical",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "Lab No. 38",
               "code": "214455",
               "batch": 4,
@@ -4701,14 +4701,14 @@
             "11:30-12:30": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR44",
               "code": "214453"
             },
             "12:30-13:30": {
               "subject": "Engineering Math 3",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR41",
               "code": "207003"
             },
@@ -4723,7 +4723,7 @@
             "14:30-15:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             },
@@ -4734,14 +4734,14 @@
             "09:15-10:15": {
               "subject": "Computer Graphics ",
               "type": "theory",
-              "faculty": "A A Banerjee ",
+              "faculty": "A A Banerjee",
               "room": "CR41",
               "code": "214453"
             },
             "10:15-11:15": {
               "subject": "DBMS ",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "214452"
             },
@@ -4768,7 +4768,7 @@
             "16:30-17:30": {
               "subject": "Software Engineering ",
               "type": "theory",
-              "faculty": "N H Deshpande ",
+              "faculty": "N H Deshpande",
               "room": "CR44",
               "code": "214454"
             }
@@ -4788,7 +4788,7 @@
                 },
                 "3": {
                   "subject": "DSBDA Lab ",
-                  "faculty": "J A Doe ",
+                  "faculty": "J A Doe",
                   "room": "Lab No. 40",
                   "code": "314457"
                 },
@@ -4809,7 +4809,7 @@
                 },
                 "3": {
                   "subject": "DSBDA Lab ",
-                  "faculty": "J A Doe ",
+                  "faculty": "J A Doe",
                   "room": "Lab No. 40",
                   "code": "314457"
                 },
@@ -4829,14 +4829,14 @@
             "11:30-12:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "314455"
             },
             "12:30-13:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR44",
               "code": "314451"
             },
@@ -4851,14 +4851,14 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR44",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "314455"
             },
@@ -4868,7 +4868,7 @@
             "09:15-10:15": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR44",
               "code": "314454"
             },
@@ -4893,7 +4893,7 @@
                 "2": null,
                 "3": {
                   "subject": "CNS Lab",
-                  "faculty": "D G Jadhav ",
+                  "faculty": "D G Jadhav",
                   "room": "Lab No. 39",
                   "code": "314456"
                 },
@@ -4919,7 +4919,7 @@
                 "2": null,
                 "3": {
                   "subject": "CNS Lab",
-                  "faculty": "D G Jadhav ",
+                  "faculty": "D G Jadhav",
                   "room": "Lab No. 39",
                   "code": "314456"
                 },
@@ -4944,21 +4944,21 @@
             "14:30-15:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "314452"
             },
             "15:30-16:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR41",
               "code": "314451"
             },
             "16:30-17:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "314455"
             }
@@ -4968,7 +4968,7 @@
             "10:15-11:15": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "314455"
             },
@@ -4997,7 +4997,7 @@
                 },
                 "3": {
                   "subject": "LP2",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 36",
                   "code": "314458"
                 },
@@ -5028,7 +5028,7 @@
                 },
                 "3": {
                   "subject": "LP2",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 36",
                   "code": "314458"
                 },
@@ -5056,7 +5056,7 @@
                 "1": null,
                 "2": {
                   "subject": "DSBDA Lab ",
-                  "faculty": "J A Doe ",
+                  "faculty": "J A Doe",
                   "room": "Lab No. 39",
                   "code": "314457"
                 },
@@ -5077,7 +5077,7 @@
                 "1": null,
                 "2": {
                   "subject": "DSBDA Lab ",
-                  "faculty": "J A Doe ",
+                  "faculty": "J A Doe",
                   "room": "Lab No. 39",
                   "code": "314457"
                 },
@@ -5095,7 +5095,7 @@
             "16:30-17:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR41",
               "code": "314453"
             }
@@ -5106,14 +5106,14 @@
               "batches": {
                 "1": {
                   "subject": "LP2",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 36",
                   "code": "314458"
                 },
                 "2": null,
                 "3": {
                   "subject": "CNS Lab",
-                  "faculty": "D G Jadhav ",
+                  "faculty": "D G Jadhav",
                   "room": "Lab No. 38",
                   "code": "314456"
                 },
@@ -5127,14 +5127,14 @@
               "batches": {
                 "1": {
                   "subject": "LP2",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 36",
                   "code": "314458"
                 },
                 "2": null,
                 "3": {
                   "subject": "CNS Lab",
-                  "faculty": "D G Jadhav ",
+                  "faculty": "D G Jadhav",
                   "room": "Lab No. 38",
                   "code": "314456"
                 },
@@ -5162,13 +5162,13 @@
                 },
                 "2": {
                   "subject": "CNS Lab",
-                  "faculty": "D G Jadhav ",
+                  "faculty": "D G Jadhav",
                   "room": "Lab No. 35",
                   "code": "314456"
                 },
                 "3": {
                   "subject": "LP2",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 36",
                   "code": "314458"
                 },
@@ -5193,13 +5193,13 @@
                 },
                 "2": {
                   "subject": "CNS Lab",
-                  "faculty": "D G Jadhav ",
+                  "faculty": "D G Jadhav",
                   "room": "Lab No. 35",
                   "code": "314456"
                 },
                 "3": {
                   "subject": "LP2",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 36",
                   "code": "314458"
                 },
@@ -5266,7 +5266,7 @@
             "16:30-17:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "314454"
             }
@@ -5275,14 +5275,14 @@
             "09:15-10:15": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR44",
               "code": "314454"
             },
             "10:15-11:15": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR44",
               "code": "314451"
             },
@@ -5337,21 +5337,21 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR41",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR41",
               "code": "314452"
             },
             "16:30-17:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "314452"
             }
@@ -5372,14 +5372,14 @@
             "11:30-12:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "314455"
             },
             "12:30-13:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR44",
               "code": "314451"
             },
@@ -5394,14 +5394,14 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR44",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "314455"
             },
@@ -5411,7 +5411,7 @@
             "09:15-10:15": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR44",
               "code": "314454"
             },
@@ -5457,21 +5457,21 @@
             "14:30-15:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "314452"
             },
             "15:30-16:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR41",
               "code": "314451"
             },
             "16:30-17:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "314455"
             }
@@ -5481,7 +5481,7 @@
             "10:15-11:15": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "314455"
             },
@@ -5528,7 +5528,7 @@
             "16:30-17:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR41",
               "code": "314453"
             }
@@ -5537,7 +5537,7 @@
             "09:15-10:15": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Lab No. 36",
               "code": "314458",
               "batch": 1,
@@ -5548,7 +5548,7 @@
             "10:15-11:15": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Lab No. 36",
               "code": "314458",
               "batch": 1,
@@ -5599,7 +5599,7 @@
             "16:30-17:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "314454"
             }
@@ -5608,14 +5608,14 @@
             "09:15-10:15": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR44",
               "code": "314454"
             },
             "10:15-11:15": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR44",
               "code": "314451"
             },
@@ -5660,21 +5660,21 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR41",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR41",
               "code": "314452"
             },
             "16:30-17:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "314452"
             }
@@ -5715,14 +5715,14 @@
             "11:30-12:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "314455"
             },
             "12:30-13:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR44",
               "code": "314451"
             },
@@ -5737,14 +5737,14 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR44",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "314455"
             },
@@ -5754,7 +5754,7 @@
             "09:15-10:15": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR44",
               "code": "314454"
             },
@@ -5780,21 +5780,21 @@
             "14:30-15:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "314452"
             },
             "15:30-16:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR41",
               "code": "314451"
             },
             "16:30-17:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "314455"
             }
@@ -5804,7 +5804,7 @@
             "10:15-11:15": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "314455"
             },
@@ -5849,7 +5849,7 @@
             "14:30-15:30": {
               "subject": "DSBDA Lab ",
               "type": "practical",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Lab No. 39",
               "code": "314457",
               "batch": 2,
@@ -5860,7 +5860,7 @@
             "15:30-16:30": {
               "subject": "DSBDA Lab ",
               "type": "practical",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Lab No. 39",
               "code": "314457",
               "batch": 2,
@@ -5871,7 +5871,7 @@
             "16:30-17:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR41",
               "code": "314453"
             }
@@ -5890,7 +5890,7 @@
             "11:30-12:30": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "Lab No. 35",
               "code": "314456",
               "batch": 2,
@@ -5901,7 +5901,7 @@
             "12:30-13:30": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "Lab No. 35",
               "code": "314456",
               "batch": 2,
@@ -5942,7 +5942,7 @@
             "16:30-17:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "314454"
             }
@@ -5951,14 +5951,14 @@
             "09:15-10:15": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR44",
               "code": "314454"
             },
             "10:15-11:15": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR44",
               "code": "314451"
             },
@@ -5983,21 +5983,21 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR41",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR41",
               "code": "314452"
             },
             "16:30-17:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "314452"
             }
@@ -6008,7 +6008,7 @@
             "09:15-10:15": {
               "subject": "DSBDA Lab ",
               "type": "practical",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Lab No. 40",
               "code": "314457",
               "batch": 3,
@@ -6019,7 +6019,7 @@
             "10:15-11:15": {
               "subject": "DSBDA Lab ",
               "type": "practical",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Lab No. 40",
               "code": "314457",
               "batch": 3,
@@ -6038,14 +6038,14 @@
             "11:30-12:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "314455"
             },
             "12:30-13:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR44",
               "code": "314451"
             },
@@ -6060,14 +6060,14 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR44",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "314455"
             },
@@ -6077,7 +6077,7 @@
             "09:15-10:15": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR44",
               "code": "314454"
             },
@@ -6093,7 +6093,7 @@
             "11:30-12:30": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "Lab No. 39",
               "code": "314456",
               "batch": 3,
@@ -6104,7 +6104,7 @@
             "12:30-13:30": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "Lab No. 39",
               "code": "314456",
               "batch": 3,
@@ -6123,21 +6123,21 @@
             "14:30-15:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "314452"
             },
             "15:30-16:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR41",
               "code": "314451"
             },
             "16:30-17:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "314455"
             }
@@ -6147,7 +6147,7 @@
             "10:15-11:15": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "314455"
             },
@@ -6162,7 +6162,7 @@
             "11:30-12:30": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Lab No. 36",
               "code": "314458",
               "batch": 3,
@@ -6173,7 +6173,7 @@
             "12:30-13:30": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Lab No. 36",
               "code": "314458",
               "batch": 3,
@@ -6194,7 +6194,7 @@
             "16:30-17:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR41",
               "code": "314453"
             }
@@ -6203,7 +6203,7 @@
             "09:15-10:15": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "Lab No. 38",
               "code": "314456",
               "batch": 3,
@@ -6214,7 +6214,7 @@
             "10:15-11:15": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "Lab No. 38",
               "code": "314456",
               "batch": 3,
@@ -6233,7 +6233,7 @@
             "11:30-12:30": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Lab No. 36",
               "code": "314458",
               "batch": 3,
@@ -6244,7 +6244,7 @@
             "12:30-13:30": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Lab No. 36",
               "code": "314458",
               "batch": 3,
@@ -6265,7 +6265,7 @@
             "16:30-17:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "314454"
             }
@@ -6274,14 +6274,14 @@
             "09:15-10:15": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR44",
               "code": "314454"
             },
             "10:15-11:15": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR44",
               "code": "314451"
             },
@@ -6306,21 +6306,21 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR41",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR41",
               "code": "314452"
             },
             "16:30-17:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "314452"
             }
@@ -6341,14 +6341,14 @@
             "11:30-12:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "314455"
             },
             "12:30-13:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR44",
               "code": "314451"
             },
@@ -6363,14 +6363,14 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR44",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "314455"
             },
@@ -6380,7 +6380,7 @@
             "09:15-10:15": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR44",
               "code": "314454"
             },
@@ -6426,21 +6426,21 @@
             "14:30-15:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "314452"
             },
             "15:30-16:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR41",
               "code": "314451"
             },
             "16:30-17:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "314455"
             }
@@ -6450,7 +6450,7 @@
             "10:15-11:15": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "314455"
             },
@@ -6517,7 +6517,7 @@
             "16:30-17:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR41",
               "code": "314453"
             }
@@ -6588,7 +6588,7 @@
             "16:30-17:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR41",
               "code": "314454"
             }
@@ -6597,14 +6597,14 @@
             "09:15-10:15": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "S P Palekar ",
+              "faculty": "S P Palekar",
               "room": "CR44",
               "code": "314454"
             },
             "10:15-11:15": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "CR44",
               "code": "314451"
             },
@@ -6629,21 +6629,21 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "CR41",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR41",
               "code": "314452"
             },
             "16:30-17:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "314452"
             }
@@ -6658,7 +6658,7 @@
                 "2": null,
                 "3": {
                   "subject": "LP2",
-                  "faculty": " S H Thengil ",
+                  "faculty": "S H Thengil",
                   "room": "Lab No. 42",
                   "code": "314458"
                 },
@@ -6674,7 +6674,7 @@
                 "2": null,
                 "3": {
                   "subject": "LP2",
-                  "faculty": " S H Thengil ",
+                  "faculty": "S H Thengil",
                   "room": "Lab No. 42",
                   "code": "314458"
                 },
@@ -6694,14 +6694,14 @@
             "11:30-12:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR46",
               "code": "314455"
             },
             "12:30-13:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR45",
               "code": "314454"
             },
@@ -6716,21 +6716,21 @@
             "14:30-15:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR45",
               "code": "314454"
             },
             "15:30-16:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "314452"
             },
             "16:30-17:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "314453"
             }
@@ -6739,14 +6739,14 @@
             "09:15-10:15": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR45",
               "code": "314452"
             },
             "10:15-11:15": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR44",
               "code": "314451"
             },
@@ -6761,14 +6761,14 @@
             "11:30-12:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "314453"
             },
             "12:30-13:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR44",
               "code": "314454"
             },
@@ -6783,7 +6783,7 @@
             "14:30-15:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR46",
               "code": "314455"
             },
@@ -6826,13 +6826,13 @@
               "batches": {
                 "1": {
                   "subject": "CNS Lab",
-                  "faculty": " S L Dawkhar ",
+                  "faculty": "S L Dawkhar",
                   "room": "Lab No. 34",
                   "code": "314456"
                 },
                 "2": {
                   "subject": "LP2",
-                  "faculty": " S H Thengil ",
+                  "faculty": "Unassigned",
                   "room": "Lab No. 35",
                   "code": "314458"
                 },
@@ -6847,13 +6847,13 @@
               "batches": {
                 "1": {
                   "subject": "CNS Lab",
-                  "faculty": " S L Dawkhar ",
+                  "faculty": "S L Dawkhar",
                   "room": "Lab No. 34",
                   "code": "314456"
                 },
                 "2": {
                   "subject": "LP2",
-                  "faculty": " S H Thengil ",
+                  "faculty": "Unassigned",
                   "room": "Lab No. 35",
                   "code": "314458"
                 },
@@ -6876,7 +6876,7 @@
               "batches": {
                 "1": {
                   "subject": "LP2",
-                  "faculty": " S H Thengil ",
+                  "faculty": "S H Thengil",
                   "room": "Lab No. 39",
                   "code": "314458"
                 },
@@ -6894,7 +6894,7 @@
                 },
                 "4": {
                   "subject": "CNS Lab",
-                  "faculty": " S L Dawkhar ",
+                  "faculty": "S L Dawkhar",
                   "room": "Office Building 3rd Floor",
                   "code": "314456"
                 }
@@ -6907,7 +6907,7 @@
               "batches": {
                 "1": {
                   "subject": "LP2",
-                  "faculty": " S H Thengil ",
+                  "faculty": "S H Thengil",
                   "room": "Lab No. 39",
                   "code": "314458"
                 },
@@ -6925,7 +6925,7 @@
                 },
                 "4": {
                   "subject": "CNS Lab",
-                  "faculty": " S L Dawkhar ",
+                  "faculty": "S L Dawkhar",
                   "room": "Office Building 3rd Floor",
                   "code": "314456"
                 }
@@ -6950,7 +6950,7 @@
                 "3": null,
                 "4": {
                   "subject": "DSBDA Lab ",
-                  "faculty": "S S Gadekar ",
+                  "faculty": "S S Gadekar",
                   "room": "Lab No. 42",
                   "code": "314457"
                 }
@@ -6966,7 +6966,7 @@
                 "3": null,
                 "4": {
                   "subject": "DSBDA Lab ",
-                  "faculty": "S S Gadekar ",
+                  "faculty": "S S Gadekar",
                   "room": "Lab No. 42",
                   "code": "314457"
                 }
@@ -6982,13 +6982,13 @@
                 "1": null,
                 "2": {
                   "subject": "DSBDA Lab ",
-                  "faculty": "S S Gadekar ",
+                  "faculty": "S S Gadekar",
                   "room": "Lab No. 39",
                   "code": "314457"
                 },
                 "3": {
                   "subject": "LP2",
-                  "faculty": " S H Thengil ",
+                  "faculty": "S H Thengil",
                   "room": "Lab No. 40",
                   "code": "314458"
                 },
@@ -7008,13 +7008,13 @@
                 "1": null,
                 "2": {
                   "subject": "DSBDA Lab ",
-                  "faculty": "S S Gadekar ",
+                  "faculty": "S S Gadekar",
                   "room": "Lab No. 39",
                   "code": "314457"
                 },
                 "3": {
                   "subject": "LP2",
-                  "faculty": " S H Thengil ",
+                  "faculty": "S H Thengil",
                   "room": "Lab No. 40",
                   "code": "314458"
                 },
@@ -7048,7 +7048,7 @@
                 "2": null,
                 "3": {
                   "subject": "CNS Lab",
-                  "faculty": " S L Dawkhar ",
+                  "faculty": "S L Dawkhar",
                   "room": "Lab No. 40",
                   "code": "314456"
                 },
@@ -7074,7 +7074,7 @@
                 "2": null,
                 "3": {
                   "subject": "CNS Lab",
-                  "faculty": " S L Dawkhar ",
+                  "faculty": "S L Dawkhar",
                   "room": "Lab No. 40",
                   "code": "314456"
                 },
@@ -7099,21 +7099,21 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR45",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "314451"
             },
             "16:30-17:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "314455"
             }
@@ -7172,14 +7172,14 @@
             "11:30-12:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "314451"
             },
             "12:30-13:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR41",
               "code": "314455"
             },
@@ -7194,7 +7194,7 @@
             "14:30-15:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "314452"
             },
@@ -7203,13 +7203,13 @@
               "batches": {
                 "1": {
                   "subject": "LP2",
-                  "faculty": " S H Thengil ",
+                  "faculty": "S H Thengil",
                   "room": "Lab No. 36",
                   "code": "314458"
                 },
                 "2": {
                   "subject": "CNS Lab",
-                  "faculty": " S L Dawkhar ",
+                  "faculty": "S L Dawkhar",
                   "room": "Lab No. 38",
                   "code": "314456"
                 },
@@ -7229,13 +7229,13 @@
               "batches": {
                 "1": {
                   "subject": "LP2",
-                  "faculty": " S H Thengil ",
+                  "faculty": "S H Thengil",
                   "room": "Lab No. 36",
                   "code": "314458"
                 },
                 "2": {
                   "subject": "CNS Lab",
-                  "faculty": " S L Dawkhar ",
+                  "faculty": "S L Dawkhar",
                   "room": "Lab No. 38",
                   "code": "314456"
                 },
@@ -7267,14 +7267,14 @@
             "11:30-12:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR46",
               "code": "314455"
             },
             "12:30-13:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR45",
               "code": "314454"
             },
@@ -7289,21 +7289,21 @@
             "14:30-15:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR45",
               "code": "314454"
             },
             "15:30-16:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "314452"
             },
             "16:30-17:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "314453"
             }
@@ -7312,14 +7312,14 @@
             "09:15-10:15": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR45",
               "code": "314452"
             },
             "10:15-11:15": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR44",
               "code": "314451"
             },
@@ -7334,14 +7334,14 @@
             "11:30-12:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "314453"
             },
             "12:30-13:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR44",
               "code": "314454"
             },
@@ -7356,7 +7356,7 @@
             "14:30-15:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR46",
               "code": "314455"
             },
@@ -7367,7 +7367,7 @@
             "09:15-10:15": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "Lab No. 34",
               "code": "314456",
               "batch": 1,
@@ -7378,7 +7378,7 @@
             "10:15-11:15": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "Lab No. 34",
               "code": "314456",
               "batch": 1,
@@ -7397,7 +7397,7 @@
             "11:30-12:30": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "Lab No. 39",
               "code": "314458",
               "batch": 1,
@@ -7408,7 +7408,7 @@
             "12:30-13:30": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "Lab No. 39",
               "code": "314458",
               "batch": 1,
@@ -7472,21 +7472,21 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR45",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "314451"
             },
             "16:30-17:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "314455"
             }
@@ -7525,14 +7525,14 @@
             "11:30-12:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "314451"
             },
             "12:30-13:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR41",
               "code": "314455"
             },
@@ -7547,14 +7547,14 @@
             "14:30-15:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "314452"
             },
             "15:30-16:30": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "Lab No. 36",
               "code": "314458",
               "batch": 1,
@@ -7565,7 +7565,7 @@
             "16:30-17:30": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "Lab No. 36",
               "code": "314458",
               "batch": 1,
@@ -7590,14 +7590,14 @@
             "11:30-12:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR46",
               "code": "314455"
             },
             "12:30-13:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR45",
               "code": "314454"
             },
@@ -7612,21 +7612,21 @@
             "14:30-15:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR45",
               "code": "314454"
             },
             "15:30-16:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "314452"
             },
             "16:30-17:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "314453"
             }
@@ -7635,14 +7635,14 @@
             "09:15-10:15": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR45",
               "code": "314452"
             },
             "10:15-11:15": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR44",
               "code": "314451"
             },
@@ -7657,14 +7657,14 @@
             "11:30-12:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "314453"
             },
             "12:30-13:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR44",
               "code": "314454"
             },
@@ -7679,7 +7679,7 @@
             "14:30-15:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR46",
               "code": "314455"
             },
@@ -7690,7 +7690,7 @@
             "09:15-10:15": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": " S H Thengil ",
+              "faculty": "Unassigned",
               "room": "Lab No. 35",
               "code": "314458",
               "batch": 2,
@@ -7701,7 +7701,7 @@
             "10:15-11:15": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": " S H Thengil ",
+              "faculty": "Unassigned",
               "room": "Lab No. 35",
               "code": "314458",
               "batch": 2,
@@ -7755,7 +7755,7 @@
             "09:15-10:15": {
               "subject": "DSBDA Lab ",
               "type": "practical",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "Lab No. 39",
               "code": "314457",
               "batch": 2,
@@ -7766,7 +7766,7 @@
             "10:15-11:15": {
               "subject": "DSBDA Lab ",
               "type": "practical",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "Lab No. 39",
               "code": "314457",
               "batch": 2,
@@ -7795,21 +7795,21 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR45",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "314451"
             },
             "16:30-17:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "314455"
             }
@@ -7848,14 +7848,14 @@
             "11:30-12:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "314451"
             },
             "12:30-13:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR41",
               "code": "314455"
             },
@@ -7870,14 +7870,14 @@
             "14:30-15:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "314452"
             },
             "15:30-16:30": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "Lab No. 38",
               "code": "314456",
               "batch": 2,
@@ -7888,7 +7888,7 @@
             "16:30-17:30": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "Lab No. 38",
               "code": "314456",
               "batch": 2,
@@ -7903,7 +7903,7 @@
             "09:15-10:15": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "Lab No. 42",
               "code": "314458",
               "batch": 3,
@@ -7914,7 +7914,7 @@
             "10:15-11:15": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "Lab No. 42",
               "code": "314458",
               "batch": 3,
@@ -7933,14 +7933,14 @@
             "11:30-12:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR46",
               "code": "314455"
             },
             "12:30-13:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR45",
               "code": "314454"
             },
@@ -7955,21 +7955,21 @@
             "14:30-15:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR45",
               "code": "314454"
             },
             "15:30-16:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "314452"
             },
             "16:30-17:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "314453"
             }
@@ -7978,14 +7978,14 @@
             "09:15-10:15": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR45",
               "code": "314452"
             },
             "10:15-11:15": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR44",
               "code": "314451"
             },
@@ -8000,14 +8000,14 @@
             "11:30-12:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "314453"
             },
             "12:30-13:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR44",
               "code": "314454"
             },
@@ -8022,7 +8022,7 @@
             "14:30-15:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR46",
               "code": "314455"
             },
@@ -8098,7 +8098,7 @@
             "09:15-10:15": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "Lab No. 40",
               "code": "314458",
               "batch": 3,
@@ -8109,7 +8109,7 @@
             "10:15-11:15": {
               "subject": "LP2",
               "type": "practical",
-              "faculty": " S H Thengil ",
+              "faculty": "S H Thengil",
               "room": "Lab No. 40",
               "code": "314458",
               "batch": 3,
@@ -8128,7 +8128,7 @@
             "11:30-12:30": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "Lab No. 40",
               "code": "314456",
               "batch": 3,
@@ -8139,7 +8139,7 @@
             "12:30-13:30": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "Lab No. 40",
               "code": "314456",
               "batch": 3,
@@ -8158,21 +8158,21 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR45",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "314451"
             },
             "16:30-17:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "314455"
             }
@@ -8191,14 +8191,14 @@
             "11:30-12:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "314451"
             },
             "12:30-13:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR41",
               "code": "314455"
             },
@@ -8213,7 +8213,7 @@
             "14:30-15:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "314452"
             },
@@ -8236,14 +8236,14 @@
             "11:30-12:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR46",
               "code": "314455"
             },
             "12:30-13:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR45",
               "code": "314454"
             },
@@ -8258,21 +8258,21 @@
             "14:30-15:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR45",
               "code": "314454"
             },
             "15:30-16:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "314452"
             },
             "16:30-17:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "314453"
             }
@@ -8281,14 +8281,14 @@
             "09:15-10:15": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR45",
               "code": "314452"
             },
             "10:15-11:15": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR44",
               "code": "314451"
             },
@@ -8303,14 +8303,14 @@
             "11:30-12:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR44",
               "code": "314453"
             },
             "12:30-13:30": {
               "subject": "CC",
               "type": "theory",
-              "faculty": "A S Pujari ",
+              "faculty": "A S Pujari",
               "room": "CR44",
               "code": "314454"
             },
@@ -8325,7 +8325,7 @@
             "14:30-15:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR46",
               "code": "314455"
             },
@@ -8346,7 +8346,7 @@
             "11:30-12:30": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "Office Building 3rd Floor",
               "code": "314456",
               "batch": 4,
@@ -8357,7 +8357,7 @@
             "12:30-13:30": {
               "subject": "CNS Lab",
               "type": "practical",
-              "faculty": " S L Dawkhar ",
+              "faculty": "S L Dawkhar",
               "room": "Office Building 3rd Floor",
               "code": "314456",
               "batch": 4,
@@ -8377,7 +8377,7 @@
             "15:30-16:30": {
               "subject": "DSBDA Lab ",
               "type": "practical",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "Lab No. 42",
               "code": "314457",
               "batch": 4,
@@ -8388,7 +8388,7 @@
             "16:30-17:30": {
               "subject": "DSBDA Lab ",
               "type": "practical",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "Lab No. 42",
               "code": "314457",
               "batch": 4,
@@ -8461,21 +8461,21 @@
             "14:30-15:30": {
               "subject": "WAD",
               "type": "theory",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "CR45",
               "code": "314453"
             },
             "15:30-16:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "314451"
             },
             "16:30-17:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "314455"
             }
@@ -8494,14 +8494,14 @@
             "11:30-12:30": {
               "subject": "CNS ",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "314451"
             },
             "12:30-13:30": {
               "subject": "Internship",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR41",
               "code": "314455"
             },
@@ -8516,7 +8516,7 @@
             "14:30-15:30": {
               "subject": "DSBDA",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "314452"
             },
@@ -8551,7 +8551,7 @@
               "batches": {
                 "1": {
                   "subject": "Project Stage 2",
-                  "faculty": " S R Ganorkar ",
+                  "faculty": "S R Ganorkar",
                   "room": "Office Building 3rd Floor",
                   "code": "414457"
                 },
@@ -8572,7 +8572,7 @@
               "batches": {
                 "1": {
                   "subject": "Project Stage 2",
-                  "faculty": " S R Ganorkar ",
+                  "faculty": "S R Ganorkar",
                   "room": "Office Building 3rd Floor",
                   "code": "414457"
                 },
@@ -8643,7 +8643,7 @@
                 "2": null,
                 "3": {
                   "subject": "Project Stage 2",
-                  "faculty": " S R Ganorkar ",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 38",
                   "code": "414457"
                 },
@@ -8697,7 +8697,7 @@
                 },
                 "2": {
                   "subject": "LP5",
-                  "faculty": "R S Agrawal ",
+                  "faculty": "R S Agrawal",
                   "room": "Lab No. 39",
                   "code": "414454"
                 },
@@ -8709,7 +8709,7 @@
                 },
                 "4": {
                   "subject": "Project Stage 2",
-                  "faculty": " S R Ganorkar ",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 42",
                   "code": "414457"
                 }
@@ -8728,7 +8728,7 @@
                 },
                 "2": {
                   "subject": "LP5",
-                  "faculty": "R S Agrawal ",
+                  "faculty": "R S Agrawal",
                   "room": "Lab No. 39",
                   "code": "414454"
                 },
@@ -8740,7 +8740,7 @@
                 },
                 "4": {
                   "subject": "Project Stage 2",
-                  "faculty": " S R Ganorkar ",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 42",
                   "code": "414457"
                 }
@@ -8764,7 +8764,7 @@
                 "3": null,
                 "4": {
                   "subject": "LP5",
-                  "faculty": "R S Agrawal ",
+                  "faculty": "R S Agrawal",
                   "room": "Lab No. 42",
                   "code": "414454"
                 }
@@ -8780,7 +8780,7 @@
                 "3": null,
                 "4": {
                   "subject": "LP5",
-                  "faculty": "R S Agrawal ",
+                  "faculty": "R S Agrawal",
                   "room": "Lab No. 42",
                   "code": "414454"
                 }
@@ -8799,21 +8799,21 @@
             "14:30-15:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Lab No. 42",
               "code": "414450"
             },
             "15:30-16:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             },
             "16:30-17:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             }
@@ -8824,7 +8824,7 @@
               "batches": {
                 "1": {
                   "subject": "Project Stage 2",
-                  "faculty": " S R Ganorkar ",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 36",
                   "code": "414457"
                 },
@@ -8850,7 +8850,7 @@
               "batches": {
                 "1": {
                   "subject": "Project Stage 2",
-                  "faculty": " S R Ganorkar ",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 36",
                   "code": "414457"
                 },
@@ -8882,7 +8882,7 @@
             "11:30-12:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "414452"
             },
@@ -8900,7 +8900,7 @@
               "batches": {
                 "1": {
                   "subject": "LP5",
-                  "faculty": "R S Agrawal ",
+                  "faculty": "R S Agrawal",
                   "room": "Office Building 3rd Floor",
                   "code": "414454"
                 },
@@ -8916,7 +8916,7 @@
               "batches": {
                 "1": {
                   "subject": "LP5",
-                  "faculty": "R S Agrawal ",
+                  "faculty": "R S Agrawal",
                   "room": "Office Building 3rd Floor",
                   "code": "414454"
                 },
@@ -8933,14 +8933,14 @@
             "09:15-10:15": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             },
             "10:15-11:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "414450"
             },
@@ -8955,14 +8955,14 @@
             "11:30-12:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
             "12:30-13:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR44",
               "code": "414452"
             },
@@ -8978,14 +8978,14 @@
             "15:30-16:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR44",
               "code": "414452"
             },
             "16:30-17:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR45",
               "code": "414450"
             }
@@ -8994,14 +8994,14 @@
             "09:15-10:15": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
             "10:15-11:15": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
@@ -9018,19 +9018,19 @@
               "batches": {
                 "1": {
                   "subject": "LP5",
-                  "faculty": "R S Agrawal ",
+                  "faculty": "R S Agrawal",
                   "room": "Lab No. 39",
                   "code": "414454"
                 },
                 "2": {
                   "subject": "LP6",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 40",
                   "code": "414456"
                 },
                 "3": {
                   "subject": "Project Stage 2",
-                  "faculty": " S R Ganorkar ",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 42",
                   "code": "414457"
                 },
@@ -9044,19 +9044,19 @@
               "batches": {
                 "1": {
                   "subject": "LP5",
-                  "faculty": "R S Agrawal ",
+                  "faculty": "R S Agrawal",
                   "room": "Lab No. 39",
                   "code": "414454"
                 },
                 "2": {
                   "subject": "LP6",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 40",
                   "code": "414456"
                 },
                 "3": {
                   "subject": "Project Stage 2",
-                  "faculty": " S R Ganorkar ",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 42",
                   "code": "414457"
                 },
@@ -9080,7 +9080,7 @@
                 "2": null,
                 "3": {
                   "subject": "LP5",
-                  "faculty": "R S Agrawal ",
+                  "faculty": "R S Agrawal",
                   "room": "Lab No. 42",
                   "code": "414454"
                 },
@@ -9095,14 +9095,14 @@
                 "1": null,
                 "2": {
                   "subject": "Project Stage 2",
-                  "faculty": " S R Ganorkar ",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 40",
                   "code": "414457"
                 },
                 "3": null,
                 "4": {
                   "subject": "LP6",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Office Building 3rd Floor",
                   "code": "414456"
                 }
@@ -9116,14 +9116,14 @@
                 "1": null,
                 "2": {
                   "subject": "Project Stage 2",
-                  "faculty": " S R Ganorkar ",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 40",
                   "code": "414457"
                 },
                 "3": null,
                 "4": {
                   "subject": "LP6",
-                  "faculty": "K K Bansal ",
+                  "faculty": "K K Bansal",
                   "room": "Office Building 3rd Floor",
                   "code": "414456"
                 }
@@ -9138,7 +9138,7 @@
             "09:15-10:15": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": " S R Ganorkar ",
+              "faculty": "S R Ganorkar",
               "room": "Office Building 3rd Floor",
               "code": "414457",
               "batch": 1,
@@ -9149,7 +9149,7 @@
             "10:15-11:15": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": " S R Ganorkar ",
+              "faculty": "S R Ganorkar",
               "room": "Office Building 3rd Floor",
               "code": "414457",
               "batch": 1,
@@ -9223,21 +9223,21 @@
             "14:30-15:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Lab No. 42",
               "code": "414450"
             },
             "15:30-16:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             },
             "16:30-17:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             }
@@ -9246,7 +9246,7 @@
             "09:15-10:15": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": " S R Ganorkar ",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 36",
               "code": "414457",
               "batch": 1,
@@ -9257,7 +9257,7 @@
             "10:15-11:15": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": " S R Ganorkar ",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 36",
               "code": "414457",
               "batch": 1,
@@ -9276,7 +9276,7 @@
             "11:30-12:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "414452"
             },
@@ -9292,7 +9292,7 @@
             "14:30-15:30": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "Office Building 3rd Floor",
               "code": "414454",
               "batch": 1,
@@ -9303,7 +9303,7 @@
             "15:30-16:30": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "Office Building 3rd Floor",
               "code": "414454",
               "batch": 1,
@@ -9317,14 +9317,14 @@
             "09:15-10:15": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             },
             "10:15-11:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "414450"
             },
@@ -9339,14 +9339,14 @@
             "11:30-12:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
             "12:30-13:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR44",
               "code": "414452"
             },
@@ -9362,14 +9362,14 @@
             "15:30-16:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR44",
               "code": "414452"
             },
             "16:30-17:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR45",
               "code": "414450"
             }
@@ -9378,14 +9378,14 @@
             "09:15-10:15": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
             "10:15-11:15": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
@@ -9400,7 +9400,7 @@
             "11:30-12:30": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "Lab No. 39",
               "code": "414454",
               "batch": 1,
@@ -9411,7 +9411,7 @@
             "12:30-13:30": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "Lab No. 39",
               "code": "414454",
               "batch": 1,
@@ -9502,7 +9502,7 @@
             "09:15-10:15": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "Lab No. 39",
               "code": "414454",
               "batch": 2,
@@ -9513,7 +9513,7 @@
             "10:15-11:15": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "Lab No. 39",
               "code": "414454",
               "batch": 2,
@@ -9542,21 +9542,21 @@
             "14:30-15:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Lab No. 42",
               "code": "414450"
             },
             "15:30-16:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             },
             "16:30-17:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             }
@@ -9575,7 +9575,7 @@
             "11:30-12:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "414452"
             },
@@ -9596,14 +9596,14 @@
             "09:15-10:15": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             },
             "10:15-11:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "414450"
             },
@@ -9618,14 +9618,14 @@
             "11:30-12:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
             "12:30-13:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR44",
               "code": "414452"
             },
@@ -9641,14 +9641,14 @@
             "15:30-16:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR44",
               "code": "414452"
             },
             "16:30-17:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR45",
               "code": "414450"
             }
@@ -9657,14 +9657,14 @@
             "09:15-10:15": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
             "10:15-11:15": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
@@ -9679,7 +9679,7 @@
             "11:30-12:30": {
               "subject": "LP6",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Lab No. 40",
               "code": "414456",
               "batch": 2,
@@ -9690,7 +9690,7 @@
             "12:30-13:30": {
               "subject": "LP6",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Lab No. 40",
               "code": "414456",
               "batch": 2,
@@ -9710,7 +9710,7 @@
             "15:30-16:30": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": " S R Ganorkar ",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 40",
               "code": "414457",
               "batch": 2,
@@ -9721,7 +9721,7 @@
             "16:30-17:30": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": " S R Ganorkar ",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 40",
               "code": "414457",
               "batch": 2,
@@ -9756,7 +9756,7 @@
             "14:30-15:30": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": " S R Ganorkar ",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 38",
               "code": "414457",
               "batch": 3,
@@ -9767,7 +9767,7 @@
             "15:30-16:30": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": " S R Ganorkar ",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 38",
               "code": "414457",
               "batch": 3,
@@ -9821,21 +9821,21 @@
             "14:30-15:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Lab No. 42",
               "code": "414450"
             },
             "15:30-16:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             },
             "16:30-17:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             }
@@ -9874,7 +9874,7 @@
             "11:30-12:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "414452"
             },
@@ -9895,14 +9895,14 @@
             "09:15-10:15": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             },
             "10:15-11:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "414450"
             },
@@ -9917,14 +9917,14 @@
             "11:30-12:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
             "12:30-13:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR44",
               "code": "414452"
             },
@@ -9940,14 +9940,14 @@
             "15:30-16:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR44",
               "code": "414452"
             },
             "16:30-17:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR45",
               "code": "414450"
             }
@@ -9956,14 +9956,14 @@
             "09:15-10:15": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
             "10:15-11:15": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
@@ -9978,7 +9978,7 @@
             "11:30-12:30": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": " S R Ganorkar ",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 42",
               "code": "414457",
               "batch": 3,
@@ -9989,7 +9989,7 @@
             "12:30-13:30": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": " S R Ganorkar ",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 42",
               "code": "414457",
               "batch": 3,
@@ -10008,7 +10008,7 @@
             "14:30-15:30": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "Lab No. 42",
               "code": "414454",
               "batch": 3,
@@ -10019,7 +10019,7 @@
             "15:30-16:30": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "Lab No. 42",
               "code": "414454",
               "batch": 3,
@@ -10080,7 +10080,7 @@
             "09:15-10:15": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": " S R Ganorkar ",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 42",
               "code": "414457",
               "batch": 4,
@@ -10091,7 +10091,7 @@
             "10:15-11:15": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": " S R Ganorkar ",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 42",
               "code": "414457",
               "batch": 4,
@@ -10110,7 +10110,7 @@
             "11:30-12:30": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "Lab No. 42",
               "code": "414454",
               "batch": 4,
@@ -10121,7 +10121,7 @@
             "12:30-13:30": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "Lab No. 42",
               "code": "414454",
               "batch": 4,
@@ -10140,21 +10140,21 @@
             "14:30-15:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Lab No. 42",
               "code": "414450"
             },
             "15:30-16:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             },
             "16:30-17:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             }
@@ -10193,7 +10193,7 @@
             "11:30-12:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR45",
               "code": "414452"
             },
@@ -10214,14 +10214,14 @@
             "09:15-10:15": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "A D Tawlare ",
+              "faculty": "A D Tawlare",
               "room": "CR44",
               "code": "414451"
             },
             "10:15-11:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR44",
               "code": "414450"
             },
@@ -10236,14 +10236,14 @@
             "11:30-12:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
             "12:30-13:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR44",
               "code": "414452"
             },
@@ -10259,14 +10259,14 @@
             "15:30-16:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S S Gadekar",
               "room": "CR44",
               "code": "414452"
             },
             "16:30-17:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "CR45",
               "code": "414450"
             }
@@ -10275,14 +10275,14 @@
             "09:15-10:15": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
             "10:15-11:15": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "M S Bhosale ",
+              "faculty": "M S Bhosale",
               "room": "CR45",
               "code": "414453"
             },
@@ -10308,7 +10308,7 @@
             "15:30-16:30": {
               "subject": "LP6",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Office Building 3rd Floor",
               "code": "414456",
               "batch": 4,
@@ -10319,7 +10319,7 @@
             "16:30-17:30": {
               "subject": "LP6",
               "type": "practical",
-              "faculty": "K K Bansal ",
+              "faculty": "K K Bansal",
               "room": "Office Building 3rd Floor",
               "code": "414456",
               "batch": 4,
@@ -10334,14 +10334,14 @@
             "09:15-10:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "414450"
             },
             "10:15-11:15": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "414451"
             },
@@ -10408,13 +10408,13 @@
               "batches": {
                 "1": {
                   "subject": "Project Stage 2",
-                  "faculty": "A S Shinde ",
+                  "faculty": "A S Shinde",
                   "room": "Lab No. 40",
                   "code": "414457"
                 },
                 "2": {
                   "subject": "LP6",
-                  "faculty": "S A Sharma ",
+                  "faculty": "S A Sharma",
                   "room": "Lab No. 42",
                   "code": "414456"
                 },
@@ -10439,13 +10439,13 @@
               "batches": {
                 "1": {
                   "subject": "Project Stage 2",
-                  "faculty": "A S Shinde ",
+                  "faculty": "A S Shinde",
                   "room": "Lab No. 40",
                   "code": "414457"
                 },
                 "2": {
                   "subject": "LP6",
-                  "faculty": "S A Sharma ",
+                  "faculty": "S A Sharma",
                   "room": "Lab No. 42",
                   "code": "414456"
                 },
@@ -10468,7 +10468,7 @@
             "16:30-17:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR45",
               "code": "414452"
             }
@@ -10519,7 +10519,7 @@
               "batches": {
                 "1": {
                   "subject": "LP5",
-                  "faculty": "J A Doe ",
+                  "faculty": "J A Doe",
                   "room": "Office Building 3rd Floor",
                   "code": "414454"
                 },
@@ -10527,7 +10527,7 @@
                 "3": null,
                 "4": {
                   "subject": "LP6",
-                  "faculty": "S A Sharma ",
+                  "faculty": "S A Sharma",
                   "room": "Office Building 2nd Floor",
                   "code": "414456"
                 }
@@ -10540,7 +10540,7 @@
               "batches": {
                 "1": {
                   "subject": "LP5",
-                  "faculty": "J A Doe ",
+                  "faculty": "J A Doe",
                   "room": "Office Building 3rd Floor",
                   "code": "414454"
                 },
@@ -10548,7 +10548,7 @@
                 "3": null,
                 "4": {
                   "subject": "LP6",
-                  "faculty": "S A Sharma ",
+                  "faculty": "S A Sharma",
                   "room": "Office Building 2nd Floor",
                   "code": "414456"
                 }
@@ -10568,14 +10568,14 @@
             "15:30-16:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "414451"
             },
             "16:30-17:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR45",
               "code": "414450"
             }
@@ -10584,14 +10584,14 @@
             "09:15-10:15": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR45",
               "code": "414452"
             },
             "10:15-11:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR46",
               "code": "414450"
             },
@@ -10606,14 +10606,14 @@
             "11:30-12:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR46",
               "code": "414453"
             },
             "12:30-13:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR45",
               "code": "414453"
             },
@@ -10628,7 +10628,7 @@
             "14:30-15:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "414453"
             },
@@ -10719,7 +10719,7 @@
             "11:30-12:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR46",
               "code": "414452"
             },
@@ -10735,7 +10735,7 @@
             "14:30-15:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR46",
               "code": "414451"
             },
@@ -10744,7 +10744,7 @@
               "batches": {
                 "1": {
                   "subject": "LP6",
-                  "faculty": "S A Sharma ",
+                  "faculty": "S A Sharma",
                   "room": "Lab No. 39",
                   "code": "414456"
                 },
@@ -10770,7 +10770,7 @@
               "batches": {
                 "1": {
                   "subject": "LP6",
-                  "faculty": "S A Sharma ",
+                  "faculty": "S A Sharma",
                   "room": "Lab No. 39",
                   "code": "414456"
                 },
@@ -10799,7 +10799,7 @@
                 "1": null,
                 "2": {
                   "subject": "LP5",
-                  "faculty": "J A Doe ",
+                  "faculty": "J A Doe",
                   "room": "Lab No. 39",
                   "code": "414454"
                 },
@@ -10820,7 +10820,7 @@
                 "1": null,
                 "2": {
                   "subject": "LP5",
-                  "faculty": "J A Doe ",
+                  "faculty": "J A Doe",
                   "room": "Lab No. 39",
                   "code": "414454"
                 },
@@ -10849,7 +10849,7 @@
                 "1": null,
                 "2": {
                   "subject": "LP5",
-                  "faculty": "J A Doe ",
+                  "faculty": "J A Doe",
                   "room": "Office Building 3rd Floor",
                   "code": "414454"
                 },
@@ -10870,7 +10870,7 @@
                 "1": null,
                 "2": {
                   "subject": "LP5",
-                  "faculty": "J A Doe ",
+                  "faculty": "J A Doe",
                   "room": "Office Building 3rd Floor",
                   "code": "414454"
                 },
@@ -10900,7 +10900,7 @@
                 "2": null,
                 "3": {
                   "subject": "LP6",
-                  "faculty": "S A Sharma ",
+                  "faculty": "S A Sharma",
                   "room": "Office Building 2nd Floor",
                   "code": "414456"
                 },
@@ -10916,7 +10916,7 @@
                 "2": null,
                 "3": {
                   "subject": "LP6",
-                  "faculty": "S A Sharma ",
+                  "faculty": "S A Sharma",
                   "room": "Office Building 2nd Floor",
                   "code": "414456"
                 },
@@ -10933,14 +10933,14 @@
             "09:15-10:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "414450"
             },
             "10:15-11:15": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "414451"
             },
@@ -10985,7 +10985,7 @@
             "14:30-15:30": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "Lab No. 40",
               "code": "414457",
               "batch": 1,
@@ -10996,7 +10996,7 @@
             "15:30-16:30": {
               "subject": "Project Stage 2",
               "type": "practical",
-              "faculty": "A S Shinde ",
+              "faculty": "A S Shinde",
               "room": "Lab No. 40",
               "code": "414457",
               "batch": 1,
@@ -11007,7 +11007,7 @@
             "16:30-17:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR45",
               "code": "414452"
             }
@@ -11046,7 +11046,7 @@
             "11:30-12:30": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Office Building 3rd Floor",
               "code": "414454",
               "batch": 1,
@@ -11057,7 +11057,7 @@
             "12:30-13:30": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Office Building 3rd Floor",
               "code": "414454",
               "batch": 1,
@@ -11077,14 +11077,14 @@
             "15:30-16:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "414451"
             },
             "16:30-17:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR45",
               "code": "414450"
             }
@@ -11093,14 +11093,14 @@
             "09:15-10:15": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR45",
               "code": "414452"
             },
             "10:15-11:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR46",
               "code": "414450"
             },
@@ -11115,14 +11115,14 @@
             "11:30-12:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR46",
               "code": "414453"
             },
             "12:30-13:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR45",
               "code": "414453"
             },
@@ -11137,7 +11137,7 @@
             "14:30-15:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "414453"
             },
@@ -11158,7 +11158,7 @@
             "11:30-12:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR46",
               "code": "414452"
             },
@@ -11174,14 +11174,14 @@
             "14:30-15:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR46",
               "code": "414451"
             },
             "15:30-16:30": {
               "subject": "LP6",
               "type": "practical",
-              "faculty": "S A Sharma ",
+              "faculty": "S A Sharma",
               "room": "Lab No. 39",
               "code": "414456",
               "batch": 1,
@@ -11192,7 +11192,7 @@
             "16:30-17:30": {
               "subject": "LP6",
               "type": "practical",
-              "faculty": "S A Sharma ",
+              "faculty": "S A Sharma",
               "room": "Lab No. 39",
               "code": "414456",
               "batch": 1,
@@ -11232,14 +11232,14 @@
             "09:15-10:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "414450"
             },
             "10:15-11:15": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "414451"
             },
@@ -11284,7 +11284,7 @@
             "14:30-15:30": {
               "subject": "LP6",
               "type": "practical",
-              "faculty": "S A Sharma ",
+              "faculty": "S A Sharma",
               "room": "Lab No. 42",
               "code": "414456",
               "batch": 2,
@@ -11295,7 +11295,7 @@
             "15:30-16:30": {
               "subject": "LP6",
               "type": "practical",
-              "faculty": "S A Sharma ",
+              "faculty": "S A Sharma",
               "room": "Lab No. 42",
               "code": "414456",
               "batch": 2,
@@ -11306,7 +11306,7 @@
             "16:30-17:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR45",
               "code": "414452"
             }
@@ -11336,14 +11336,14 @@
             "15:30-16:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "414451"
             },
             "16:30-17:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR45",
               "code": "414450"
             }
@@ -11352,14 +11352,14 @@
             "09:15-10:15": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR45",
               "code": "414452"
             },
             "10:15-11:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR46",
               "code": "414450"
             },
@@ -11374,14 +11374,14 @@
             "11:30-12:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR46",
               "code": "414453"
             },
             "12:30-13:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR45",
               "code": "414453"
             },
@@ -11396,7 +11396,7 @@
             "14:30-15:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "414453"
             },
@@ -11417,7 +11417,7 @@
             "11:30-12:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR46",
               "code": "414452"
             },
@@ -11433,7 +11433,7 @@
             "14:30-15:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR46",
               "code": "414451"
             },
@@ -11464,7 +11464,7 @@
             "09:15-10:15": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Lab No. 39",
               "code": "414454",
               "batch": 2,
@@ -11475,7 +11475,7 @@
             "10:15-11:15": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Lab No. 39",
               "code": "414454",
               "batch": 2,
@@ -11494,7 +11494,7 @@
             "11:30-12:30": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Office Building 3rd Floor",
               "code": "414454",
               "batch": 2,
@@ -11505,7 +11505,7 @@
             "12:30-13:30": {
               "subject": "LP5",
               "type": "practical",
-              "faculty": "J A Doe ",
+              "faculty": "J A Doe",
               "room": "Office Building 3rd Floor",
               "code": "414454",
               "batch": 2,
@@ -11531,14 +11531,14 @@
             "09:15-10:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "414450"
             },
             "10:15-11:15": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "414451"
             },
@@ -11585,7 +11585,7 @@
             "16:30-17:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR45",
               "code": "414452"
             }
@@ -11615,14 +11615,14 @@
             "15:30-16:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "414451"
             },
             "16:30-17:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR45",
               "code": "414450"
             }
@@ -11631,14 +11631,14 @@
             "09:15-10:15": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR45",
               "code": "414452"
             },
             "10:15-11:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR46",
               "code": "414450"
             },
@@ -11653,14 +11653,14 @@
             "11:30-12:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR46",
               "code": "414453"
             },
             "12:30-13:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR45",
               "code": "414453"
             },
@@ -11675,7 +11675,7 @@
             "14:30-15:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "414453"
             },
@@ -11716,7 +11716,7 @@
             "11:30-12:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR46",
               "code": "414452"
             },
@@ -11732,7 +11732,7 @@
             "14:30-15:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR46",
               "code": "414451"
             },
@@ -11803,7 +11803,7 @@
             "14:30-15:30": {
               "subject": "LP6",
               "type": "practical",
-              "faculty": "S A Sharma ",
+              "faculty": "S A Sharma",
               "room": "Office Building 2nd Floor",
               "code": "414456",
               "batch": 3,
@@ -11814,7 +11814,7 @@
             "15:30-16:30": {
               "subject": "LP6",
               "type": "practical",
-              "faculty": "S A Sharma ",
+              "faculty": "S A Sharma",
               "room": "Office Building 2nd Floor",
               "code": "414456",
               "batch": 3,
@@ -11830,14 +11830,14 @@
             "09:15-10:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR41",
               "code": "414450"
             },
             "10:15-11:15": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR41",
               "code": "414451"
             },
@@ -11884,7 +11884,7 @@
             "16:30-17:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR45",
               "code": "414452"
             }
@@ -11903,7 +11903,7 @@
             "11:30-12:30": {
               "subject": "LP6",
               "type": "practical",
-              "faculty": "S A Sharma ",
+              "faculty": "S A Sharma",
               "room": "Office Building 2nd Floor",
               "code": "414456",
               "batch": 4,
@@ -11914,7 +11914,7 @@
             "12:30-13:30": {
               "subject": "LP6",
               "type": "practical",
-              "faculty": "S A Sharma ",
+              "faculty": "S A Sharma",
               "room": "Office Building 2nd Floor",
               "code": "414456",
               "batch": 4,
@@ -11934,14 +11934,14 @@
             "15:30-16:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR45",
               "code": "414451"
             },
             "16:30-17:30": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR45",
               "code": "414450"
             }
@@ -11950,14 +11950,14 @@
             "09:15-10:15": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR45",
               "code": "414452"
             },
             "10:15-11:15": {
               "subject": "DS",
               "type": "theory",
-              "faculty": "R S Agrawal ",
+              "faculty": "R S Agrawal",
               "room": "CR46",
               "code": "414450"
             },
@@ -11972,14 +11972,14 @@
             "11:30-12:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR46",
               "code": "414453"
             },
             "12:30-13:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR45",
               "code": "414453"
             },
@@ -11994,7 +11994,7 @@
             "14:30-15:30": {
               "subject": "SAE",
               "type": "theory",
-              "faculty": "D G Jadhav ",
+              "faculty": "D G Jadhav",
               "room": "CR41",
               "code": "414453"
             },
@@ -12055,7 +12055,7 @@
             "11:30-12:30": {
               "subject": "BAI",
               "type": "theory",
-              "faculty": "S S Gadekar ",
+              "faculty": "S H Thengil",
               "room": "CR46",
               "code": "414452"
             },
@@ -12071,7 +12071,7 @@
             "14:30-15:30": {
               "subject": "SC",
               "type": "theory",
-              "faculty": "J S Pawar ",
+              "faculty": "J S Pawar",
               "room": "CR46",
               "code": "414451"
             },
@@ -12125,10 +12125,10 @@
           }
         }
       },
-      "saved_at": "2026-02-15T00:57:12.246970",
-      "saved_at_formatted": "2026-02-15 00:57:12",
+      "saved_at": "2026-02-15T01:51:58.087229",
+      "saved_at_formatted": "2026-02-15 01:51:58",
       "semester_mode": "even",
-      "fingerprint": "8ad37fb141d58dd08303d83e567a6c78",
+      "fingerprint": "f7d5dc21781dd82bc186e8105495766e",
       "auto_saved": true
     }
   ]
