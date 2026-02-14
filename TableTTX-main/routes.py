@@ -399,12 +399,17 @@ def generate_timetable():
         if "error" in result:
             flash(f'Error generating timetable: {result["error"]}', 'error')
             return redirect(url_for('generate'))
-        
+
+        # Show warnings if any
+        if result.get("warnings"):
+            for warning in result["warnings"]:
+                flash(f'Warning: {warning}', 'warning')
+
         # Store the result in session for AI Assistant use
         if "timetable" in result:
             session['current_timetable'] = result["timetable"]
             session['timetable_saved_at'] = datetime.now().isoformat()
-        
+
         return render_template('timetable.html', result=result)
         
     except Exception as e:

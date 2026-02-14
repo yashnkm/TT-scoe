@@ -1,0 +1,427 @@
+{
+  "subjects": [
+    {
+      "name": "Discrete Mathematics ",
+      "type": "theory",
+      "code": "214441",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 1,
+      "id": 1
+    },
+    {
+      "name": "LDCO",
+      "type": "theory",
+      "code": "214442",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 1,
+      "id": 2
+    },
+    {
+      "name": "DSA ",
+      "type": "theory",
+      "code": "214443",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 1,
+      "id": 3
+    },
+    {
+      "name": "OOP",
+      "type": "theory",
+      "code": "214444",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 1,
+      "id": 4
+    },
+    {
+      "name": "BCN ",
+      "type": "theory",
+      "code": "214445",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 1,
+      "id": 5
+    },
+    {
+      "name": "LDCO Lab ",
+      "type": "practical",
+      "code": "214446",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 1,
+      "id": 6
+    },
+    {
+      "name": "DSA lab ",
+      "type": "practical",
+      "code": "214447",
+      "hours_per_week": 4,
+      "year": 2,
+      "semester": 1,
+      "id": 7
+    },
+    {
+      "name": "OOP lab ",
+      "type": "practical",
+      "code": "214448",
+      "hours_per_week": 4,
+      "year": 2,
+      "semester": 1,
+      "id": 8
+    },
+    {
+      "name": "Engineering Math 3",
+      "type": "theory",
+      "code": "207003",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 2,
+      "id": 9
+    },
+    {
+      "name": "Processor Architecture ",
+      "type": "theory",
+      "code": "214451",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 2,
+      "id": 10
+    },
+    {
+      "name": "DBMS ",
+      "type": "theory",
+      "code": "214452",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 2,
+      "id": 11
+    },
+    {
+      "name": "Computer Graphics ",
+      "type": "theory",
+      "code": "214453",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 2,
+      "id": 12
+    },
+    {
+      "name": "Software Engineering ",
+      "type": "theory",
+      "code": "214454",
+      "hours_per_week": 3,
+      "year": 2,
+      "semester": 2,
+      "id": 13
+    },
+    {
+      "name": "PSDL Lab ",
+      "type": "practical",
+      "code": "214455",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 2,
+      "id": 14
+    },
+    {
+      "name": "DBMS Lab ",
+      "type": "practical",
+      "code": "214456",
+      "hours_per_week": 4,
+      "year": 2,
+      "semester": 2,
+      "id": 15
+    },
+    {
+      "name": "Computer Graphics Lab",
+      "type": "practical",
+      "code": "214457",
+      "hours_per_week": 2,
+      "year": 2,
+      "semester": 2,
+      "id": 16
+    },
+    {
+      "name": "TOC",
+      "type": "theory",
+      "code": "314441",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 1,
+      "id": 17
+    },
+    {
+      "name": "OS",
+      "type": "theory",
+      "code": "314442",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 1,
+      "id": 18
+    },
+    {
+      "name": "ML",
+      "type": "theory",
+      "code": "314443",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 1,
+      "id": 19
+    },
+    {
+      "name": "HCI",
+      "type": "theory",
+      "code": "314444",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 1,
+      "id": 20
+    },
+    {
+      "name": "DAA",
+      "type": "theory",
+      "code": "314445",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 1,
+      "id": 21
+    },
+    {
+      "name": "OS Lab",
+      "type": "practical",
+      "code": "314446",
+      "hours_per_week": 4,
+      "year": 3,
+      "semester": 1,
+      "id": 22
+    },
+    {
+      "name": "HCI Lab",
+      "type": "practical",
+      "code": "314447",
+      "hours_per_week": 2,
+      "year": 3,
+      "semester": 1,
+      "id": 23
+    },
+    {
+      "name": "LP1",
+      "type": "practical",
+      "code": "314448",
+      "hours_per_week": 4,
+      "year": 3,
+      "semester": 1,
+      "id": 24
+    },
+    {
+      "name": "CNS ",
+      "type": "theory",
+      "code": "314451",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 2,
+      "id": 25
+    },
+    {
+      "name": "DSBDA",
+      "type": "theory",
+      "code": "314452",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 2,
+      "id": 26
+    },
+    {
+      "name": "WAD",
+      "type": "theory",
+      "code": "314453",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 2,
+      "id": 27
+    },
+    {
+      "name": "CC",
+      "type": "theory",
+      "code": "314454",
+      "hours_per_week": 3,
+      "year": 3,
+      "semester": 2,
+      "id": 28
+    },
+    {
+      "name": "Internship",
+      "type": "theory",
+      "code": "314455",
+      "hours_per_week": 4,
+      "year": 3,
+      "semester": 2,
+      "id": 29
+    },
+    {
+      "name": "CNS Lab",
+      "type": "practical",
+      "code": "314456",
+      "hours_per_week": 4,
+      "year": 3,
+      "semester": 2,
+      "id": 30
+    },
+    {
+      "name": "DSBDA Lab ",
+      "type": "practical",
+      "code": "314457",
+      "hours_per_week": 2,
+      "year": 3,
+      "semester": 2,
+      "id": 31
+    },
+    {
+      "name": "LP2",
+      "type": "practical",
+      "code": "314458",
+      "hours_per_week": 4,
+      "year": 3,
+      "semester": 2,
+      "id": 32
+    },
+    {
+      "name": "ISR",
+      "type": "theory",
+      "code": "414441",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 1,
+      "id": 33
+    },
+    {
+      "name": "SPM",
+      "type": "theory",
+      "code": "414442",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 1,
+      "id": 34
+    },
+    {
+      "name": "DL",
+      "type": "theory",
+      "code": "414443",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 1,
+      "id": 35
+    },
+    {
+      "name": "MC ",
+      "type": "theory",
+      "code": "414444",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 1,
+      "id": 36
+    },
+    {
+      "name": "WC",
+      "type": "theory",
+      "code": "414445",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 1,
+      "id": 37
+    },
+    {
+      "name": "LP3",
+      "type": "practical",
+      "code": "414446",
+      "hours_per_week": 4,
+      "year": 4,
+      "semester": 1,
+      "id": 38
+    },
+    {
+      "name": "LP4",
+      "type": "practical",
+      "code": "414447",
+      "hours_per_week": 2,
+      "year": 4,
+      "semester": 1,
+      "id": 39
+    },
+    {
+      "name": "Project Stage 1",
+      "type": "practical",
+      "code": "414448",
+      "hours_per_week": 2,
+      "year": 4,
+      "semester": 1,
+      "id": 40
+    },
+    {
+      "name": "DS",
+      "type": "theory",
+      "code": "414450",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 2,
+      "id": 41
+    },
+    {
+      "name": "SC",
+      "type": "theory",
+      "code": "414451",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 2,
+      "id": 42
+    },
+    {
+      "name": "BAI",
+      "type": "theory",
+      "code": "414452",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 2,
+      "id": 43
+    },
+    {
+      "name": "SAE",
+      "type": "theory",
+      "code": "414453",
+      "hours_per_week": 3,
+      "year": 4,
+      "semester": 2,
+      "id": 44
+    },
+    {
+      "name": "LP5",
+      "type": "practical",
+      "code": "414454",
+      "hours_per_week": 4,
+      "year": 4,
+      "semester": 2,
+      "id": 45
+    },
+    {
+      "name": "LP6",
+      "type": "practical",
+      "code": "414456",
+      "hours_per_week": 2,
+      "year": 4,
+      "semester": 2,
+      "id": 46
+    },
+    {
+      "name": "Project Stage 2",
+      "type": "practical",
+      "code": "414457",
+      "hours_per_week": 10,
+      "year": 4,
+      "semester": 2,
+      "id": 47
+    }
+  ]
+}

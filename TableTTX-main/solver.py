@@ -3,6 +3,8 @@ from ortools.sat.python import cp_model
 from typing import Dict, List, Optional
 from models import data_manager
 
+logger = logging.getLogger(__name__)
+
 class SimpleTimetableSolver:
     """Simplified timetable generator using OR-Tools CP-SAT solver"""
 
@@ -20,9 +22,16 @@ class SimpleTimetableSolver:
             faculty = data_manager.get_faculty()
             rooms = data_manager.get_rooms()
 
-            # Validate data exists
-            if not subjects or not faculty or not rooms:
-                return {"error": "Please configure subjects, faculty, and rooms first."}
+            # --- Basic data validation ---
+            missing = []
+            if not subjects:
+                missing.append("subjects")
+            if not faculty:
+                missing.append("faculty")
+            if not rooms:
+                missing.append("rooms")
+            if missing:
+                return {"error": f"Please configure {', '.join(missing)} first."}
 
             # Initialize solver
             self.model = cp_model.CpModel()
@@ -48,23 +57,44 @@ class SimpleTimetableSolver:
                 "13:30-14:30": {"type": "lunch", "label": "Lunch Break"}
             }
 
+            total_slots = len(time_slots) * len(days)
+            logger.info(f"=== Timetable Generation Started ===")
+            logger.info(f"Semester: {semester_mode or 'all'} | Years: {years} | Divisions: {divisions} | Batches: {len(batches)}")
+            logger.info(f"Schedule: {len(days)} days x {len(time_slots)} slots = {total_slots} slots/week")
+
             # Filter subjects by semester if specified
             if semester_mode:
                 selected_sem = 1 if semester_mode == 'odd' else 2
+                all_count = len(subjects)
                 subjects = [s for s in subjects if s.get("semester") == selected_sem]
+                logger.info(f"Semester filter: {all_count} total subjects -> {len(subjects)} for semester {selected_sem}")
 
-            # Build list of required classes (subject-year-division-semester combinations)
-            # Now returns batch-level entries for practicals
+            if not subjects:
+                return {"error": f"No subjects found for {'odd' if semester_mode == 'odd' else 'even'} semester. Check that subjects have the correct semester value (1 for odd, 2 for even)."}
+
+            # Build list of required classes
             required_classes = self._get_required_classes(subjects, years, divisions, batches)
 
             if not required_classes:
-                return {"error": "No classes to schedule for selected semester."}
+                # Detailed diagnosis: find why no classes were created
+                skipped_reasons = self._diagnose_no_classes(subjects, years, divisions, batches, faculty)
+                return {"error": f"No classes to schedule. {skipped_reasons}"}
+
+            # --- Pre-solve feasibility validation ---
+            validation_result = self._validate_feasibility(
+                required_classes, subjects, faculty, rooms, years, divisions, batches,
+                days, time_slots, practical_slots_needed, breaks
+            )
+            if validation_result.get("error"):
+                return validation_result
 
             # Create scheduling variables
             sessions = self._create_session_variables(required_classes, days, time_slots, practical_slots_needed, breaks)
 
             if not sessions:
-                return {"error": "Failed to create scheduling variables."}
+                return {"error": "Failed to create scheduling variables. Check that time slots are configured correctly."}
+
+            logger.info(f"Created {len(sessions)} scheduling variables for {len(required_classes)} required classes")
 
             # Add constraints
             self._add_hour_constraints(sessions, required_classes, practical_slots_needed, slot_duration)
@@ -75,18 +105,295 @@ class SimpleTimetableSolver:
 
             # Solve
             self.solver = cp_model.CpSolver()
-            self.solver.parameters.max_time_in_seconds = 60.0
+            self.solver.parameters.max_time_in_seconds = 120.0
             self.solver.parameters.num_search_workers = 4
+            logger.info("Solving... (timeout: 120s)")
             status = self.solver.Solve(self.model)
 
+            status_name = {
+                cp_model.OPTIMAL: "OPTIMAL",
+                cp_model.FEASIBLE: "FEASIBLE",
+                cp_model.INFEASIBLE: "INFEASIBLE",
+                cp_model.MODEL_INVALID: "MODEL_INVALID",
+                cp_model.UNKNOWN: "UNKNOWN"
+            }.get(status, f"STATUS_{status}")
+            logger.info(f"Solver result: {status_name} (wall time: {self.solver.WallTime():.1f}s)")
+
             if status in [cp_model.OPTIMAL, cp_model.FEASIBLE]:
-                return self._build_timetable(sessions, structure, required_classes, batches)
-            else:
-                return {"error": "Could not generate feasible timetable. Check faculty/room availability."}
+                result = self._build_timetable(sessions, structure, required_classes, batches)
+                # Attach warnings if any
+                if validation_result.get("warnings"):
+                    result["warnings"] = validation_result["warnings"]
+                return result
+
+            # --- Detailed failure diagnosis ---
+            if status == cp_model.INFEASIBLE:
+                diagnosis = self._diagnose_infeasibility(
+                    required_classes, rooms, years, divisions, batches,
+                    days, time_slots, practical_slots_needed
+                )
+                return {"error": f"Timetable is INFEASIBLE — no valid schedule exists with current data.\n\n{diagnosis}"}
+
+            if status == cp_model.UNKNOWN:
+                return {"error": f"Solver timed out after {self.solver.WallTime():.0f}s without finding a solution. The problem may be too complex. Try reducing practical hours for high-hour subjects (e.g., Project Stage 2: 10hrs)."}
+
+            return {"error": f"Solver returned unexpected status: {status_name}. Please check your data configuration."}
 
         except Exception as e:
-            logging.error(f"Timetable generation error: {str(e)}")
+            logger.error(f"Timetable generation error: {str(e)}", exc_info=True)
             return {"error": f"Error: {str(e)}"}
+
+    def _diagnose_no_classes(self, subjects, years, divisions, batches, faculty):
+        """Diagnose why no required classes were created."""
+        issues = []
+
+        year_mismatch = []
+        no_faculty = []
+
+        for subject in subjects:
+            subj_year = subject.get("year", 0)
+            subj_name = subject.get("name", "Unknown")
+            subj_id = subject.get("id")
+
+            if subj_year not in years:
+                year_mismatch.append(f"'{subj_name}' (Year {subj_year})")
+                continue
+
+            fac_list = self._get_faculty_for_subject(subj_id, faculty, divisions)
+            if not fac_list:
+                no_faculty.append(f"'{subj_name}' (ID: {subj_id})")
+
+        if year_mismatch:
+            issues.append(f"Subjects outside configured years ({years}): {', '.join(year_mismatch[:5])}")
+        if no_faculty:
+            issues.append(f"Subjects with no faculty assigned: {', '.join(no_faculty[:5])}")
+        if not year_mismatch and not no_faculty:
+            issues.append("All subjects were filtered out — check year and faculty configuration.")
+
+        return " | ".join(issues)
+
+    def _validate_feasibility(self, required_classes, subjects, faculty, rooms, years,
+                              divisions, batches, days, time_slots, practical_slots_needed, breaks):
+        """Pre-solve validation — catch impossible scenarios early with clear messages."""
+        warnings = []
+        errors = []
+
+        num_labs = len([r for r in rooms if r.get("type") in ["lab", "both"]])
+        num_classrooms = len([r for r in rooms if r.get("type") in ["classroom", "both"]])
+        total_slots = len(time_slots) * len(days)
+        num_batches_total = len(years) * len(divisions) * len(batches)
+
+        logger.info(f"Resources: {num_classrooms} classrooms, {num_labs} labs, {total_slots} slots/week")
+
+        # --- 1. Check subjects without faculty ---
+        subjects_no_faculty = []
+        for subj in subjects:
+            fac = self._get_faculty_for_subject(subj["id"], faculty, divisions)
+            if not fac:
+                subjects_no_faculty.append(subj.get("name", f"ID:{subj['id']}"))
+        if subjects_no_faculty:
+            warnings.append(f"Subjects with no faculty (skipped): {', '.join(subjects_no_faculty)}")
+            logger.warning(f"Skipped subjects (no faculty): {subjects_no_faculty}")
+
+        # --- 2. Lab capacity analysis ---
+        total_practical_slots = 0
+        practical_by_year = {}
+        high_hour_practicals = []
+
+        for rc in required_classes:
+            if rc["type"] != "practical":
+                continue
+            hours = rc["subject"].get("hours_per_week", 0)
+            if hours < practical_slots_needed:
+                sessions_needed = 1
+                span = hours
+            else:
+                sessions_needed = hours // practical_slots_needed
+                span = practical_slots_needed
+
+            slots_used = sessions_needed * span
+            total_practical_slots += slots_used
+
+            year = rc["year"]
+            practical_by_year.setdefault(year, 0)
+            practical_by_year[year] += slots_used
+
+            if hours >= 8:
+                high_hour_practicals.append(
+                    f"'{rc['subject']['name']}' (Year {year}, {hours}hrs → {sessions_needed} sessions/batch)"
+                )
+
+        lab_capacity = num_labs * total_slots
+        lab_utilization = (total_practical_slots / lab_capacity * 100) if lab_capacity > 0 else 999
+
+        logger.info(f"Lab demand: {total_practical_slots} lab-slots needed / {lab_capacity} available ({lab_utilization:.1f}% utilization)")
+        for yr, slots in sorted(practical_by_year.items()):
+            logger.info(f"  Year {yr}: {slots} lab-slots")
+
+        if high_hour_practicals:
+            warnings.append(f"High-hour practicals (may cause scheduling issues): {'; '.join(set(high_hour_practicals))}")
+
+        if lab_utilization > 100:
+            errors.append(
+                f"Lab capacity EXCEEDED: Need {total_practical_slots} lab-slots but only {lab_capacity} available "
+                f"({lab_utilization:.0f}% utilization). "
+                f"You have {num_labs} labs and {total_slots} slots/week. "
+                f"Reduce practical hours or add more labs."
+            )
+        elif lab_utilization > 85:
+            warnings.append(
+                f"Lab utilization very high ({lab_utilization:.0f}%). "
+                f"Need {total_practical_slots}/{lab_capacity} lab-slots. "
+                f"Solver may fail or take long. Consider reducing high-hour practicals."
+            )
+
+        # --- 3. Classroom capacity analysis ---
+        total_theory_sessions = 0
+        theory_by_year = {}
+        for rc in required_classes:
+            if rc["type"] in ["theory", "tutorial"]:
+                hours = rc["subject"].get("hours_per_week", 0)
+                total_theory_sessions += hours
+                year = rc["year"]
+                theory_by_year.setdefault(year, 0)
+                theory_by_year[year] += hours
+
+        classroom_capacity = num_classrooms * total_slots
+        classroom_util = (total_theory_sessions / classroom_capacity * 100) if classroom_capacity > 0 else 999
+
+        logger.info(f"Classroom demand: {total_theory_sessions} sessions / {classroom_capacity} available ({classroom_util:.1f}%)")
+
+        if classroom_util > 100:
+            errors.append(
+                f"Classroom capacity EXCEEDED: Need {total_theory_sessions} theory sessions but only "
+                f"{classroom_capacity} classroom-slots available ({num_classrooms} classrooms x {total_slots} slots). "
+                f"Add more classrooms or reduce theory hours."
+            )
+
+        # --- 4. Per-batch slot feasibility ---
+        for year in years:
+            for div in divisions:
+                theory_hrs = 0
+                prac_hrs_per_batch = 0
+                for rc in required_classes:
+                    if rc["year"] != year or rc["division"] != div:
+                        continue
+                    hours = rc["subject"].get("hours_per_week", 0)
+                    if rc["type"] in ["theory", "tutorial"]:
+                        theory_hrs += hours
+                    elif rc["type"] == "practical" and rc.get("batch") == batches[0]:
+                        # Count for one batch (all batches have same load)
+                        if hours < practical_slots_needed:
+                            prac_hrs_per_batch += hours
+                        else:
+                            prac_hrs_per_batch += (hours // practical_slots_needed) * practical_slots_needed
+
+                total_per_batch = theory_hrs + prac_hrs_per_batch
+                if total_per_batch > total_slots:
+                    errors.append(
+                        f"Year {year} Division {div}: Each batch needs {total_per_batch} slots/week "
+                        f"({theory_hrs} theory + {prac_hrs_per_batch} practical) but only {total_slots} slots available. "
+                        f"Reduce subject hours for this year."
+                    )
+                elif total_per_batch > total_slots * 0.9:
+                    warnings.append(
+                        f"Year {year} Division {div}: Very tight — {total_per_batch}/{total_slots} slots per batch "
+                        f"({theory_hrs} theory + {prac_hrs_per_batch} practical). May be hard to schedule."
+                    )
+
+        # --- 5. Faculty overload check ---
+        for fac in faculty:
+            fac_name = fac.get("name", "Unknown")
+            theory_load = 0
+            fac_subjects = fac.get("subjects", []) or []
+
+            for assignment in fac_subjects:
+                if isinstance(assignment, dict):
+                    sid = assignment.get("subject_id")
+                else:
+                    sid = assignment
+
+                for rc in required_classes:
+                    if rc["subject_id"] == sid and rc["type"] in ["theory", "tutorial"]:
+                        # Check division match
+                        if isinstance(assignment, dict):
+                            allowed_divs = assignment.get("divisions", [])
+                            div_map = {"A": 1, "B": 2, "C": 3, "D": 4}
+                            if allowed_divs and div_map.get(rc["division"]) not in allowed_divs:
+                                continue
+                        theory_load += rc["subject"].get("hours_per_week", 0)
+
+            if theory_load > total_slots:
+                errors.append(
+                    f"Faculty '{fac_name}' has {theory_load} theory hours/week but only {total_slots} slots exist. "
+                    f"Reduce their teaching load."
+                )
+            elif theory_load > total_slots * 0.7:
+                warnings.append(f"Faculty '{fac_name}' has heavy theory load: {theory_load}/{total_slots} slots.")
+
+        # --- Return result ---
+        if errors:
+            error_msg = "Pre-solve validation failed:\n\n" + "\n\n".join(f"• {e}" for e in errors)
+            if warnings:
+                error_msg += "\n\nWarnings:\n" + "\n".join(f"  ⚠ {w}" for w in warnings)
+            return {"error": error_msg}
+
+        if warnings:
+            logger.warning(f"Validation warnings: {warnings}")
+
+        return {"warnings": warnings if warnings else None}
+
+    def _diagnose_infeasibility(self, required_classes, rooms, years, divisions, batches,
+                                days, time_slots, practical_slots_needed):
+        """Generate detailed diagnosis when solver returns INFEASIBLE."""
+        num_labs = len([r for r in rooms if r.get("type") in ["lab", "both"]])
+        num_classrooms = len([r for r in rooms if r.get("type") in ["classroom", "both"]])
+        total_slots = len(time_slots) * len(days)
+
+        lines = ["Diagnosis:"]
+
+        # Lab usage breakdown
+        total_prac_slots = 0
+        year_prac = {}
+        worst_subjects = []
+        for rc in required_classes:
+            if rc["type"] != "practical":
+                continue
+            hours = rc["subject"].get("hours_per_week", 0)
+            sessions = max(1, hours // practical_slots_needed) if hours >= practical_slots_needed else 1
+            span = practical_slots_needed if hours >= practical_slots_needed else hours
+            slots = sessions * span
+            total_prac_slots += slots
+            yr = rc["year"]
+            year_prac.setdefault(yr, 0)
+            year_prac[yr] += slots
+            if hours >= 6:
+                worst_subjects.append(f"{rc['subject']['name']} (Year {yr}, {hours}hrs = {sessions} sessions/batch)")
+
+        lab_cap = num_labs * total_slots
+        util = (total_prac_slots / lab_cap * 100) if lab_cap > 0 else 0
+
+        lines.append(f"• Lab utilization: {total_prac_slots}/{lab_cap} slots ({util:.0f}%) — {'OVER CAPACITY' if util > 100 else 'VERY TIGHT' if util > 80 else 'OK'}")
+
+        for yr in sorted(year_prac):
+            lines.append(f"  Year {yr}: {year_prac[yr]} lab-slots")
+
+        if worst_subjects:
+            lines.append(f"• High-hour practicals causing bottleneck: {', '.join(set(worst_subjects))}")
+
+        # Suggestion
+        lines.append("")
+        lines.append("Suggestions:")
+        if util > 85:
+            lines.append("  1. Reduce hours for high-hour practical subjects (e.g., Project Stage)")
+            lines.append("  2. Change project-type subjects from 'practical' to 'tutorial' (no lab needed)")
+            lines.append("  3. Add more lab rooms")
+        else:
+            lines.append("  1. Check if faculty are overloaded (teaching too many subjects)")
+            lines.append("  2. Check for subjects that need more slots than available per week")
+            lines.append("  3. Try increasing solver timeout")
+
+        return "\n".join(lines)
 
     def _get_required_classes(self, subjects, years, divisions, batches):
         """Get list of all classes that need to be scheduled.
@@ -153,11 +460,9 @@ class SimpleTimetableSolver:
                 # Handle new format (list of dicts with subject_id and divisions)
                 for assignment in subjects:
                     if assignment.get("subject_id") == subject_id:
-                        allowed_divs = assignment.get("divisions", [])
-                        # If no divisions specified, faculty can teach all divisions
-                        if not allowed_divs:
-                            faculty_for_subject.append(fac)
-                            break
+                        # Faculty teaches this subject (divisions checked later during assignment)
+                        faculty_for_subject.append(fac)
+                        break
 
         return faculty_for_subject
 
