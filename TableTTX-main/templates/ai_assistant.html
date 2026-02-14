@@ -753,15 +753,18 @@ function updateAITimetableView() {
     });
     
     html += '</tr></thead><tbody>';
-    
-    timeSlots.forEach(timeSlot => {
+
+    // Track cells to skip due to rowspan (key: "slotIndex-dayIndex")
+    const skipCells = {};
+
+    timeSlots.forEach((timeSlot, slotIndex) => {
         html += '<tr>';
         html += `<td class="fw-bold text-center align-middle" style="width: 10%;">${timeSlot}</td>`;
-        
+
         // Check if this is a break period (check first day to determine if it's a break)
         const firstDaySession = viewData[days[0]] && viewData[days[0]][timeSlot];
         const isBreak = firstDaySession && firstDaySession.type === 'break';
-        
+
         if (isBreak) {
             // Create a single merged cell spanning all day columns
             const breakType = firstDaySession.break_type || 'break';
@@ -776,37 +779,94 @@ function updateAITimetableView() {
             html += '</td>';
         } else {
             // Day columns - normal session rendering
-            days.forEach(day => {
-                html += '<td class="align-top">';
+            days.forEach((day, dayIndex) => {
+                // Skip this cell if it was merged by a rowspan from a previous row
+                const cellKey = `${slotIndex}-${dayIndex}`;
+                if (skipCells[cellKey]) {
+                    return; // Don't create a <td>, the rowspan from above covers it
+                }
+
                 const session = viewData[day] && viewData[day][timeSlot];
-                
+
                 if (session && session.type === 'practical_block') {
-                    // Render practical block with batch details
-                    if (session.slot_position !== 'continuation') {
-                        const batchData = session.batches || {};
-                        const span = session.span || 1;
-                        const durationLabel = span > 1 ? ` (${span} hrs)` : '';
-                        html += `<div class="border rounded p-1 mb-1" style="font-size: 0.75rem; border-left: 3px solid #e67e22 !important; background: rgba(230,126,34,0.08);">`;
-                        html += `<div class="fw-bold" style="color: #e67e22;"><i class="fas fa-flask me-1"></i>Practicals${durationLabel}</div>`;
-                        Object.keys(batchData).sort().forEach(bNum => {
-                            const bLetter = String.fromCharCode(64 + parseInt(bNum));
-                            const bInfo = batchData[bNum];
-                            if (bInfo) {
-                                html += `<div><strong>B${bLetter}:</strong> ${bInfo.subject} <span class="text-muted">(${bInfo.room})</span></div>`;
-                            } else {
-                                html += `<div class="text-muted"><strong>B${bLetter}:</strong> Free</div>`;
-                            }
-                        });
-                        html += `</div>`;
+                    // Skip continuation slots — covered by rowspan from start block
+                    if (session.slot_position === 'continuation') {
+                        html += '<td class="align-top"></td>';
+                        return;
                     }
+
+                    const batchData = session.batches || {};
+                    const span = session.span || 1;
+                    const durationLabel = span > 1 ? ` (${span} hrs)` : '';
+
+                    // Calculate rowspan for multi-slot practical blocks
+                    let actualRowspan = 1;
+                    if (span > 1) {
+                        for (let offset = 1; offset < span; offset++) {
+                            const nextSlotIdx = slotIndex + offset;
+                            if (nextSlotIdx < timeSlots.length) {
+                                const nextSlotSession = viewData[days[0]] && viewData[days[0]][timeSlots[nextSlotIdx]];
+                                const nextIsBreak = nextSlotSession && nextSlotSession.type === 'break';
+                                if (!nextIsBreak) {
+                                    actualRowspan++;
+                                    skipCells[`${nextSlotIdx}-${dayIndex}`] = true;
+                                }
+                            }
+                        }
+                    }
+
+                    html += `<td class="align-top"${actualRowspan > 1 ? ` rowspan="${actualRowspan}"` : ''}>`;
+                    html += `<div class="border rounded p-1 mb-1" style="font-size: 0.75rem; border-left: 3px solid #e67e22 !important; background: rgba(230,126,34,0.08);">`;
+                    html += `<div class="fw-bold" style="color: #e67e22;"><i class="fas fa-flask me-1"></i>Practicals${durationLabel}</div>`;
+                    Object.keys(batchData).sort().forEach(bNum => {
+                        const bLetter = String.fromCharCode(64 + parseInt(bNum));
+                        const bInfo = batchData[bNum];
+                        if (bInfo) {
+                            html += `<div><strong>B${bLetter}:</strong> ${bInfo.subject} <span class="text-muted">(${bInfo.room})</span></div>`;
+                        } else {
+                            html += `<div class="text-muted"><strong>B${bLetter}:</strong> Free</div>`;
+                        }
+                    });
+                    html += `</div>`;
+                    html += '</td>';
                 } else if (session && session.type !== 'break') {
                     const sessions = Array.isArray(session) ? session : [session];
 
+                    // Check for continuation slots in batch view
+                    const isContinuation = sessions.some(s => s.slot_position === 'continuation');
+                    if (isContinuation) {
+                        return; // Covered by rowspan from above
+                    }
+
+                    // Check for multi-slot practicals in batch view
+                    const practicalItems = sessions.filter(s => s.type === 'practical');
+                    let practicalSpan = 1;
+                    if (practicalItems.length > 0 && practicalItems[0].slot_position === 'start' && practicalItems[0].span > 1) {
+                        practicalSpan = practicalItems[0].span;
+                    }
+
+                    let actualRowspan = 1;
+                    if (practicalSpan > 1) {
+                        for (let offset = 1; offset < practicalSpan; offset++) {
+                            const nextSlotIdx = slotIndex + offset;
+                            if (nextSlotIdx < timeSlots.length) {
+                                const nextSlotSession = viewData[days[0]] && viewData[days[0]][timeSlots[nextSlotIdx]];
+                                const nextIsBreak = nextSlotSession && nextSlotSession.type === 'break';
+                                if (!nextIsBreak) {
+                                    actualRowspan++;
+                                    skipCells[`${nextSlotIdx}-${dayIndex}`] = true;
+                                }
+                            }
+                        }
+                    }
+
+                    html += `<td class="align-top"${actualRowspan > 1 ? ` rowspan="${actualRowspan}"` : ''}>`;
                     sessions.forEach(s => {
                         if (s && s.type !== 'break' && s.slot_position !== 'continuation') {
+                            const spanLabel = (s.type === 'practical' && practicalSpan > 1) ? ` (${practicalSpan} hrs)` : '';
                             html += `
                                 <div class="session-cell-content border rounded p-1 mb-1" style="font-size: 0.8rem;">
-                                    <div class="subject-name">${s.subject || 'N/A'}</div>
+                                    <div class="subject-name">${s.subject || 'N/A'}${spanLabel}</div>
                                     <div class="session-info">
                                         <i class="fas fa-user" style="font-size: 0.7rem;"></i> ${s.faculty || 'N/A'}<br>
                                         <i class="fas fa-map-marker-alt" style="font-size: 0.7rem;"></i> ${s.room || 'N/A'}
@@ -816,14 +876,13 @@ function updateAITimetableView() {
                             `;
                         }
                     });
+                    html += '</td>';
                 } else {
-                    html += '<div class="text-muted text-center" style="font-size: 0.8rem;">-</div>';
+                    html += '<td class="align-top"><div class="text-muted text-center" style="font-size: 0.8rem;">-</div></td>';
                 }
-
-                html += '</td>';
             });
         }
-        
+
         html += '</tr>';
     });
     
@@ -1381,22 +1440,23 @@ function updateModifiedTimetableView() {
     });
     thead.appendChild(headRow);
     
-    // Build table body
-    timeSlots.forEach(timeSlot => {
+    // Build table body with rowspan support for multi-slot practicals
+    const modSkipCells = {};
+
+    timeSlots.forEach((timeSlot, slotIndex) => {
         const row = document.createElement('tr');
-        
+
         // Time column
         const timeCell = document.createElement('td');
         timeCell.className = 'fw-bold text-center align-middle';
         timeCell.textContent = timeSlot;
         row.appendChild(timeCell);
-        
-        // Check if this is a break period (check first day to determine if it's a break)
+
+        // Check if this is a break period
         const firstDaySession = viewData[days[0]] && viewData[days[0]][timeSlot];
         const isBreak = firstDaySession && firstDaySession.type === 'break';
-        
+
         if (isBreak) {
-            // Create a single merged cell spanning all day columns
             const breakCell = document.createElement('td');
             breakCell.colSpan = days.length;
             breakCell.className = 'break-cell text-center align-middle';
@@ -1410,39 +1470,81 @@ function updateModifiedTimetableView() {
             `;
             row.appendChild(breakCell);
         } else {
-            // Day columns - normal session rendering
-            days.forEach(day => {
+            days.forEach((day, dayIndex) => {
+                const cellKey = `${slotIndex}-${dayIndex}`;
+                if (modSkipCells[cellKey]) return;
+
                 const cell = document.createElement('td');
                 const session = viewData[day] && viewData[day][timeSlot];
-                
+
                 if (session && session.type === 'practical_block') {
-                    if (session.slot_position !== 'continuation') {
-                        const batchData = session.batches || {};
-                        const span = session.span || 1;
-                        const durationLabel = span > 1 ? ` (${span} hrs)` : '';
-                        let cellContent = `<div class="p-1 mb-1 border rounded" style="font-size: 0.7em; border-left: 3px solid #e67e22 !important; background: rgba(230,126,34,0.08);">`;
-                        cellContent += `<div class="fw-bold" style="color: #e67e22;"><i class="fas fa-flask me-1"></i>Practicals${durationLabel}</div>`;
-                        Object.keys(batchData).sort().forEach(bNum => {
-                            const bLetter = String.fromCharCode(64 + parseInt(bNum));
-                            const bInfo = batchData[bNum];
-                            if (bInfo) {
-                                cellContent += `<div><strong>B${bLetter}:</strong> ${bInfo.subject} <span class="text-muted">(${bInfo.room})</span></div>`;
-                            } else {
-                                cellContent += `<div class="text-muted"><strong>B${bLetter}:</strong> Free</div>`;
+                    if (session.slot_position === 'continuation') return;
+
+                    const batchData = session.batches || {};
+                    const span = session.span || 1;
+                    const durationLabel = span > 1 ? ` (${span} hrs)` : '';
+
+                    if (span > 1) {
+                        let actualRowspan = 1;
+                        for (let offset = 1; offset < span; offset++) {
+                            const nextSlotIdx = slotIndex + offset;
+                            if (nextSlotIdx < timeSlots.length) {
+                                const nextSession = viewData[days[0]] && viewData[days[0]][timeSlots[nextSlotIdx]];
+                                if (!(nextSession && nextSession.type === 'break')) {
+                                    actualRowspan++;
+                                    modSkipCells[`${nextSlotIdx}-${dayIndex}`] = true;
+                                }
                             }
-                        });
-                        cellContent += `</div>`;
-                        cell.innerHTML = cellContent;
+                        }
+                        cell.rowSpan = actualRowspan;
                     }
+
+                    let cellContent = `<div class="p-1 mb-1 border rounded" style="font-size: 0.7em; border-left: 3px solid #e67e22 !important; background: rgba(230,126,34,0.08);">`;
+                    cellContent += `<div class="fw-bold" style="color: #e67e22;"><i class="fas fa-flask me-1"></i>Practicals${durationLabel}</div>`;
+                    Object.keys(batchData).sort().forEach(bNum => {
+                        const bLetter = String.fromCharCode(64 + parseInt(bNum));
+                        const bInfo = batchData[bNum];
+                        if (bInfo) {
+                            cellContent += `<div><strong>B${bLetter}:</strong> ${bInfo.subject} <span class="text-muted">(${bInfo.room})</span></div>`;
+                        } else {
+                            cellContent += `<div class="text-muted"><strong>B${bLetter}:</strong> Free</div>`;
+                        }
+                    });
+                    cellContent += `</div>`;
+                    cell.innerHTML = cellContent;
                 } else if (session && session.type !== 'break') {
                     const sessions = Array.isArray(session) ? session : [session];
-                    let cellContent = '';
+                    const isContinuation = sessions.some(s => s.slot_position === 'continuation');
+                    if (isContinuation) return;
 
+                    const practicalItems = sessions.filter(s => s.type === 'practical');
+                    let practicalSpan = 1;
+                    if (practicalItems.length > 0 && practicalItems[0].slot_position === 'start' && practicalItems[0].span > 1) {
+                        practicalSpan = practicalItems[0].span;
+                    }
+
+                    if (practicalSpan > 1) {
+                        let actualRowspan = 1;
+                        for (let offset = 1; offset < practicalSpan; offset++) {
+                            const nextSlotIdx = slotIndex + offset;
+                            if (nextSlotIdx < timeSlots.length) {
+                                const nextSession = viewData[days[0]] && viewData[days[0]][timeSlots[nextSlotIdx]];
+                                if (!(nextSession && nextSession.type === 'break')) {
+                                    actualRowspan++;
+                                    modSkipCells[`${nextSlotIdx}-${dayIndex}`] = true;
+                                }
+                            }
+                        }
+                        cell.rowSpan = actualRowspan;
+                    }
+
+                    let cellContent = '';
                     sessions.forEach(s => {
                         if (s && s.type !== 'break' && s.slot_position !== 'continuation') {
+                            const spanLabel = (s.type === 'practical' && practicalSpan > 1) ? ` (${practicalSpan} hrs)` : '';
                             cellContent += `
                                 <div class="session-card-mini p-1 mb-1 border rounded">
-                                    <div class="fw-bold small">${s.subject}</div>
+                                    <div class="fw-bold small">${s.subject}${spanLabel}</div>
                                     <div class="text-muted" style="font-size: 0.7em;">
                                         <i class="fas fa-user me-1"></i>${s.faculty}<br>
                                         <i class="fas fa-map-marker-alt me-1"></i>${s.room}<br>
@@ -1452,17 +1554,16 @@ function updateModifiedTimetableView() {
                             `;
                         }
                     });
-
                     cell.innerHTML = cellContent;
                 } else {
                     cell.innerHTML = '<div class="text-muted text-center">-</div>';
                 }
-                
+
                 cell.className = 'align-top';
                 row.appendChild(cell);
             });
         }
-        
+
         tbody.appendChild(row);
     });
 }
