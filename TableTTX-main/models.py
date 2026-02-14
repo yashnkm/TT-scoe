@@ -1,5 +1,6 @@
 import json
 import os
+import hashlib
 from typing import Dict, List, Optional
 from datetime import datetime
 
@@ -195,24 +196,92 @@ class DataManager:
         data["rooms"] = rooms
         self.save_json("rooms.json", data)
     
-    def save_timetable(self, timetable: Dict, name: Optional[str] = None) -> Dict:
-        """Save a timetable with metadata"""
+    def _generate_timetable_fingerprint(self, timetable: Dict, semester_mode: str) -> str:
+        """Generate MD5 fingerprint from semester_mode + sorted subject/faculty names"""
+        subjects = set()
+        faculty_names = set()
+
+        for key, view_data in timetable.items():
+            if not isinstance(view_data, dict):
+                continue
+            for day, slots in view_data.items():
+                if not isinstance(slots, dict):
+                    continue
+                for time_slot, session in slots.items():
+                    if not session or not isinstance(session, dict):
+                        continue
+                    if session.get('type') == 'break':
+                        continue
+                    if session.get('type') == 'practical_block':
+                        batches = session.get('batches', {})
+                        for b_info in batches.values():
+                            if b_info and isinstance(b_info, dict):
+                                if b_info.get('subject'):
+                                    subjects.add(b_info['subject'])
+                                if b_info.get('faculty'):
+                                    faculty_names.add(b_info['faculty'])
+                    else:
+                        if session.get('subject'):
+                            subjects.add(session['subject'])
+                        if session.get('faculty'):
+                            faculty_names.add(session['faculty'])
+
+        fingerprint_data = json.dumps({
+            "semester": semester_mode,
+            "subjects": sorted(subjects),
+            "faculty": sorted(faculty_names)
+        }, sort_keys=True)
+
+        return hashlib.md5(fingerprint_data.encode()).hexdigest()
+
+    def save_timetable(self, timetable: Dict, name: Optional[str] = None,
+                       semester_mode: Optional[str] = None, auto_save: bool = False) -> Dict:
+        """Save a timetable with metadata. If auto_save=True and fingerprint matches, overwrite."""
         data = self.load_json("saved_timetables.json")
         saved_timetables = data.get("timetables", [])
-        
-        # Create timetable entry
+
+        fingerprint = None
+        if semester_mode and auto_save:
+            fingerprint = self._generate_timetable_fingerprint(timetable, semester_mode)
+
+            # Check for existing entry with same fingerprint
+            for i, entry in enumerate(saved_timetables):
+                if entry.get("fingerprint") == fingerprint:
+                    # Overwrite existing entry
+                    saved_timetables[i]["timetable"] = timetable
+                    saved_timetables[i]["saved_at"] = datetime.now().isoformat()
+                    saved_timetables[i]["saved_at_formatted"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    saved_timetables[i]["semester_mode"] = semester_mode
+                    data["timetables"] = saved_timetables
+                    self.save_json("saved_timetables.json", data)
+                    return saved_timetables[i]
+
+        # Determine next ID
+        max_id = max((t.get("id", 0) for t in saved_timetables), default=0)
+
+        # Auto-generate name for auto-saves
+        if not name:
+            if semester_mode:
+                sem_label = semester_mode.capitalize() + " Semester"
+                name = f"{sem_label} - {datetime.now().strftime('%Y-%m-%d')}"
+            else:
+                name = f"Timetable {max_id + 1}"
+
         timetable_entry = {
-            "id": len(saved_timetables) + 1,
-            "name": name or f"Timetable {len(saved_timetables) + 1}",
+            "id": max_id + 1,
+            "name": name,
             "timetable": timetable,
             "saved_at": datetime.now().isoformat(),
-            "saved_at_formatted": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            "saved_at_formatted": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "semester_mode": semester_mode or "",
+            "fingerprint": fingerprint or "",
+            "auto_saved": auto_save
         }
-        
+
         saved_timetables.append(timetable_entry)
         data["timetables"] = saved_timetables
         self.save_json("saved_timetables.json", data)
-        
+
         return timetable_entry
     
     def get_saved_timetables(self) -> List[Dict]:

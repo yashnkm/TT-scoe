@@ -410,6 +410,17 @@ def generate_timetable():
             session['current_timetable'] = result["timetable"]
             session['timetable_saved_at'] = datetime.now().isoformat()
 
+            # Auto-save timetable (overwrites if same config fingerprint)
+            try:
+                data_manager.save_timetable(
+                    result["timetable"],
+                    semester_mode=semester_mode,
+                    auto_save=True
+                )
+                flash('Timetable auto-saved.', 'info')
+            except Exception as save_err:
+                logging.error(f"Auto-save failed: {save_err}")
+
         return render_template('timetable.html', result=result)
         
     except Exception as e:
@@ -582,6 +593,34 @@ def api_ai_optimize_workload():
     except Exception as e:
         logging.error(f"Error optimizing workload: {str(e)}")
         return jsonify({"error": str(e)}), 500
+
+@app.route('/saved-timetables')
+@login_required
+def saved_timetables_page():
+    """Saved timetables list page"""
+    timetables = data_manager.get_saved_timetables()
+    return render_template('saved_timetables.html', timetables=timetables)
+
+@app.route('/saved-timetables/<int:timetable_id>')
+@login_required
+def saved_timetable_view(timetable_id):
+    """View a specific saved timetable with Division/Batch/Faculty toggle"""
+    saved = data_manager.get_saved_timetable(timetable_id)
+    if not saved:
+        flash('Timetable not found.', 'error')
+        return redirect(url_for('saved_timetables_page'))
+    return render_template('saved_timetables_view.html', saved=saved)
+
+@app.route('/saved-timetables/delete/<int:timetable_id>', methods=['POST'])
+@login_required
+def delete_saved_timetable_page(timetable_id):
+    """Delete a saved timetable and redirect back to list"""
+    try:
+        data_manager.delete_saved_timetable(timetable_id)
+        flash('Timetable deleted successfully.', 'success')
+    except Exception as e:
+        flash(f'Error deleting timetable: {str(e)}', 'error')
+    return redirect(url_for('saved_timetables_page'))
 
 @app.route('/schedule-modifications')
 @login_required

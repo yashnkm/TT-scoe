@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+
+{% block title %}{{ saved.name }} - Saved Timetable{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1>
+                    <i class="fas fa-calendar-alt text-primary me-2"></i>
+                    {{ saved.name }}
+                </h1>
+                <p class="text-muted mb-0">
+                    <i class="fas fa-clock me-1"></i>Saved: {{ saved.saved_at_formatted }}
+                    {% if saved.semester_mode %}
+                    <span class="badge bg-{% if saved.semester_mode == 'odd' %}info{% else %}warning{% endif %} ms-2">
+                        {{ saved.semester_mode | capitalize }} Semester
+                    </span>
+                    {% endif %}
+                    {% if saved.auto_saved %}
+                    <span class="badge bg-secondary ms-1">Auto-saved</span>
+                    {% endif %}
+                </p>
+            </div>
+            <div>
+                <button class="btn btn-success me-2" onclick="exportTimetable()">
+                    <i class="fas fa-download me-2"></i>Export
+                </button>
+                <a href="{{ url_for('saved_timetables_page') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-filter me-2"></i>
+                        Timetable Views
+                    </h5>
+                    <div class="btn-group" role="group">
+                        <input type="radio" class="btn-check" name="viewType" id="divisionView" value="division" checked>
+                        <label class="btn btn-outline-primary" for="divisionView">
+                            <i class="fas fa-users me-1"></i>Division
+                        </label>
+
+                        <input type="radio" class="btn-check" name="viewType" id="batchView" value="batch">
+                        <label class="btn btn-outline-primary" for="batchView">
+                            <i class="fas fa-layer-group me-1"></i>Batch
+                        </label>
+
+                        <input type="radio" class="btn-check" name="viewType" id="facultyView" value="faculty">
+                        <label class="btn btn-outline-primary" for="facultyView">
+                            <i class="fas fa-chalkboard-teacher me-1"></i>Faculty
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="viewSelector" class="form-label">Select View:</label>
+                        <select class="form-select" id="viewSelector"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0" id="currentViewTitle">
+                    <i class="fas fa-table me-2"></i>
+                    Loading...
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered timetable-table" id="timetableTable">
+                        <thead class="table-dark" id="timetableHead">
+                            <tr><th>Time</th></tr>
+                        </thead>
+                        <tbody id="timetableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden timetable data -->
+<script type="application/json" id="timetableData">{{ saved.timetable | tojson | safe }}</script>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/saved_timetable_view.js') }}"></script>
+<script>
+function exportTimetable() {
+    if (!timetableData || Object.keys(timetableData).length === 0) {
+        showAlert('No timetable available to download', 'warning');
+        return;
+    }
+    showAlert('Generating Excel file... Please wait', 'info');
+    fetch('/api/timetable/export/excel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ timetable: timetableData })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Failed to generate Excel file');
+        return response.blob();
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Timetable_${new Date().getTime()}.xlsx`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        showAlert('Excel file downloaded successfully!', 'success');
+    })
+    .catch(error => {
+        console.error('Error downloading Excel:', error);
+        showAlert('Error generating Excel file: ' + error.message, 'danger');
+    });
+}
+</script>
+
+<style>
+.session-card {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border-left: 4px solid;
+    background: var(--bs-light);
+    min-height: 80px;
+}
+.session-card.theory {
+    border-left-color: var(--bs-info);
+    background: rgba(13, 202, 240, 0.1);
+}
+.session-card.tutorial {
+    border-left-color: #6f42c1;
+    background: rgba(111, 66, 193, 0.1);
+}
+.session-card.practical {
+    border-left-color: var(--bs-warning);
+    background: rgba(255, 193, 7, 0.1);
+}
+.session-card.practical-block {
+    border-left-color: #e67e22;
+    background: rgba(230, 126, 34, 0.08);
+    min-height: auto;
+    padding: 0.4rem;
+}
+.session-card.faculty-session {
+    border-left-color: #20c997;
+    background: rgba(32, 201, 151, 0.1);
+}
+.practical-block-header {
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #e67e22;
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid rgba(230, 126, 34, 0.3);
+}
+.practical-block-batches {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+.batch-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem;
+    padding: 0.15rem 0.3rem;
+    border-radius: 0.2rem;
+    background: rgba(255, 255, 255, 0.6);
+    font-size: 0.78rem;
+}
+.batch-item.batch-free { opacity: 0.6; }
+.batch-label {
+    font-weight: 600;
+    color: #2c3e50;
+    min-width: 55px;
+}
+.batch-subject {
+    font-weight: 500;
+    color: #34495e;
+}
+.batch-details {
+    display: block;
+    width: 100%;
+    font-size: 0.7rem;
+    color: #7f8c8d;
+}
+.session-subject {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+.session-details small {
+    font-size: 0.75rem;
+    color: var(--bs-secondary);
+}
+.session-context {
+    font-size: 0.7rem;
+    color: var(--bs-info);
+    margin-top: 0.25rem;
+}
+.empty-slot {
+    text-align: center;
+    color: var(--bs-secondary);
+    font-style: italic;
+    padding: 1rem;
+}
+.free-slot {
+    text-align: center;
+    color: var(--bs-success);
+    font-style: italic;
+    padding: 0.5rem;
+    opacity: 0.6;
+}
+.timetable-table td {
+    vertical-align: top;
+    min-width: 150px;
+}
+.timetable-table td .session-card + .session-card {
+    margin-top: 0.25rem;
+}
+</style>
+{% endblock %}
