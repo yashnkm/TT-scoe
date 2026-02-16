@@ -1,4 +1,5 @@
 import logging
+from collections import defaultdict
 from ortools.sat.python import cp_model
 from typing import Dict, List, Optional
 from models import data_manager
@@ -102,6 +103,8 @@ class SimpleTimetableSolver:
             self._add_room_constraints(sessions, rooms, days, time_slots, practical_slots_needed)
             self._add_no_conflict_constraints(sessions, days, time_slots, practical_slots_needed, batches)
             self._add_max_practical_per_day_constraint(sessions, years, divisions, batches, days)
+            self._add_practical_synchronization_constraint(sessions, years, divisions, batches, days, time_slots, practical_slots_needed)
+            self._add_no_consecutive_same_subject_constraint(sessions, days, time_slots, breaks)
 
             # Solve
             self.solver = cp_model.CpSolver()
@@ -196,7 +199,9 @@ class SimpleTimetableSolver:
             logger.warning(f"Skipped subjects (no faculty): {subjects_no_faculty}")
 
         # --- 2. Lab capacity analysis ---
-        total_practical_slots = 0
+        # Separate lab-required vs flexible practicals (projects/seminars can use classrooms)
+        lab_practical_slots = 0
+        flex_practical_slots = 0
         practical_by_year = {}
         high_hour_practicals = []
 
@@ -212,7 +217,12 @@ class SimpleTimetableSolver:
                 span = practical_slots_needed
 
             slots_used = sessions_needed * span
-            total_practical_slots += slots_used
+            is_flexible = self._is_flexible_practical(rc["subject"])
+
+            if is_flexible:
+                flex_practical_slots += slots_used
+            else:
+                lab_practical_slots += slots_used
 
             year = rc["year"]
             practical_by_year.setdefault(year, 0)
@@ -223,19 +233,21 @@ class SimpleTimetableSolver:
                     f"'{rc['subject']['name']}' (Year {year}, {hours}hrs → {sessions_needed} sessions/batch)"
                 )
 
+        total_practical_slots = lab_practical_slots + flex_practical_slots
         lab_capacity = num_labs * total_slots
-        lab_utilization = (total_practical_slots / lab_capacity * 100) if lab_capacity > 0 else 999
+        total_room_capacity = len(rooms) * total_slots
+        lab_utilization = (lab_practical_slots / lab_capacity * 100) if lab_capacity > 0 else 999
 
-        logger.info(f"Lab demand: {total_practical_slots} lab-slots needed / {lab_capacity} available ({lab_utilization:.1f}% utilization)")
+        logger.info(f"Lab demand: {lab_practical_slots} lab-slots + {flex_practical_slots} flex-slots = {total_practical_slots} total / {lab_capacity} lab-capacity ({lab_utilization:.1f}% lab utilization)")
         for yr, slots in sorted(practical_by_year.items()):
-            logger.info(f"  Year {yr}: {slots} lab-slots")
+            logger.info(f"  Year {yr}: {slots} practical-slots")
 
         if high_hour_practicals:
             warnings.append(f"High-hour practicals (may cause scheduling issues): {'; '.join(set(high_hour_practicals))}")
 
         if lab_utilization > 100:
             errors.append(
-                f"Lab capacity EXCEEDED: Need {total_practical_slots} lab-slots but only {lab_capacity} available "
+                f"Lab capacity EXCEEDED: Need {lab_practical_slots} lab-slots but only {lab_capacity} available "
                 f"({lab_utilization:.0f}% utilization). "
                 f"You have {num_labs} labs and {total_slots} slots/week. "
                 f"Reduce practical hours or add more labs."
@@ -243,7 +255,7 @@ class SimpleTimetableSolver:
         elif lab_utilization > 85:
             warnings.append(
                 f"Lab utilization very high ({lab_utilization:.0f}%). "
-                f"Need {total_practical_slots}/{lab_capacity} lab-slots. "
+                f"Need {lab_practical_slots}/{lab_capacity} lab-slots. "
                 f"Solver may fail or take long. Consider reducing high-hour practicals."
             )
 
@@ -628,12 +640,23 @@ class SimpleTimetableSolver:
 
         return False
 
+    @staticmethod
+    def _is_flexible_practical(subject):
+        """Check if a practical subject can use a classroom instead of a lab.
+        Project-type subjects don't need lab equipment and can use any room.
+        """
+        name = subject.get("name", "").lower().strip()
+        return "project" in name or "seminar" in name
+
     def _add_room_constraints(self, sessions, rooms_list, days, time_slots, practical_slots_needed=2):
         """Ensure room capacity is not exceeded.
-        Counts ALL practical sessions (across all years, divisions, batches) globally.
+        Lab-requiring practicals are limited to lab rooms.
+        Flexible practicals (projects, seminars) can overflow to classrooms.
+        Total concurrent sessions can't exceed total available rooms.
         """
         classrooms = [r for r in rooms_list if r.get("type") in ["classroom", "both"]]
         labs = [r for r in rooms_list if r.get("type") in ["lab", "both"]]
+        total_rooms = len(set(r.get("id", i) for i, r in enumerate(rooms_list)))
 
         for day in days:
             for slot_idx, time_slot in enumerate(time_slots):
@@ -648,16 +671,26 @@ class SimpleTimetableSolver:
                 if theory_sessions and classrooms:
                     self.model.Add(sum(theory_sessions) <= len(classrooms))
 
-                # Practical sessions that occupy this slot (ALL batches, all years, all divisions)
-                practical_sessions = []
+                # Separate lab-required practicals from flexible ones
+                lab_practical_sessions = []
+                flex_practical_sessions = []
                 for s in sessions:
                     if (s["day"] == day and
                         s["subject"].get("type") == "practical" and
                         time_slot in s.get("spanned_slots", [s["time_slot"]])):
-                        practical_sessions.append(s["variable"])
+                        if self._is_flexible_practical(s["subject"]):
+                            flex_practical_sessions.append(s["variable"])
+                        else:
+                            lab_practical_sessions.append(s["variable"])
 
-                if practical_sessions and labs:
-                    self.model.Add(sum(practical_sessions) <= len(labs))
+                # Lab-required practicals can only use labs
+                if lab_practical_sessions and labs:
+                    self.model.Add(sum(lab_practical_sessions) <= len(labs))
+
+                # Combined: all sessions can't exceed total rooms
+                all_sessions = theory_sessions + lab_practical_sessions + flex_practical_sessions
+                if all_sessions:
+                    self.model.Add(sum(all_sessions) <= total_rooms)
 
     def _add_no_conflict_constraints(self, sessions, days, time_slots, practical_slots_needed, batches):
         """Ensure students don't have conflicting classes.
@@ -702,6 +735,105 @@ class SimpleTimetableSolver:
 
                         if practical_sessions:
                             self.model.Add(sum(practical_sessions) <= 2)
+
+    def _add_practical_synchronization_constraint(self, sessions, years, divisions, batches, days, time_slots, practical_slots_needed):
+        """Ensure all batches of a division have practicals at the same time slots.
+        This creates synchronized 'practical blocks' — when any batch has a practical,
+        ALL batches of that division must also have a practical at the same time.
+        This reflects real college scheduling where all batches do practicals simultaneously.
+        """
+        constraint_count = 0
+
+        for year in years:
+            for div in divisions:
+                for day in days:
+                    for slot_idx in range(len(time_slots)):
+                        start_slot = time_slots[slot_idx]
+
+                        # Collect practical variables that START at this slot for each batch
+                        batch_vars = {}
+                        all_have_options = True
+                        for batch in batches:
+                            vars_here = [
+                                s["variable"] for s in sessions
+                                if (s["year"] == year
+                                    and s["division"] == div
+                                    and s["batch"] == batch
+                                    and s["day"] == day
+                                    and s["time_slot"] == start_slot
+                                    and s["subject"].get("type") == "practical")
+                            ]
+                            if not vars_here:
+                                all_have_options = False
+                                break
+                            batch_vars[batch] = vars_here
+
+                        # Only add sync constraint if all batches have possible sessions here
+                        if not all_have_options or len(batch_vars) < 2:
+                            continue
+
+                        # Create indicator: does this batch have a practical starting here?
+                        indicators = []
+                        for batch in batches:
+                            ind = self.model.NewBoolVar(
+                                f"sync_{year}_{div}_{batch}_{day}_{slot_idx}"
+                            )
+                            self.model.AddMaxEquality(ind, batch_vars[batch])
+                            indicators.append(ind)
+
+                        # Force all batches to agree: all have practical or none do
+                        for i in range(len(indicators) - 1):
+                            self.model.Add(indicators[i] == indicators[i + 1])
+                            constraint_count += 1
+
+        logger.info(f"Added {constraint_count} practical synchronization constraints")
+
+    def _add_no_consecutive_same_subject_constraint(self, sessions, days, time_slots, breaks):
+        """Penalize two theory/tutorial sessions of the same subject being
+        scheduled in consecutive time slots on the same day for the same division.
+        Uses soft constraints (penalties) to avoid making the problem infeasible."""
+
+        def has_break_between(slot1, slot2):
+            slot1_end = slot1.split('-')[1]
+            slot2_start = slot2.split('-')[0]
+            for break_slot, break_info in breaks.items():
+                break_start, break_end = break_slot.split('-')
+                if slot1_end <= break_start and break_end <= slot2_start:
+                    return True
+            return False
+
+        # Group theory/tutorial sessions by (subject_id, year, division, day)
+        groups = defaultdict(list)
+        for s in sessions:
+            if s["subject"].get("type", "theory") in ("theory", "tutorial"):
+                key = (s["subject_id"], s["year"], s["division"], s["day"])
+                groups[key].append(s)
+
+        penalty_vars = []
+        constraint_count = 0
+        for key, group_sessions in groups.items():
+            # Sort by slot_index within this day
+            group_sessions.sort(key=lambda x: x["slot_index"])
+
+            for i in range(len(group_sessions) - 1):
+                s1 = group_sessions[i]
+                s2 = group_sessions[i + 1]
+
+                # Only constrain truly consecutive slots (adjacent indices, no break between)
+                if s2["slot_index"] == s1["slot_index"] + 1:
+                    if not has_break_between(s1["time_slot"], s2["time_slot"]):
+                        # Soft constraint: penalize both being active
+                        penalty = self.model.NewBoolVar(f"consec_penalty_{constraint_count}")
+                        # penalty = 1 when both s1 and s2 are active (consecutive)
+                        self.model.Add(s1["variable"] + s2["variable"] - 1 <= penalty)
+                        penalty_vars.append(penalty)
+                        constraint_count += 1
+
+        # Minimize consecutive same-subject penalties (heavy weight)
+        if penalty_vars:
+            self.model.Minimize(100 * sum(penalty_vars))
+
+        logger.info(f"Added {constraint_count} no-consecutive-same-subject soft constraints")
 
     def _build_timetable(self, sessions, structure, required_classes, batches):
         """Extract solution and build timetable with dual output:
@@ -973,12 +1105,24 @@ class SimpleTimetableSolver:
             # Assign room
             if subject_type == "practical":
                 room_pool = labs
+                # Flexible practicals (projects, seminars) can use classrooms as fallback
+                if self._is_flexible_practical(session["subject"]):
+                    room_name = self._assign_room_for_session(
+                        room_pool, day, spanned_slots, used_rooms
+                    )
+                    if room_name == "TBD":
+                        room_name = self._assign_room_for_session(
+                            classrooms, day, spanned_slots, used_rooms
+                        )
+                else:
+                    room_name = self._assign_room_for_session(
+                        room_pool, day, spanned_slots, used_rooms
+                    )
             else:
                 room_pool = classrooms
-
-            room_name = self._assign_room_for_session(
-                room_pool, day, spanned_slots, used_rooms
-            )
+                room_name = self._assign_room_for_session(
+                    room_pool, day, spanned_slots, used_rooms
+                )
             room_assignment[skey] = room_name
 
             # Mark room as used for all spanned slots
