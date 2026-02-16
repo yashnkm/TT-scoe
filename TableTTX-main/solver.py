@@ -13,6 +13,8 @@ class SimpleTimetableSolver:
         self.model = None
         self.solver = None
         self.variables = {}
+        self._faculty_limit_penalties = []
+        self._consecutive_penalties = []
 
     def generate_timetable(self, semester_mode: Optional[str] = None) -> Dict:
         """Generate timetable based on actual data - simple and straightforward"""
@@ -104,7 +106,21 @@ class SimpleTimetableSolver:
             self._add_no_conflict_constraints(sessions, days, time_slots, practical_slots_needed, batches)
             self._add_max_practical_per_day_constraint(sessions, years, divisions, batches, days)
             self._add_practical_synchronization_constraint(sessions, years, divisions, batches, days, time_slots, practical_slots_needed)
+            self._add_practical_faculty_limit_constraint(sessions, years, divisions, batches, days, time_slots, faculty)
             self._add_no_consecutive_same_subject_constraint(sessions, days, time_slots, breaks)
+
+            # Combined soft constraint objective:
+            # Faculty limit violations are heavily penalized (weight 1000)
+            # Consecutive same-subject is penalized (weight 100)
+            objective_terms = []
+            fac_penalties = getattr(self, '_faculty_limit_penalties', [])
+            consec_penalties = getattr(self, '_consecutive_penalties', [])
+            if fac_penalties:
+                objective_terms.append(1000 * sum(fac_penalties))
+            if consec_penalties:
+                objective_terms.append(100 * sum(consec_penalties))
+            if objective_terms:
+                self.model.Minimize(sum(objective_terms))
 
             # Solve
             self.solver = cp_model.CpSolver()
@@ -788,6 +804,78 @@ class SimpleTimetableSolver:
 
         logger.info(f"Added {constraint_count} practical synchronization constraints")
 
+    def _add_practical_faculty_limit_constraint(self, sessions, years, divisions, batches, days, time_slots, faculty_list):
+        """Within synchronized practical blocks, penalize concurrent same-subject batches
+        exceeding the number of available faculty for that subject in that division.
+        Uses soft constraints to avoid making the problem infeasible when combined
+        with room constraints across multiple years.
+        """
+        div_map = {"A": 1, "B": 2, "C": 3, "D": 4}
+        constraint_count = 0
+        penalty_vars = []
+
+        for year in years:
+            for div in divisions:
+                div_num = div_map.get(div, 1)
+
+                # Find all practical subjects for this year/division
+                practical_subject_ids = set()
+                for s in sessions:
+                    if (s["year"] == year and s["division"] == div
+                            and s["subject"].get("type") == "practical"):
+                        practical_subject_ids.add(s["subject_id"])
+
+                for subj_id in practical_subject_ids:
+                    # Count unique faculty who can teach this subject for this division
+                    fac_count = 0
+                    for fac in faculty_list:
+                        for assignment in (fac.get("subjects", []) or []):
+                            if not isinstance(assignment, dict):
+                                continue
+                            if assignment.get("subject_id") != subj_id:
+                                continue
+                            allowed_divs = assignment.get("divisions", [])
+                            allowed_batches = assignment.get("batches", [])
+                            # Faculty must be assigned to this division and have batch assignments
+                            if (not allowed_divs or div_num in allowed_divs) and allowed_batches:
+                                fac_count += 1
+                                break  # Count each faculty member once
+
+                    if fac_count == 0:
+                        continue  # No explicit faculty assignments for this division, skip
+
+                    # Skip if faculty can cover all batches simultaneously
+                    if fac_count >= len(batches):
+                        continue
+
+                    # For each (day, start_slot), penalize excess concurrent batches
+                    for day in days:
+                        for slot_idx, time_slot in enumerate(time_slots):
+                            same_subj_vars = [
+                                s["variable"] for s in sessions
+                                if (s["year"] == year
+                                    and s["division"] == div
+                                    and s["day"] == day
+                                    and s["time_slot"] == time_slot
+                                    and s["subject_id"] == subj_id
+                                    and s["subject"].get("type") == "practical")
+                            ]
+
+                            if len(same_subj_vars) > fac_count:
+                                # Soft constraint: penalize each batch beyond the faculty limit
+                                excess = self.model.NewIntVar(
+                                    0, len(same_subj_vars) - fac_count,
+                                    f"fac_excess_{year}_{div}_{subj_id}_{day}_{slot_idx}"
+                                )
+                                self.model.Add(
+                                    sum(same_subj_vars) - fac_count <= excess
+                                )
+                                penalty_vars.append(excess)
+                                constraint_count += 1
+
+        self._faculty_limit_penalties = penalty_vars
+        logger.info(f"Added {constraint_count} practical faculty-limit soft constraints")
+
     def _add_no_consecutive_same_subject_constraint(self, sessions, days, time_slots, breaks):
         """Penalize two theory/tutorial sessions of the same subject being
         scheduled in consecutive time slots on the same day for the same division.
@@ -829,10 +917,7 @@ class SimpleTimetableSolver:
                         penalty_vars.append(penalty)
                         constraint_count += 1
 
-        # Minimize consecutive same-subject penalties (heavy weight)
-        if penalty_vars:
-            self.model.Minimize(100 * sum(penalty_vars))
-
+        self._consecutive_penalties = penalty_vars
         logger.info(f"Added {constraint_count} no-consecutive-same-subject soft constraints")
 
     def _build_timetable(self, sessions, structure, required_classes, batches):
@@ -1078,9 +1163,9 @@ class SimpleTimetableSolver:
         faculty_assignment = {}
         room_assignment = {}
 
-        # Sort sessions: theory first, then practicals (to give theory priority)
+        # Sort sessions: practicals first (strict batch faculty needs), then theory
         sorted_sessions = sorted(active_sessions, key=lambda s: (
-            0 if s["subject"].get("type") in ["theory", "tutorial"] else 1,
+            1 if s["subject"].get("type") in ["theory", "tutorial"] else 0,
             s["year"], s["division"], s.get("batch") or 0
         ))
 
@@ -1135,13 +1220,26 @@ class SimpleTimetableSolver:
 
     def _assign_faculty_for_session(self, session, faculty_list, day, spanned_slots, used_faculty):
         """Pick a faculty member for this session that isn't already used at any of its slots.
-        Prefer faculty with explicit division match over wildcard (empty) divisions.
+        For practicals: also check batch assignment (faculty must be assigned to this batch).
+        Three passes: 1) explicit div + batch match, 2) explicit div (any batch), 3) wildcard div.
         """
         div_map = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5}
         div_num = div_map.get(session["division"], 1)
+        session_batch = session.get("batch")  # None for theory, int for practicals
+        is_practical = session["subject"].get("type") == "practical"
 
-        # Two passes: first explicit division match, then wildcard (empty divisions)
-        for require_explicit in [True, False]:
+        # For practicals: only assign faculty who match the batch assignment
+        # Pass 1: explicit div + batch match, Pass 2: wildcard div + batch match
+        # Never assign a faculty to a batch they're not assigned to
+        # For theory: Pass 1: explicit div match, Pass 2: wildcard div
+        if is_practical and session_batch is not None:
+            passes = [("explicit_div_batch", True, True),
+                      ("wildcard_div_batch", False, True)]
+        else:
+            passes = [("explicit_div", True, False),
+                      ("wildcard_div", False, False)]
+
+        for pass_name, require_explicit_div, require_batch in passes:
             for fac in faculty_list:
                 subjects = fac.get("subjects", []) or []
                 can_teach = False
@@ -1153,14 +1251,22 @@ class SimpleTimetableSolver:
                     for assignment in subjects:
                         if assignment.get("subject_id") == session["subject_id"]:
                             allowed_divs = assignment.get("divisions", [])
-                            if require_explicit:
-                                # First pass: only accept explicit division match
-                                if allowed_divs and div_num in allowed_divs:
-                                    can_teach = True
+                            allowed_batches = assignment.get("batches", [])
+
+                            # Check division
+                            div_ok = False
+                            if require_explicit_div:
+                                div_ok = bool(allowed_divs) and div_num in allowed_divs
                             else:
-                                # Second pass: accept wildcard (empty) divisions too
-                                if not allowed_divs or div_num in allowed_divs:
-                                    can_teach = True
+                                div_ok = not allowed_divs or div_num in allowed_divs
+
+                            # Check batch (only for practicals in first pass)
+                            batch_ok = True
+                            if require_batch and is_practical and session_batch is not None:
+                                batch_ok = bool(allowed_batches) and session_batch in allowed_batches
+
+                            if div_ok and batch_ok:
+                                can_teach = True
                             break
 
                 if not can_teach:

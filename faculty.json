@@ -2,7 +2,7 @@
   "faculty": [
     {
       "name": "J A Doe ",
-      "initials": "JAD",
+      "initials": "JAD ",
       "department": "IT",
       "subjects": [
         {
@@ -24,29 +24,6 @@
           "batches": []
         },
         {
-          "subject_id": 26,
-          "year": 3,
-          "semester": 2,
-          "divisions": [
-            2
-          ],
-          "batches": []
-        },
-        {
-          "subject_id": 31,
-          "year": 3,
-          "semester": 2,
-          "divisions": [
-            1
-          ],
-          "batches": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
           "subject_id": 41,
           "year": 4,
           "semester": 2,
@@ -64,13 +41,11 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         }
       ],
-      "hours_per_week": 18,
+      "hours_per_week": 13,
       "id": 1
     },
     {
@@ -96,9 +71,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -119,9 +92,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -132,18 +103,9 @@
             1
           ],
           "batches": []
-        },
-        {
-          "subject_id": 44,
-          "year": 4,
-          "semester": 2,
-          "divisions": [
-            1
-          ],
-          "batches": []
         }
       ],
-      "hours_per_week": 16,
+      "hours_per_week": 15,
       "id": 2
     },
     {
@@ -169,9 +131,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -202,13 +162,13 @@
           "batches": []
         }
       ],
-      "hours_per_week": 17,
+      "hours_per_week": 21,
       "id": 3
     },
     {
       "name": "N H Deshpande ",
       "initials": "NHD ",
-      "department": "IT",
+      "department": "IT ",
       "subjects": [
         {
           "subject_id": 4,
@@ -228,9 +188,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -252,18 +210,16 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         }
       ],
-      "hours_per_week": 12,
+      "hours_per_week": 16,
       "id": 4
     },
     {
-      "name": " S L Dawkhar ",
-      "initials": "SLD ",
+      "name": "S L Dawkhar ",
+      "initials": "SLD",
       "department": "IT ",
       "subjects": [
         {
@@ -293,9 +249,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -316,9 +270,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -336,7 +288,7 @@
     },
     {
       "name": "S A Sharma ",
-      "initials": "SAS ",
+      "initials": "SAS",
       "department": "IT ",
       "subjects": [
         {
@@ -366,9 +318,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -380,9 +330,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -394,9 +342,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         }
       ],
@@ -404,9 +350,9 @@
       "id": 6
     },
     {
-      "name": "K K Bansal ",
+      "name": "K K Bansal",
       "initials": "KKB ",
-      "department": "IT ",
+      "department": "IT",
       "subjects": [
         {
           "subject_id": 2,
@@ -416,6 +362,18 @@
             2
           ],
           "batches": []
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
         },
         {
           "subject_id": 10,
@@ -435,9 +393,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -458,9 +414,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -472,17 +426,15 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         }
       ],
-      "hours_per_week": 17,
+      "hours_per_week": 21,
       "id": 7
     },
     {
-      "name": "S S Mishra ",
+      "name": " S S Mishra ",
       "initials": "SSM ",
       "department": "IT ",
       "subjects": [
@@ -504,17 +456,39 @@
           ],
           "batches": [
             1,
-            2,
+            2
+          ]
+        },
+        {
+          "subject_id": 32,
+          "year": 3,
+          "semester": 2,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 46,
+          "year": 4,
+          "semester": 2,
+          "divisions": [
+            1
+          ],
+          "batches": [
             3,
             4
           ]
         }
       ],
-      "hours_per_week": 7,
+      "hours_per_week": 17,
       "id": 8
     },
     {
-      "name": "A S Pujari ",
+      "name": " A S Pujari ",
       "initials": "ASP",
       "department": "IT",
       "subjects": [
@@ -536,10 +510,17 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
+        },
+        {
+          "subject_id": 26,
+          "year": 3,
+          "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": []
         },
         {
           "subject_id": 28,
@@ -549,23 +530,14 @@
             2
           ],
           "batches": []
-        },
-        {
-          "subject_id": 34,
-          "year": 4,
-          "semester": 1,
-          "divisions": [
-            2
-          ],
-          "batches": []
         }
       ],
-      "hours_per_week": 13,
+      "hours_per_week": 17,
       "id": 9
     },
     {
       "name": "D G Jadhav ",
-      "initials": "DGJ ",
+      "initials": "DGJ",
       "department": "IT",
       "subjects": [
         {
@@ -586,9 +558,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -609,9 +579,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -632,19 +600,8 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
-          "subject_id": 37,
-          "year": 4,
-          "semester": 1,
-          "divisions": [
             2
-          ],
-          "batches": []
+          ]
         },
         {
           "subject_id": 44,
@@ -656,12 +613,12 @@
           "batches": []
         }
       ],
-      "hours_per_week": 23,
+      "hours_per_week": 22,
       "id": 10
     },
     {
       "name": "R S Agrawal ",
-      "initials": "RSA ",
+      "initials": "RSA",
       "department": "IT",
       "subjects": [
         {
@@ -683,20 +640,6 @@
           "batches": []
         },
         {
-          "subject_id": 24,
-          "year": 3,
-          "semester": 1,
-          "divisions": [
-            1
-          ],
-          "batches": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
-        {
           "subject_id": 41,
           "year": 4,
           "semester": 2,
@@ -714,19 +657,29 @@
           ],
           "batches": [
             1,
-            2,
+            2
+          ]
+        },
+        {
+          "subject_id": 46,
+          "year": 4,
+          "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
             3,
             4
           ]
         }
       ],
-      "hours_per_week": 17,
+      "hours_per_week": 15,
       "id": 11
     },
     {
       "name": "A S Shinde ",
       "initials": "ASS ",
-      "department": "IT ",
+      "department": "IT",
       "subjects": [
         {
           "subject_id": 11,
@@ -746,7 +699,17 @@
           ],
           "batches": [
             1,
-            2,
+            2
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
             3,
             4
           ]
@@ -760,13 +723,11 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         }
       ],
-      "hours_per_week": 17,
+      "hours_per_week": 15,
       "id": 12
     },
     {
@@ -792,9 +753,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -833,9 +792,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         }
       ],
@@ -865,9 +822,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -888,9 +843,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -916,33 +869,10 @@
       "id": 14
     },
     {
-      "name": "A A Banerjee ",
-      "initials": "AAB ",
+      "name": " V V Banerjee ",
+      "initials": "VVB",
       "department": "IT",
       "subjects": [
-        {
-          "subject_id": 12,
-          "year": 2,
-          "semester": 2,
-          "divisions": [
-            2
-          ],
-          "batches": []
-        },
-        {
-          "subject_id": 16,
-          "year": 2,
-          "semester": 2,
-          "divisions": [
-            1
-          ],
-          "batches": [
-            1,
-            2,
-            3,
-            4
-          ]
-        },
         {
           "subject_id": 21,
           "year": 3,
@@ -952,14 +882,38 @@
             2
           ],
           "batches": []
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 47,
+          "year": 4,
+          "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
         }
       ],
-      "hours_per_week": 8,
+      "hours_per_week": 11,
       "id": 15
     },
     {
       "name": "S S Gadekar ",
-      "initials": "SSG ",
+      "initials": "SSG",
       "department": "IT",
       "subjects": [
         {
@@ -989,9 +943,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -1012,16 +964,16 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
           "subject_id": 43,
           "year": 4,
           "semester": 2,
-          "divisions": [],
+          "divisions": [
+            1
+          ],
           "batches": []
         }
       ],
@@ -1029,8 +981,8 @@
       "id": 16
     },
     {
-      "name": " S H Thengil ",
-      "initials": "SHT ",
+      "name": "S H Thengil ",
+      "initials": "SHT",
       "department": "IT",
       "subjects": [
         {
@@ -1051,9 +1003,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -1074,9 +1024,7 @@
           ],
           "batches": [
             1,
-            2,
-            3,
-            4
+            2
           ]
         },
         {
@@ -1102,10 +1050,22 @@
       "id": 17
     },
     {
-      "name": " S R Ganorkar ",
-      "initials": "SRG",
+      "name": "S R Ganorkar ",
+      "initials": "SRG ",
       "department": "IT",
       "subjects": [
+        {
+          "subject_id": 31,
+          "year": 3,
+          "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
         {
           "subject_id": 35,
           "year": 4,
@@ -1121,33 +1081,361 @@
           "year": 4,
           "semester": 1,
           "divisions": [
-            1,
-            2
+            1
           ],
           "batches": [
             1,
-            2,
+            2
+          ]
+        }
+      ],
+      "hours_per_week": 7,
+      "id": 18
+    },
+    {
+      "name": "A G Rao ",
+      "initials": "AGR",
+      "department": "IT",
+      "subjects": [
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
             3,
             4
           ]
         },
         {
-          "subject_id": 47,
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 45,
+          "year": 4,
+          "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        }
+      ],
+      "hours_per_week": 22,
+      "id": 19
+    },
+    {
+      "name": "S M Joshi ",
+      "initials": "SMJ",
+      "department": "IT",
+      "subjects": [
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2
+          ]
+        }
+      ],
+      "hours_per_week": 22,
+      "id": 20
+    },
+    {
+      "name": "R S Vaidya ",
+      "initials": "RSV",
+      "department": "IT",
+      "subjects": [
+        {
+          "subject_id": 15,
+          "year": 2,
+          "semester": 2,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 16,
+          "year": 2,
+          "semester": 2,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 32,
+          "year": 3,
+          "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        }
+      ],
+      "hours_per_week": 18,
+      "id": 21
+    },
+    {
+      "name": "R B Vartak",
+      "initials": "RBV ",
+      "department": "IT",
+      "subjects": [
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 14,
+          "year": 2,
+          "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 30,
+          "year": 3,
+          "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        }
+      ],
+      "hours_per_week": 18,
+      "id": 22
+    },
+    {
+      "name": "L M Jadhav ",
+      "initials": "LMJ",
+      "department": "IT",
+      "subjects": [
+        {
+          "subject_id": 15,
+          "year": 2,
+          "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 16,
+          "year": 2,
+          "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 30,
+          "year": 3,
+          "semester": 2,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 45,
           "year": 4,
           "semester": 2,
           "divisions": [
             1
           ],
           "batches": [
-            1,
-            2,
             3,
             4
           ]
         }
       ],
-      "hours_per_week": 15,
-      "id": 18
+      "hours_per_week": 16,
+      "id": 23
     }
   ]
 }
