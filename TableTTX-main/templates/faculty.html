@@ -575,31 +575,43 @@ document.addEventListener('DOMContentLoaded', function() {
         let selectedHtml = '';
         checkedBoxes.forEach(checkbox => {
             const baseHours = parseInt(checkbox.dataset.hours);
+            const isPractical = checkbox.dataset.type === 'practical';
             toggleDivisionInputs(checkbox);
-            
-            // Count selected divisions for this subject
+
             const targetId = checkbox.dataset.divTarget;
             let divisionCount = 0;
+            let batchCount = 0;
             if (targetId) {
                 const container = document.getElementById(targetId);
                 if (container) {
                     const divisionChecks = container.querySelectorAll('input[name^="divisions_"]:checked');
                     divisionCount = divisionChecks.length;
+                    const batchChecks = container.querySelectorAll('input[name^="batches_"]:checked');
+                    batchCount = batchChecks.length;
                 }
             }
-            // Default to 1 if no divisions selected (means all divisions)
-            if (divisionCount === 0) divisionCount = 1;
-            
-            const subjectHours = baseHours * divisionCount;
+
+            // Practicals: multiply by batch count; Theory: multiply by division count
+            let subjectHours;
+            let multiplierLabel;
+            if (isPractical) {
+                const multiplier = Math.max(batchCount, 1);
+                subjectHours = baseHours * multiplier;
+                multiplierLabel = batchCount > 1 ? ` (${batchCount} batches)` : '';
+            } else {
+                const multiplier = Math.max(divisionCount, 1);
+                subjectHours = baseHours * multiplier;
+                multiplierLabel = divisionCount > 1 ? ` (${divisionCount} div)` : '';
+            }
             totalHours += subjectHours;
-            
+
             selectedHtml += `
                 <div class="selected-subject-badge">
                     <span class="badge ${checkbox.dataset.type === 'theory' ? 'bg-info' : 'bg-warning'} me-2">
                         ${checkbox.dataset.type.charAt(0).toUpperCase() + checkbox.dataset.type.slice(1)}
                     </span>
                     <strong>${checkbox.dataset.code}</strong> - ${checkbox.dataset.name}
-                    <small class="ms-2">${subjectHours}h/week${divisionCount > 1 ? ` (${divisionCount} div)` : ''}</small>
+                    <small class="ms-2">${subjectHours}h/week${multiplierLabel}</small>
                     <span class="close ms-2" onclick="unselectSubject('${checkbox.id}')">&times;</span>
                 </div>
             `;

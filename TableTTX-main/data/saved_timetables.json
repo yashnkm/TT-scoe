@@ -1427,7 +1427,7 @@
                 },
                 "4": {
                   "subject": "DSA lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "A G Rao",
                   "room": "Lab No. 38",
                   "code": "214447"
                 }
@@ -1458,7 +1458,7 @@
                 },
                 "4": {
                   "subject": "DSA lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "A G Rao",
                   "room": "Lab No. 38",
                   "code": "214447"
                 }
@@ -1501,7 +1501,7 @@
                 },
                 "2": {
                   "subject": "DSA lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "A D Tawlare",
                   "room": "Lab No. 35",
                   "code": "214447"
                 },
@@ -1513,7 +1513,7 @@
                 },
                 "4": {
                   "subject": "OOP lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "A G Rao",
                   "room": "Lab No. 38",
                   "code": "214448"
                 }
@@ -1532,7 +1532,7 @@
                 },
                 "2": {
                   "subject": "DSA lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "A D Tawlare",
                   "room": "Lab No. 35",
                   "code": "214447"
                 },
@@ -1544,7 +1544,7 @@
                 },
                 "4": {
                   "subject": "OOP lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "A G Rao",
                   "room": "Lab No. 38",
                   "code": "214448"
                 }
@@ -1605,7 +1605,7 @@
                 },
                 "4": {
                   "subject": "OOP lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "A G Rao",
                   "room": "Lab No. 38",
                   "code": "214448"
                 }
@@ -1636,7 +1636,7 @@
                 },
                 "4": {
                   "subject": "OOP lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "A G Rao",
                   "room": "Lab No. 38",
                   "code": "214448"
                 }
@@ -2197,7 +2197,7 @@
             "09:15-10:15": {
               "subject": "DSA lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "A D Tawlare",
               "room": "Lab No. 35",
               "code": "214447",
               "batch": 2,
@@ -2208,7 +2208,7 @@
             "10:15-11:15": {
               "subject": "DSA lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "A D Tawlare",
               "room": "Lab No. 35",
               "code": "214447",
               "batch": 2,
@@ -2775,7 +2775,7 @@
             "11:30-12:30": {
               "subject": "DSA lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "A G Rao",
               "room": "Lab No. 38",
               "code": "214447",
               "batch": 4,
@@ -2786,7 +2786,7 @@
             "12:30-13:30": {
               "subject": "DSA lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "A G Rao",
               "room": "Lab No. 38",
               "code": "214447",
               "batch": 4,
@@ -2821,7 +2821,7 @@
             "09:15-10:15": {
               "subject": "OOP lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "A G Rao",
               "room": "Lab No. 38",
               "code": "214448",
               "batch": 4,
@@ -2832,7 +2832,7 @@
             "10:15-11:15": {
               "subject": "OOP lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "A G Rao",
               "room": "Lab No. 38",
               "code": "214448",
               "batch": 4,
@@ -2873,7 +2873,7 @@
             "14:30-15:30": {
               "subject": "OOP lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "A G Rao",
               "room": "Lab No. 38",
               "code": "214448",
               "batch": 4,
@@ -2884,7 +2884,7 @@
             "15:30-16:30": {
               "subject": "OOP lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "A G Rao",
               "room": "Lab No. 38",
               "code": "214448",
               "batch": 4,
@@ -3031,7 +3031,7 @@
                 },
                 "4": {
                   "subject": "DSA lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "S M Joshi",
                   "room": "Office Building 3rd Floor",
                   "code": "214447"
                 }
@@ -3062,7 +3062,7 @@
                 },
                 "4": {
                   "subject": "DSA lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "S M Joshi",
                   "room": "Office Building 3rd Floor",
                   "code": "214447"
                 }
@@ -3155,7 +3155,7 @@
                 },
                 "4": {
                   "subject": "DSA lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "S M Joshi",
                   "room": "Lab No. 38",
                   "code": "214447"
                 }
@@ -3186,7 +3186,7 @@
                 },
                 "4": {
                   "subject": "DSA lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "S M Joshi",
                   "room": "Lab No. 38",
                   "code": "214447"
                 }
@@ -3359,7 +3359,7 @@
                 },
                 "4": {
                   "subject": "OOP lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "S M Joshi",
                   "room": "Lab No. 38",
                   "code": "214448"
                 }
@@ -3390,7 +3390,7 @@
                 },
                 "4": {
                   "subject": "OOP lab ",
-                  "faculty": "Unassigned",
+                  "faculty": "S M Joshi",
                   "room": "Lab No. 38",
                   "code": "214448"
                 }
@@ -4459,7 +4459,7 @@
             "11:30-12:30": {
               "subject": "DSA lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S M Joshi",
               "room": "Office Building 3rd Floor",
               "code": "214447",
               "batch": 4,
@@ -4470,7 +4470,7 @@
             "12:30-13:30": {
               "subject": "DSA lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S M Joshi",
               "room": "Office Building 3rd Floor",
               "code": "214447",
               "batch": 4,
@@ -4543,7 +4543,7 @@
             "14:30-15:30": {
               "subject": "DSA lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S M Joshi",
               "room": "Lab No. 38",
               "code": "214447",
               "batch": 4,
@@ -4554,7 +4554,7 @@
             "15:30-16:30": {
               "subject": "DSA lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S M Joshi",
               "room": "Lab No. 38",
               "code": "214447",
               "batch": 4,
@@ -4667,7 +4667,7 @@
             "14:30-15:30": {
               "subject": "OOP lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S M Joshi",
               "room": "Lab No. 38",
               "code": "214448",
               "batch": 4,
@@ -4678,7 +4678,7 @@
             "15:30-16:30": {
               "subject": "OOP lab ",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S M Joshi",
               "room": "Lab No. 38",
               "code": "214448",
               "batch": 4,
@@ -6749,7 +6749,7 @@
                 },
                 "4": {
                   "subject": "OS Lab",
-                  "faculty": "Unassigned",
+                  "faculty": "R B Vartak",
                   "room": "Office Building 3rd Floor",
                   "code": "314446"
                 }
@@ -6780,7 +6780,7 @@
                 },
                 "4": {
                   "subject": "OS Lab",
-                  "faculty": "Unassigned",
+                  "faculty": "R B Vartak",
                   "room": "Office Building 3rd Floor",
                   "code": "314446"
                 }
@@ -6857,7 +6857,7 @@
                 },
                 "4": {
                   "subject": "HCI Lab",
-                  "faculty": "Unassigned",
+                  "faculty": "R S Vaidya",
                   "room": "Lab No. 38",
                   "code": "314447"
                 }
@@ -6888,7 +6888,7 @@
                 },
                 "4": {
                   "subject": "HCI Lab",
-                  "faculty": "Unassigned",
+                  "faculty": "R S Vaidya",
                   "room": "Lab No. 38",
                   "code": "314447"
                 }
@@ -6925,7 +6925,7 @@
                 },
                 "2": {
                   "subject": "OS Lab",
-                  "faculty": "Unassigned",
+                  "faculty": "S H Thengil",
                   "room": "Lab No. 35",
                   "code": "314446"
                 },
@@ -6937,7 +6937,7 @@
                 },
                 "4": {
                   "subject": "LP1",
-                  "faculty": "Unassigned",
+                  "faculty": "R S Vaidya",
                   "room": "Lab No. 38",
                   "code": "314448"
                 }
@@ -6956,7 +6956,7 @@
                 },
                 "2": {
                   "subject": "OS Lab",
-                  "faculty": "Unassigned",
+                  "faculty": "S H Thengil",
                   "room": "Lab No. 35",
                   "code": "314446"
                 },
@@ -6968,7 +6968,7 @@
                 },
                 "4": {
                   "subject": "LP1",
-                  "faculty": "Unassigned",
+                  "faculty": "R S Vaidya",
                   "room": "Lab No. 38",
                   "code": "314448"
                 }
@@ -7581,7 +7581,7 @@
             "09:15-10:15": {
               "subject": "OS Lab",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S H Thengil",
               "room": "Lab No. 35",
               "code": "314446",
               "batch": 2,
@@ -7592,7 +7592,7 @@
             "10:15-11:15": {
               "subject": "OS Lab",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S H Thengil",
               "room": "Lab No. 35",
               "code": "314446",
               "batch": 2,
@@ -8097,7 +8097,7 @@
             "11:30-12:30": {
               "subject": "OS Lab",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "R B Vartak",
               "room": "Office Building 3rd Floor",
               "code": "314446",
               "batch": 4,
@@ -8108,7 +8108,7 @@
             "12:30-13:30": {
               "subject": "OS Lab",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "R B Vartak",
               "room": "Office Building 3rd Floor",
               "code": "314446",
               "batch": 4,
@@ -8165,7 +8165,7 @@
             "11:30-12:30": {
               "subject": "HCI Lab",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "R S Vaidya",
               "room": "Lab No. 38",
               "code": "314447",
               "batch": 4,
@@ -8176,7 +8176,7 @@
             "12:30-13:30": {
               "subject": "HCI Lab",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "R S Vaidya",
               "room": "Lab No. 38",
               "code": "314447",
               "batch": 4,
@@ -8205,7 +8205,7 @@
             "09:15-10:15": {
               "subject": "LP1",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "R S Vaidya",
               "room": "Lab No. 38",
               "code": "314448",
               "batch": 4,
@@ -8216,7 +8216,7 @@
             "10:15-11:15": {
               "subject": "LP1",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "R S Vaidya",
               "room": "Lab No. 38",
               "code": "314448",
               "batch": 4,
@@ -8347,13 +8347,13 @@
               "batches": {
                 "1": {
                   "subject": "Project Stage 1",
-                  "faculty": "Unassigned",
+                  "faculty": "N H Deshpande",
                   "room": "Lab No. 39",
                   "code": "414448"
                 },
                 "2": {
                   "subject": "Project Stage 1",
-                  "faculty": "Unassigned",
+                  "faculty": "N H Deshpande",
                   "room": "Lab No. 40",
                   "code": "414448"
                 },
@@ -8365,7 +8365,7 @@
                 },
                 "4": {
                   "subject": "LP3",
-                  "faculty": "Unassigned",
+                  "faculty": "V V Banerjee",
                   "room": "Office Building 3rd Floor",
                   "code": "414446"
                 }
@@ -8378,13 +8378,13 @@
               "batches": {
                 "1": {
                   "subject": "Project Stage 1",
-                  "faculty": "Unassigned",
+                  "faculty": "N H Deshpande",
                   "room": "Lab No. 39",
                   "code": "414448"
                 },
                 "2": {
                   "subject": "Project Stage 1",
-                  "faculty": "Unassigned",
+                  "faculty": "N H Deshpande",
                   "room": "Lab No. 40",
                   "code": "414448"
                 },
@@ -8396,7 +8396,7 @@
                 },
                 "4": {
                   "subject": "LP3",
-                  "faculty": "Unassigned",
+                  "faculty": "V V Banerjee",
                   "room": "Office Building 3rd Floor",
                   "code": "414446"
                 }
@@ -8489,7 +8489,7 @@
                 },
                 "3": {
                   "subject": "Project Stage 1",
-                  "faculty": "Unassigned",
+                  "faculty": "A G Rao",
                   "room": "Lab No. 42",
                   "code": "414448"
                 },
@@ -8520,7 +8520,7 @@
                 },
                 "3": {
                   "subject": "Project Stage 1",
-                  "faculty": "Unassigned",
+                  "faculty": "A G Rao",
                   "room": "Lab No. 42",
                   "code": "414448"
                 },
@@ -8647,7 +8647,7 @@
                 },
                 "2": {
                   "subject": "LP3",
-                  "faculty": "Unassigned",
+                  "faculty": "S P Palekar",
                   "room": "Lab No. 35",
                   "code": "414446"
                 },
@@ -8678,7 +8678,7 @@
                 },
                 "2": {
                   "subject": "LP3",
-                  "faculty": "Unassigned",
+                  "faculty": "S P Palekar",
                   "room": "Lab No. 35",
                   "code": "414446"
                 },
@@ -8797,7 +8797,7 @@
             "11:30-12:30": {
               "subject": "Project Stage 1",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "N H Deshpande",
               "room": "Lab No. 39",
               "code": "414448",
               "batch": 1,
@@ -8808,7 +8808,7 @@
             "12:30-13:30": {
               "subject": "Project Stage 1",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "N H Deshpande",
               "room": "Lab No. 39",
               "code": "414448",
               "batch": 1,
@@ -9089,7 +9089,7 @@
             "11:30-12:30": {
               "subject": "Project Stage 1",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "N H Deshpande",
               "room": "Lab No. 40",
               "code": "414448",
               "batch": 2,
@@ -9100,7 +9100,7 @@
             "12:30-13:30": {
               "subject": "Project Stage 1",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "N H Deshpande",
               "room": "Lab No. 40",
               "code": "414448",
               "batch": 2,
@@ -9263,7 +9263,7 @@
             "11:30-12:30": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S P Palekar",
               "room": "Lab No. 35",
               "code": "414446",
               "batch": 2,
@@ -9274,7 +9274,7 @@
             "12:30-13:30": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S P Palekar",
               "room": "Lab No. 35",
               "code": "414446",
               "batch": 2,
@@ -9471,7 +9471,7 @@
             "14:30-15:30": {
               "subject": "Project Stage 1",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "A G Rao",
               "room": "Lab No. 42",
               "code": "414448",
               "batch": 3,
@@ -9482,7 +9482,7 @@
             "15:30-16:30": {
               "subject": "Project Stage 1",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "A G Rao",
               "room": "Lab No. 42",
               "code": "414448",
               "batch": 3,
@@ -9673,7 +9673,7 @@
             "11:30-12:30": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "V V Banerjee",
               "room": "Office Building 3rd Floor",
               "code": "414446",
               "batch": 4,
@@ -9684,7 +9684,7 @@
             "12:30-13:30": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "V V Banerjee",
               "room": "Office Building 3rd Floor",
               "code": "414446",
               "batch": 4,
@@ -9945,7 +9945,7 @@
                 },
                 "2": {
                   "subject": "LP3",
-                  "faculty": "Unassigned",
+                  "faculty": "S S Gadekar",
                   "room": "Lab No. 40",
                   "code": "414446"
                 },
@@ -9957,7 +9957,7 @@
                 },
                 "4": {
                   "subject": "LP4",
-                  "faculty": "Unassigned",
+                  "faculty": "L M Jadhav",
                   "room": "Office Building 3rd Floor",
                   "code": "414447"
                 }
@@ -9976,7 +9976,7 @@
                 },
                 "2": {
                   "subject": "LP3",
-                  "faculty": "Unassigned",
+                  "faculty": "S S Gadekar",
                   "room": "Lab No. 40",
                   "code": "414446"
                 },
@@ -9988,7 +9988,7 @@
                 },
                 "4": {
                   "subject": "LP4",
-                  "faculty": "Unassigned",
+                  "faculty": "L M Jadhav",
                   "room": "Office Building 3rd Floor",
                   "code": "414447"
                 }
@@ -10245,19 +10245,19 @@
                 },
                 "2": {
                   "subject": "LP4",
-                  "faculty": "Unassigned",
+                  "faculty": "S M Joshi",
                   "room": "Lab No. 40",
                   "code": "414447"
                 },
                 "3": {
                   "subject": "LP3",
-                  "faculty": "Unassigned",
+                  "faculty": "S M Joshi",
                   "room": "Lab No. 42",
                   "code": "414446"
                 },
                 "4": {
                   "subject": "LP3",
-                  "faculty": "Unassigned",
+                  "faculty": "S M Joshi",
                   "room": "Office Building 3rd Floor",
                   "code": "414446"
                 }
@@ -10276,19 +10276,19 @@
                 },
                 "2": {
                   "subject": "LP4",
-                  "faculty": "Unassigned",
+                  "faculty": "S M Joshi",
                   "room": "Lab No. 40",
                   "code": "414447"
                 },
                 "3": {
                   "subject": "LP3",
-                  "faculty": "Unassigned",
+                  "faculty": "S M Joshi",
                   "room": "Lab No. 42",
                   "code": "414446"
                 },
                 "4": {
                   "subject": "LP3",
-                  "faculty": "Unassigned",
+                  "faculty": "S M Joshi",
                   "room": "Office Building 3rd Floor",
                   "code": "414446"
                 }
@@ -10681,7 +10681,7 @@
             "09:15-10:15": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S S Gadekar",
               "room": "Lab No. 40",
               "code": "414446",
               "batch": 2,
@@ -10692,7 +10692,7 @@
             "10:15-11:15": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S S Gadekar",
               "room": "Lab No. 40",
               "code": "414446",
               "batch": 2,
@@ -10861,7 +10861,7 @@
             "09:15-10:15": {
               "subject": "LP4",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S M Joshi",
               "room": "Lab No. 40",
               "code": "414447",
               "batch": 2,
@@ -10872,7 +10872,7 @@
             "10:15-11:15": {
               "subject": "LP4",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S M Joshi",
               "room": "Lab No. 40",
               "code": "414447",
               "batch": 2,
@@ -11153,7 +11153,7 @@
             "09:15-10:15": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S M Joshi",
               "room": "Lab No. 42",
               "code": "414446",
               "batch": 3,
@@ -11164,7 +11164,7 @@
             "10:15-11:15": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S M Joshi",
               "room": "Lab No. 42",
               "code": "414446",
               "batch": 3,
@@ -11265,7 +11265,7 @@
             "09:15-10:15": {
               "subject": "LP4",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "L M Jadhav",
               "room": "Office Building 3rd Floor",
               "code": "414447",
               "batch": 4,
@@ -11276,7 +11276,7 @@
             "10:15-11:15": {
               "subject": "LP4",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "L M Jadhav",
               "room": "Office Building 3rd Floor",
               "code": "414447",
               "batch": 4,
@@ -11445,7 +11445,7 @@
             "09:15-10:15": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S M Joshi",
               "room": "Office Building 3rd Floor",
               "code": "414446",
               "batch": 4,
@@ -11456,7 +11456,7 @@
             "10:15-11:15": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "Unassigned",
+              "faculty": "S M Joshi",
               "room": "Office Building 3rd Floor",
               "code": "414446",
               "batch": 4,
@@ -11505,8 +11505,8 @@
           }
         }
       },
-      "saved_at": "2026-02-17T04:30:25.696446",
-      "saved_at_formatted": "2026-02-17 04:30:25",
+      "saved_at": "2026-02-19T16:02:30.234251",
+      "saved_at_formatted": "2026-02-19 16:02:30",
       "semester_mode": "odd",
       "fingerprint": "1859e7898d4f25786bd73c2191b05870",
       "auto_saved": true

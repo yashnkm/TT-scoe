@@ -1145,19 +1145,23 @@ class SimpleTimetableSolver:
     def _assign_faculty_and_rooms(self, active_sessions, days, time_slots):
         """Conflict-aware faculty and room assignment for all active sessions.
         Returns two dicts mapping session_key -> faculty_name and session_key -> room_name.
+        Faculty can supervise multiple practical batches simultaneously but
+        cannot teach theory and supervise a practical at the same time.
         """
         faculty_list = data_manager.get_faculty()
         rooms_list = data_manager.get_rooms()
         labs = [r for r in rooms_list if r.get("type") in ["lab", "both"]]
         classrooms = [r for r in rooms_list if r.get("type") in ["classroom", "both"]]
 
-        # Track used faculty and rooms per (day, slot)
-        used_faculty = {}  # (day, slot) -> set of faculty names
-        used_rooms = {}    # (day, slot) -> set of room names
+        # Track faculty usage separately: theory blocks everything, practicals don't block other practicals
+        used_faculty_theory = {}    # (day, slot) -> set of faculty in theory sessions
+        used_faculty_practical = {} # (day, slot) -> set of faculty in practical sessions
+        used_rooms = {}             # (day, slot) -> set of room names
 
         for day in days:
             for slot in time_slots:
-                used_faculty[(day, slot)] = set()
+                used_faculty_theory[(day, slot)] = set()
+                used_faculty_practical[(day, slot)] = set()
                 used_rooms[(day, slot)] = set()
 
         faculty_assignment = {}
@@ -1174,18 +1178,22 @@ class SimpleTimetableSolver:
             subject_type = session["subject"].get("type", "theory")
             spanned_slots = session.get("spanned_slots", [session["time_slot"]])
             day = session["day"]
+            is_practical = subject_type == "practical"
 
             # Assign faculty
             fac_name = self._assign_faculty_for_session(
-                session, faculty_list, day, spanned_slots, used_faculty
+                session, faculty_list, day, spanned_slots,
+                used_faculty_theory, used_faculty_practical
             )
             faculty_assignment[skey] = fac_name
 
-            # Mark faculty as used for all spanned slots
+            # Mark faculty as used in the appropriate tracker
             if fac_name != "Unassigned":
                 for slot in spanned_slots:
-                    if (day, slot) in used_faculty:
-                        used_faculty[(day, slot)].add(fac_name)
+                    if is_practical:
+                        used_faculty_practical[(day, slot)].add(fac_name)
+                    else:
+                        used_faculty_theory[(day, slot)].add(fac_name)
 
             # Assign room
             if subject_type == "practical":
@@ -1218,10 +1226,11 @@ class SimpleTimetableSolver:
 
         return faculty_assignment, room_assignment
 
-    def _assign_faculty_for_session(self, session, faculty_list, day, spanned_slots, used_faculty):
-        """Pick a faculty member for this session that isn't already used at any of its slots.
-        For practicals: also check batch assignment (faculty must be assigned to this batch).
-        Three passes: 1) explicit div + batch match, 2) explicit div (any batch), 3) wildcard div.
+    def _assign_faculty_for_session(self, session, faculty_list, day, spanned_slots,
+                                     used_faculty_theory, used_faculty_practical=None):
+        """Pick a faculty member for this session.
+        For practicals: check batch assignment, only blocked by theory (can supervise multiple practicals).
+        For theory: blocked by both theory and practical sessions.
         """
         div_map = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5}
         div_num = div_map.get(session["division"], 1)
@@ -1276,9 +1285,16 @@ class SimpleTimetableSolver:
                 fac_name = fac.get("name", "Unassigned").strip()
                 is_free = True
                 for slot in spanned_slots:
-                    if (day, slot) in used_faculty and fac_name in used_faculty[(day, slot)]:
+                    # Always blocked by theory sessions
+                    if (day, slot) in used_faculty_theory and fac_name in used_faculty_theory[(day, slot)]:
                         is_free = False
                         break
+                    # Theory sessions also blocked by practical sessions
+                    if not is_practical and used_faculty_practical:
+                        if (day, slot) in used_faculty_practical and fac_name in used_faculty_practical[(day, slot)]:
+                            is_free = False
+                            break
+                    # Practicals are NOT blocked by other practicals (faculty can supervise multiple batches)
 
                 if is_free:
                     return fac_name
