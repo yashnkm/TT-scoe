@@ -605,7 +605,7 @@ Make them so good that the user will say "Wow, this AI really understands schedu
                         sessions_to_check = session if isinstance(session, list) else [session]
                         
                         for single_session in sessions_to_check:
-                            if isinstance(single_session, dict) and single_session.get("faculty") == faculty_name:
+                            if isinstance(single_session, dict) and single_session.get("faculty", "").strip() == faculty_name.strip():
                                 affected_sessions.append({
                                     "view": view_key,
                                     "day": day,
@@ -951,8 +951,8 @@ Make them so good that the user will say "Wow, this AI really understands schedu
         
         # Look for faculty who can teach the same subject
         for faculty in faculty_list:
-            faculty_name = faculty.get('name', '')
-            
+            faculty_name = faculty.get('name', '').strip()
+
             # Skip the unavailable faculty
             if faculty_name == unavailable_faculty:
                 continue
@@ -1497,19 +1497,19 @@ Make them so good that the user will say "Wow, this AI really understands schedu
     def _match_faculty_name(self, input_name: str) -> str:
         """Match input name against actual faculty names in database"""
         faculty_list = data_manager.get_faculty()
-        input_lower = input_name.lower()
-        
+        input_lower = input_name.strip().lower()
+
         # Exact match
         for faculty in faculty_list:
-            if faculty.get('name', '').lower() == input_lower:
-                return faculty.get('name')
-        
+            if faculty.get('name', '').strip().lower() == input_lower:
+                return faculty.get('name', '').strip()
+
         # Partial match (contains)
         for faculty in faculty_list:
-            faculty_name_lower = faculty.get('name', '').lower()
+            faculty_name_lower = faculty.get('name', '').strip().lower()
             if input_lower in faculty_name_lower or faculty_name_lower in input_lower:
-                return faculty.get('name')
-        
+                return faculty.get('name', '').strip()
+
         # Last name match
         input_words = input_name.split()
         for faculty in faculty_list:
@@ -1517,35 +1517,35 @@ Make them so good that the user will say "Wow, this AI really understands schedu
             for input_word in input_words:
                 for faculty_word in faculty_words:
                     if input_word.lower() == faculty_word.lower() and len(input_word) > 2:
-                        return faculty.get('name')
-        
+                        return faculty.get('name', '').strip()
+
         # If no match found, return the original input
-        return input_name
+        return input_name.strip()
     
     def _find_similar_faculty(self, faculty_name: str) -> List[str]:
         """Find faculty names similar to the input"""
         faculty_list = data_manager.get_faculty()
         similar = []
-        
-        input_lower = faculty_name.lower()
+
+        input_lower = faculty_name.strip().lower()
         input_words = set(input_lower.split())
-        
+
         for faculty in faculty_list:
-            faculty_name_lower = faculty.get('name', '').lower()
+            faculty_name_lower = faculty.get('name', '').strip().lower()
             faculty_words = set(faculty_name_lower.split())
-            
+
             # Check word overlap
             overlap = input_words & faculty_words
             if overlap and len(similar) < 3:
-                similar.append(faculty.get('name'))
-        
+                similar.append(faculty.get('name', '').strip())
+
         return similar
     
     def _get_available_faculty_list(self) -> List[str]:
         """Get list of all available faculty"""
         try:
             faculty_list = data_manager.get_faculty()
-            return [f.get('name', 'Unknown') for f in faculty_list]
+            return [f.get('name', 'Unknown').strip() for f in faculty_list]
         except:
             return []
     

@@ -15,6 +15,28 @@ from reportlab.lib.units import inch
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 
+# In-memory timetable cache (Flask cookie sessions can't hold large timetable data)
+_timetable_cache = {}
+
+def _get_current_timetable():
+    """Get current timetable from cache, session, or most recent saved timetable."""
+    # 1. In-memory cache (fastest)
+    if _timetable_cache.get('timetable'):
+        return _timetable_cache['timetable']
+    # 2. Session (may work for small timetables)
+    tt = session.get('current_timetable')
+    if tt:
+        _timetable_cache['timetable'] = tt
+        return tt
+    # 3. Fall back to most recently saved timetable from disk
+    saved = data_manager.get_saved_timetables()
+    if saved:
+        tt = saved[0].get('timetable', {})
+        if tt:
+            _timetable_cache['timetable'] = tt
+            return tt
+    return {}
+
 # Authentication credentials
 ADMIN_USERNAME = 'admin'
 ADMIN_PASSWORD = 'admin@123'
@@ -52,6 +74,7 @@ def login():
 @app.route('/logout')
 def logout():
     """Logout and clear session"""
+    _timetable_cache.clear()
     session.clear()
     flash('You have been logged out successfully.', 'info')
     return redirect(url_for('login'))
@@ -430,8 +453,9 @@ def generate_timetable():
             for warning in result["warnings"]:
                 flash(f'Warning: {warning}', 'warning')
 
-        # Store the result in session for AI Assistant use
+        # Store the result for AI Assistant use
         if "timetable" in result:
+            _timetable_cache['timetable'] = result["timetable"]
             session['current_timetable'] = result["timetable"]
             session['timetable_saved_at'] = datetime.now().isoformat()
 
@@ -466,9 +490,9 @@ def api_generate_timetable():
 @app.route('/api/current-timetable', methods=['GET'])
 @login_required
 def api_get_current_timetable():
-    """API endpoint to get current timetable from session"""
+    """API endpoint to get current timetable"""
     try:
-        current_timetable = session.get('current_timetable', {})
+        current_timetable = _get_current_timetable()
         if current_timetable:
             return jsonify({
                 "success": True,
@@ -528,7 +552,7 @@ def api_ai_process_request():
         data = request.get_json()
         user_request = data.get('request', '')
         user_feedback = data.get('user_feedback', '')
-        current_timetable = session.get('current_timetable', {})
+        current_timetable = _get_current_timetable()
         
         if not user_request:
             return jsonify({"error": "Request cannot be empty"}), 400
@@ -661,9 +685,10 @@ def api_save_timetable():
         data = request.get_json()
         timetable = data.get('timetable', {})
         
+        _timetable_cache['timetable'] = timetable
         session['current_timetable'] = timetable
         session['timetable_saved_at'] = datetime.now().isoformat()
-        
+
         return jsonify({"success": True, "message": "Timetable saved successfully"})
         
     except Exception as e:
@@ -718,7 +743,8 @@ def api_load_saved_timetable(timetable_id):
         if not saved_timetable:
             return jsonify({"error": "Timetable not found"}), 404
         
-        # Load into session
+        # Load into cache and session
+        _timetable_cache['timetable'] = saved_timetable['timetable']
         session['current_timetable'] = saved_timetable['timetable']
         session['timetable_saved_at'] = saved_timetable['saved_at']
         
@@ -754,7 +780,7 @@ def api_ai_get_suggestions():
     try:
         data = request.get_json()
         user_request = data.get('request', '')
-        current_timetable = session.get('current_timetable', {})
+        current_timetable = _get_current_timetable()
         user_feedback = data.get('user_feedback', '')
         
         if not user_request:
@@ -766,13 +792,6 @@ def api_ai_get_suggestions():
             current_timetable, 
             user_feedback=user_feedback
         )
-        
-        # Store the request context for applying modifications
-        session['last_modification_request'] = {
-            'request': user_request,
-            'timetable': current_timetable,
-            'timestamp': datetime.now().isoformat()
-        }
         
         return jsonify(result)
         
@@ -790,7 +809,7 @@ def api_apply_modification():
         option = data.get('option', {})
         original_data = data.get('original_data', {})
         
-        current_timetable = session.get('current_timetable', {})
+        current_timetable = _get_current_timetable()
         if not current_timetable:
             return jsonify({"error": "No current timetable found. Please load a timetable first."}), 400
         
@@ -798,8 +817,9 @@ def api_apply_modification():
         result = ai_assistant.apply_modification(modification_type, option, original_data, current_timetable)
         
         if result.get('success'):
-            # Save the modified timetable back to session
+            # Save the modified timetable back to cache and session
             if result.get('modified_timetable'):
+                _timetable_cache['timetable'] = result['modified_timetable']
                 session['current_timetable'] = result['modified_timetable']
                 session['timetable_saved_at'] = datetime.now().isoformat()
                 session['modification_history'] = session.get('modification_history', []) + [{
@@ -852,7 +872,7 @@ def detect_conflicts():
     """Use AI to detect schedule conflicts and suggest improvements"""
     try:
         data = request.get_json()
-        timetable = data.get('timetable') or session.get('current_timetable', {})
+        timetable = data.get('timetable') or _get_current_timetable()
         
         if not timetable:
             return jsonify({"error": "No timetable data provided"}), 400
