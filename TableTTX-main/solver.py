@@ -1167,9 +1167,11 @@ class SimpleTimetableSolver:
         faculty_assignment = {}
         room_assignment = {}
 
-        # Sort sessions: practicals first (strict batch faculty needs), then theory
+        # Sort sessions: theory/tutorial first (solver guarantees no theory-theory
+        # faculty overlap, so every theory session will find its faculty available),
+        # then practicals (which have flexible multi-batch faculty sharing).
         sorted_sessions = sorted(active_sessions, key=lambda s: (
-            1 if s["subject"].get("type") in ["theory", "tutorial"] else 0,
+            0 if s["subject"].get("type") in ["theory", "tutorial"] else 1,
             s["year"], s["division"], s.get("batch") or 0
         ))
 
