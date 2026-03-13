@@ -1145,35 +1145,81 @@ class SimpleTimetableSolver:
     def _assign_faculty_and_rooms(self, active_sessions, days, time_slots):
         """Conflict-aware faculty and room assignment for all active sessions.
         Returns two dicts mapping session_key -> faculty_name and session_key -> room_name.
-        Faculty can supervise multiple practical batches simultaneously but
-        cannot teach theory and supervise a practical at the same time.
+        Tries multiple faculty orderings and keeps the result with fewest unassigned.
         """
+        import random
+
         faculty_list = data_manager.get_faculty()
         rooms_list = data_manager.get_rooms()
         labs = [r for r in rooms_list if r.get("type") in ["lab", "both"]]
         classrooms = [r for r in rooms_list if r.get("type") in ["classroom", "both"]]
 
-        # Track faculty usage separately: theory blocks everything, practicals don't block other practicals
+        best_faculty_assignment = None
+        best_room_assignment = None
+        best_unassigned = float('inf')
+        max_attempts = 20
+
+        for attempt in range(max_attempts):
+            # Shuffle faculty list and practical session order for each attempt
+            # (first attempt = original order)
+            fac_list = list(faculty_list)
+            shuffle_practicals = False
+            if attempt > 0:
+                random.shuffle(fac_list)
+                shuffle_practicals = True
+
+            fac_assign, room_assign = self._try_assignment(
+                active_sessions, days, time_slots, fac_list, labs, classrooms,
+                shuffle_practicals=shuffle_practicals
+            )
+
+            unassigned_count = sum(1 for v in fac_assign.values() if v == "Unassigned")
+
+            if unassigned_count < best_unassigned:
+                best_unassigned = unassigned_count
+                best_faculty_assignment = fac_assign
+                best_room_assignment = room_assign
+
+            if best_unassigned == 0:
+                break
+
+        logger.info(f"Faculty assignment: best result has {best_unassigned} unassigned (tried {min(attempt + 1, max_attempts)} attempts)")
+        return best_faculty_assignment, best_room_assignment
+
+    def _try_assignment(self, active_sessions, days, time_slots, faculty_list, labs, classrooms,
+                         shuffle_practicals=False):
+        """Single attempt at faculty + room assignment with the given faculty ordering."""
+        import random
+
+        # Track faculty usage separately:
+        # - theory blocks everything
+        # - practicals block different-subject practicals (faculty can supervise multiple batches of SAME subject)
         used_faculty_theory = {}    # (day, slot) -> set of faculty in theory sessions
-        used_faculty_practical = {} # (day, slot) -> set of faculty in practical sessions
+        used_faculty_practical = {} # (day, slot) -> dict: faculty_name -> subject_id
         used_rooms = {}             # (day, slot) -> set of room names
 
         for day in days:
             for slot in time_slots:
                 used_faculty_theory[(day, slot)] = set()
-                used_faculty_practical[(day, slot)] = set()
+                used_faculty_practical[(day, slot)] = {}
                 used_rooms[(day, slot)] = set()
 
         faculty_assignment = {}
         room_assignment = {}
 
-        # Sort sessions: theory/tutorial first (solver guarantees no theory-theory
-        # faculty overlap, so every theory session will find its faculty available),
-        # then practicals (which have flexible multi-batch faculty sharing).
+        # Sort sessions: theory/tutorial first, then practicals.
+        # Shuffle practical order across retries to find better assignments.
         sorted_sessions = sorted(active_sessions, key=lambda s: (
             0 if s["subject"].get("type") in ["theory", "tutorial"] else 1,
             s["year"], s["division"], s.get("batch") or 0
         ))
+
+        if shuffle_practicals:
+            # Separate theory and practical sessions, shuffle practicals
+            theory_sessions = [s for s in sorted_sessions if s["subject"].get("type") in ["theory", "tutorial"]]
+            practical_sessions = [s for s in sorted_sessions if s["subject"].get("type") == "practical"]
+            random.shuffle(practical_sessions)
+            sorted_sessions = theory_sessions + practical_sessions
 
         for session in sorted_sessions:
             skey = self._session_key(session)
@@ -1193,7 +1239,7 @@ class SimpleTimetableSolver:
             if fac_name != "Unassigned":
                 for slot in spanned_slots:
                     if is_practical:
-                        used_faculty_practical[(day, slot)].add(fac_name)
+                        used_faculty_practical[(day, slot)][fac_name] = session["subject_id"]
                     else:
                         used_faculty_theory[(day, slot)].add(fac_name)
 
@@ -1226,7 +1272,171 @@ class SimpleTimetableSolver:
                     if (day, slot) in used_rooms:
                         used_rooms[(day, slot)].add(room_name)
 
+        # ── Repair pass: fix unassigned practicals by swapping theory faculty ──
+        self._repair_unassigned_practicals(
+            sorted_sessions, faculty_list, faculty_assignment,
+            used_faculty_theory, used_faculty_practical
+        )
+
         return faculty_assignment, room_assignment
+
+    def _repair_unassigned_practicals(self, sessions, faculty_list, faculty_assignment,
+                                       used_faculty_theory, used_faculty_practical):
+        """For each unassigned practical, try to free up its faculty by swapping
+        the blocking theory session to an alternative faculty member."""
+        div_map = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5}
+        repairs = 0
+
+        # Build reverse lookup: (day, slot, fac_name) -> session_key for theory
+        theory_lookup = {}
+        for s in sessions:
+            skey = self._session_key(s)
+            if s["subject"].get("type") in ["theory", "tutorial"]:
+                fac = faculty_assignment.get(skey)
+                if fac and fac != "Unassigned":
+                    day = s["day"]
+                    for slot in s.get("spanned_slots", [s["time_slot"]]):
+                        theory_lookup[(day, slot, fac)] = (s, skey)
+
+        # Collect unassigned practicals
+        unassigned = []
+        for s in sessions:
+            skey = self._session_key(s)
+            if s["subject"].get("type") == "practical" and faculty_assignment.get(skey) == "Unassigned":
+                unassigned.append(s)
+
+        for prac_session in unassigned:
+            prac_key = self._session_key(prac_session)
+            day = prac_session["day"]
+            spanned = prac_session.get("spanned_slots", [prac_session["time_slot"]])
+            div_num = div_map.get(prac_session["division"], 1)
+            batch = prac_session.get("batch")
+
+            # Find which faculty COULD teach this practical
+            # Pass 1: strict batch match, Pass 2: any faculty for this subject/div
+            candidate_fac = []
+            candidate_fac_fallback = []
+            for fac in faculty_list:
+                fac_name = fac.get("name", "").strip()
+                for a in fac.get("subjects", []) or []:
+                    if not isinstance(a, dict):
+                        continue
+                    if a.get("subject_id") != prac_session["subject_id"]:
+                        continue
+                    allowed_divs = a.get("divisions", [])
+                    allowed_batches = a.get("batches", [])
+                    if allowed_divs and div_num not in allowed_divs:
+                        continue
+                    if batch is not None and allowed_batches and batch not in allowed_batches:
+                        # Doesn't match batch but matches subject/div — fallback candidate
+                        candidate_fac_fallback.append(fac_name)
+                    else:
+                        candidate_fac.append(fac_name)
+                    break
+            # Combine: prefer batch-matched, then fallback
+            all_candidates = candidate_fac + candidate_fac_fallback
+
+            # For each candidate, check if they're free or blocked by a theory we can swap
+            for cand_name in all_candidates:
+                # Check if candidate is blocked by theory at any spanned slot
+                blocking_theory = None
+                cand_blocked_by_theory = False
+                for slot in spanned:
+                    if cand_name in used_faculty_theory.get((day, slot), set()):
+                        cand_blocked_by_theory = True
+                        key = (day, slot, cand_name)
+                        if key in theory_lookup:
+                            blocking_theory = theory_lookup[key]
+                        break
+
+                if not cand_blocked_by_theory:
+                    # Check if blocked by a different-subject practical
+                    blocked_by_diff_prac = False
+                    for slot in spanned:
+                        prac_dict = used_faculty_practical.get((day, slot), {})
+                        if cand_name in prac_dict and prac_dict[cand_name] != prac_session["subject_id"]:
+                            blocked_by_diff_prac = True
+                            break
+                    if blocked_by_diff_prac:
+                        continue
+
+                    # Candidate is free! Assign directly
+                    faculty_assignment[prac_key] = cand_name
+                    for slot in spanned:
+                        used_faculty_practical[(day, slot)][cand_name] = prac_session["subject_id"]
+                    repairs += 1
+                    break
+
+                if not blocking_theory:
+                    continue  # Blocked by theory but not in our lookup (shouldn't happen)
+
+                blocked_session, blocked_key = blocking_theory
+                blocked_spanned = blocked_session.get("spanned_slots", [blocked_session["time_slot"]])
+                blocked_div_num = div_map.get(blocked_session["division"], 1)
+
+                # Find alternative faculty for the blocking theory session
+                alt_found = None
+                for alt_fac in faculty_list:
+                    alt_name = alt_fac.get("name", "").strip()
+                    if alt_name == cand_name:
+                        continue
+
+                    # Check if alt can teach the theory subject
+                    can_teach = False
+                    for a in alt_fac.get("subjects", []) or []:
+                        if not isinstance(a, dict):
+                            continue
+                        if a.get("subject_id") != blocked_session["subject_id"]:
+                            continue
+                        allowed_divs = a.get("divisions", [])
+                        if allowed_divs and blocked_div_num not in allowed_divs:
+                            continue
+                        can_teach = True
+                        break
+
+                    if not can_teach:
+                        continue
+
+                    # Check if alt is free at those slots
+                    alt_free = True
+                    for slot in blocked_spanned:
+                        if alt_name in used_faculty_theory.get((day, slot), set()):
+                            alt_free = False
+                            break
+                        if alt_name in used_faculty_practical.get((day, slot), {}):
+                            alt_free = False
+                            break
+                    if not alt_free:
+                        continue
+
+                    alt_found = alt_name
+                    break
+
+                if alt_found:
+                    # Swap: theory gets alt faculty, practical gets original candidate
+                    # Update theory assignment
+                    faculty_assignment[blocked_key] = alt_found
+                    for slot in blocked_spanned:
+                        used_faculty_theory[(day, slot)].discard(cand_name)
+                        used_faculty_theory[(day, slot)].add(alt_found)
+
+                    # Assign practical to freed candidate
+                    faculty_assignment[prac_key] = cand_name
+                    for slot in spanned:
+                        used_faculty_practical[(day, slot)][cand_name] = prac_session["subject_id"]
+
+                    # Update theory_lookup
+                    for slot in blocked_spanned:
+                        old_key = (day, slot, cand_name)
+                        new_key = (day, slot, alt_found)
+                        if old_key in theory_lookup:
+                            theory_lookup[new_key] = theory_lookup.pop(old_key)
+
+                    repairs += 1
+                    break  # Move to next unassigned practical
+
+        if repairs:
+            logger.info(f"Repair pass: fixed {repairs} unassigned practicals via theory swaps")
 
     def _assign_faculty_for_session(self, session, faculty_list, day, spanned_slots,
                                      used_faculty_theory, used_faculty_practical=None):
@@ -1241,11 +1451,13 @@ class SimpleTimetableSolver:
 
         # For practicals: only assign faculty who match the batch assignment
         # Pass 1: explicit div + batch match, Pass 2: wildcard div + batch match
-        # Never assign a faculty to a batch they're not assigned to
+        # Pass 3: explicit div, ignore batch (fallback — any faculty for this subject/div)
         # For theory: Pass 1: explicit div match, Pass 2: wildcard div
         if is_practical and session_batch is not None:
             passes = [("explicit_div_batch", True, True),
-                      ("wildcard_div_batch", False, True)]
+                      ("wildcard_div_batch", False, True),
+                      ("explicit_div_no_batch", True, False),
+                      ("wildcard_div_no_batch", False, False)]
         else:
             passes = [("explicit_div", True, False),
                       ("wildcard_div", False, False)]
@@ -1296,7 +1508,12 @@ class SimpleTimetableSolver:
                         if (day, slot) in used_faculty_practical and fac_name in used_faculty_practical[(day, slot)]:
                             is_free = False
                             break
-                    # Practicals are NOT blocked by other practicals (faculty can supervise multiple batches)
+                    # Practicals: blocked by DIFFERENT-subject practicals, allowed for same subject
+                    if is_practical and (day, slot) in used_faculty_practical:
+                        prac_dict = used_faculty_practical[(day, slot)]
+                        if fac_name in prac_dict and prac_dict[fac_name] != session["subject_id"]:
+                            is_free = False
+                            break
 
                 if is_free:
                     return fac_name
