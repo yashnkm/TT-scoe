@@ -237,22 +237,33 @@ def faculty():
         faculty_assignments_map[member.get('id')] = subject_to_divisions
 
     # Compute hours/week for each faculty based on assigned subjects
+    # Shows max of odd/even semester hours (faculty only teaches one semester at a time)
     # Theory/Tutorial: hours × division_count (same lecture repeated per division)
     # Practicals: hours × division_count (faculty teaches 1 batch per division, not all batches)
     subject_lookup_map = {s.get('id'): s for s in subjects_list}
     for member in faculty_list:
-        total_hours = 0
+        odd_hours = 0
+        even_hours = 0
         for a in member.get('subjects', []) or []:
             if isinstance(a, dict):
                 sid = a.get('subject_id')
                 subj = subject_lookup_map.get(sid, {})
                 base_hours = int(subj.get('hours_per_week', 0) or 0)
                 div_count = len(a.get('divisions', []))
-                total_hours += base_hours * max(div_count, 1)
+                hrs = base_hours * max(div_count, 1)
+                if subj.get('semester') == 1:
+                    odd_hours += hrs
+                else:
+                    even_hours += hrs
             else:
                 sid = a
-                total_hours += int(subject_lookup_map.get(sid, {}).get('hours_per_week', 0) or 0)
-        member['hours_per_week'] = total_hours
+                subj = subject_lookup_map.get(sid, {})
+                hrs = int(subj.get('hours_per_week', 0) or 0)
+                if subj.get('semester') == 1:
+                    odd_hours += hrs
+                else:
+                    even_hours += hrs
+        member['hours_per_week'] = max(odd_hours, even_hours)
 
     return render_template(
         'faculty.html',
@@ -292,15 +303,20 @@ def add_faculty():
                 'batches': batches
             })
 
-        # Compute hours/week from selected subjects
-        # Practicals: hours × batch_count; Theory: hours × division_count
-        hours_per_week = 0
+        # Compute hours/week from selected subjects (max of odd/even semester)
+        odd_hours = 0
+        even_hours = 0
         for a in assignments:
             sid = a.get('subject_id')
             subj = subject_lookup.get(sid, {})
             base_hours = int(subj.get('hours_per_week', 0) or 0)
             div_count = len(a.get('divisions', []))
-            hours_per_week += base_hours * max(div_count, 1)
+            hrs = base_hours * max(div_count, 1)
+            if subj.get('semester') == 1:
+                odd_hours += hrs
+            else:
+                even_hours += hrs
+        hours_per_week = max(odd_hours, even_hours)
 
         faculty_member = {
             "name": request.form.get('name'),
@@ -341,15 +357,20 @@ def edit_faculty(faculty_id):
                 'batches': batches
             })
 
-        # Compute hours/week from selected subjects
-        # Practicals: hours × batch_count; Theory: hours × division_count
-        hours_per_week = 0
+        # Compute hours/week from selected subjects (max of odd/even semester)
+        odd_hours = 0
+        even_hours = 0
         for a in assignments:
             sid = a.get('subject_id')
             subj = subject_lookup.get(sid, {})
             base_hours = int(subj.get('hours_per_week', 0) or 0)
             div_count = len(a.get('divisions', []))
-            hours_per_week += base_hours * max(div_count, 1)
+            hrs = base_hours * max(div_count, 1)
+            if subj.get('semester') == 1:
+                odd_hours += hrs
+            else:
+                even_hours += hrs
+        hours_per_week = max(odd_hours, even_hours)
 
         faculty_member = {
             "name": request.form.get('name'),
