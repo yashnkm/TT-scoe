@@ -108,7 +108,7 @@
           ]
         }
       ],
-      "hours_per_week": 40,
+      "hours_per_week": 12,
       "id": 1
     },
     {
@@ -219,7 +219,7 @@
           ]
         }
       ],
-      "hours_per_week": 36,
+      "hours_per_week": 13,
       "id": 2
     },
     {
@@ -330,7 +330,7 @@
           ]
         }
       ],
-      "hours_per_week": 32,
+      "hours_per_week": 10,
       "id": 3
     },
     {
@@ -427,7 +427,7 @@
           ]
         }
       ],
-      "hours_per_week": 28,
+      "hours_per_week": 9,
       "id": 4
     },
     {
@@ -538,7 +538,7 @@
           ]
         }
       ],
-      "hours_per_week": 40,
+      "hours_per_week": 12,
       "id": 5
     },
     {
@@ -649,7 +649,7 @@
           ]
         }
       ],
-      "hours_per_week": 38,
+      "hours_per_week": 11,
       "id": 6
     },
     {
@@ -760,7 +760,7 @@
           ]
         }
       ],
-      "hours_per_week": 30,
+      "hours_per_week": 11,
       "id": 7
     },
     {
@@ -871,7 +871,7 @@
           ]
         }
       ],
-      "hours_per_week": 32,
+      "hours_per_week": 12,
       "id": 8
     },
     {
@@ -984,7 +984,7 @@
           ]
         }
       ],
-      "hours_per_week": 34,
+      "hours_per_week": 17,
       "id": 9
     },
     {
@@ -1081,7 +1081,7 @@
           ]
         }
       ],
-      "hours_per_week": 34,
+      "hours_per_week": 9,
       "id": 10
     },
     {
@@ -1192,7 +1192,7 @@
           ]
         }
       ],
-      "hours_per_week": 24,
+      "hours_per_week": 10,
       "id": 11
     },
     {
@@ -1303,7 +1303,7 @@
           ]
         }
       ],
-      "hours_per_week": 26,
+      "hours_per_week": 11,
       "id": 12
     },
     {
@@ -1400,7 +1400,7 @@
           ]
         }
       ],
-      "hours_per_week": 26,
+      "hours_per_week": 10,
       "id": 13
     },
     {
@@ -1497,7 +1497,7 @@
           ]
         }
       ],
-      "hours_per_week": 24,
+      "hours_per_week": 9,
       "id": 14
     },
     {
@@ -1594,7 +1594,7 @@
           ]
         }
       ],
-      "hours_per_week": 34,
+      "hours_per_week": 12,
       "id": 15
     },
     {
@@ -1709,7 +1709,7 @@
           ]
         }
       ],
-      "hours_per_week": 41,
+      "hours_per_week": 18,
       "id": 16
     },
     {
@@ -1838,7 +1838,7 @@
           ]
         }
       ],
-      "hours_per_week": 41,
+      "hours_per_week": 19,
       "id": 17
     },
     {
@@ -1949,7 +1949,7 @@
           ]
         }
       ],
-      "hours_per_week": 32,
+      "hours_per_week": 11,
       "id": 18
     },
     {
@@ -2060,7 +2060,7 @@
           ]
         }
       ],
-      "hours_per_week": 30,
+      "hours_per_week": 10,
       "id": 19
     },
     {
@@ -2171,7 +2171,7 @@
           ]
         }
       ],
-      "hours_per_week": 26,
+      "hours_per_week": 10,
       "id": 20
     },
     {
@@ -2282,7 +2282,7 @@
           ]
         }
       ],
-      "hours_per_week": 26,
+      "hours_per_week": 10,
       "id": 21
     },
     {
@@ -2393,7 +2393,7 @@
           ]
         }
       ],
-      "hours_per_week": 32,
+      "hours_per_week": 11,
       "id": 22
     },
     {
@@ -2504,7 +2504,7 @@
           ]
         }
       ],
-      "hours_per_week": 28,
+      "hours_per_week": 11,
       "id": 23
     },
     {
@@ -2616,7 +2616,7 @@
           ]
         }
       ],
-      "hours_per_week": 29,
+      "hours_per_week": 14,
       "id": 24
     },
     {
@@ -2728,7 +2728,7 @@
           ]
         }
       ],
-      "hours_per_week": 33,
+      "hours_per_week": 13,
       "id": 25
     }
   ]

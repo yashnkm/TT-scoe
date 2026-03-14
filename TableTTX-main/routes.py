@@ -237,8 +237,8 @@ def faculty():
         faculty_assignments_map[member.get('id')] = subject_to_divisions
 
     # Compute hours/week for each faculty based on assigned subjects
-    # Practicals: hours × batch_count (each batch is a separate session)
     # Theory/Tutorial: hours × division_count (same lecture repeated per division)
+    # Practicals: hours × division_count (faculty teaches 1 batch per division, not all batches)
     subject_lookup_map = {s.get('id'): s for s in subjects_list}
     for member in faculty_list:
         total_hours = 0
@@ -247,13 +247,8 @@ def faculty():
                 sid = a.get('subject_id')
                 subj = subject_lookup_map.get(sid, {})
                 base_hours = int(subj.get('hours_per_week', 0) or 0)
-                subj_type = subj.get('type', 'theory')
-                if subj_type == 'practical':
-                    batch_count = len(a.get('batches', []))
-                    total_hours += base_hours * max(batch_count, 1)
-                else:
-                    div_count = len(a.get('divisions', []))
-                    total_hours += base_hours * max(div_count, 1)
+                div_count = len(a.get('divisions', []))
+                total_hours += base_hours * max(div_count, 1)
             else:
                 sid = a
                 total_hours += int(subject_lookup_map.get(sid, {}).get('hours_per_week', 0) or 0)
@@ -304,12 +299,8 @@ def add_faculty():
             sid = a.get('subject_id')
             subj = subject_lookup.get(sid, {})
             base_hours = int(subj.get('hours_per_week', 0) or 0)
-            if subj.get('type') == 'practical':
-                batch_count = len(a.get('batches', []))
-                hours_per_week += base_hours * max(batch_count, 1)
-            else:
-                div_count = len(a.get('divisions', []))
-                hours_per_week += base_hours * max(div_count, 1)
+            div_count = len(a.get('divisions', []))
+            hours_per_week += base_hours * max(div_count, 1)
 
         faculty_member = {
             "name": request.form.get('name'),
@@ -357,12 +348,8 @@ def edit_faculty(faculty_id):
             sid = a.get('subject_id')
             subj = subject_lookup.get(sid, {})
             base_hours = int(subj.get('hours_per_week', 0) or 0)
-            if subj.get('type') == 'practical':
-                batch_count = len(a.get('batches', []))
-                hours_per_week += base_hours * max(batch_count, 1)
-            else:
-                div_count = len(a.get('divisions', []))
-                hours_per_week += base_hours * max(div_count, 1)
+            div_count = len(a.get('divisions', []))
+            hours_per_week += base_hours * max(div_count, 1)
 
         faculty_member = {
             "name": request.form.get('name'),

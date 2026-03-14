@@ -48,6 +48,11 @@
                         <label class="btn btn-outline-primary" for="batchView">
                             <i class="fas fa-layer-group me-1"></i>Batch View
                         </label>
+
+                        <input type="radio" class="btn-check" name="viewType" id="facultyView" value="faculty">
+                        <label class="btn btn-outline-primary" for="facultyView">
+                            <i class="fas fa-chalkboard-teacher me-1"></i>Faculty View
+                        </label>
                     </div>
                 </div>
             </div>
@@ -187,11 +192,15 @@
 <script>
 let timetableData = {};
 let currentView = '';
+let facultySchedules = {};
 
 document.addEventListener('DOMContentLoaded', function() {
     // Load timetable data
     try {
         timetableData = JSON.parse(document.getElementById('timetableData').textContent);
+
+        // Pre-compute faculty schedules
+        facultySchedules = generateFacultySchedules(timetableData);
 
         // Set up event listeners
         document.getElementById('viewSelector').addEventListener('change', updateTimetableView);
@@ -216,28 +225,50 @@ function filterViewOptions() {
     // Clear current options
     selector.innerHTML = '';
 
-    // Filter and add options based on view type
-    Object.keys(timetableData).forEach(key => {
-        if (viewType === 'division' && !key.includes('Batch')) {
+    if (viewType === 'faculty') {
+        // Faculty view — populate with faculty names
+        const names = Object.keys(facultySchedules).sort();
+        names.forEach(name => {
             const option = document.createElement('option');
-            option.value = key;
-            option.textContent = key.replace(/_/g, ' ');
+            option.value = name;
+            option.textContent = name;
             selector.appendChild(option);
-        } else if (viewType === 'batch' && key.includes('Batch')) {
-            const option = document.createElement('option');
-            option.value = key;
-            option.textContent = key.replace(/_/g, ' ');
-            selector.appendChild(option);
-        }
-    });
+        });
+    } else {
+        // Filter and add options based on view type
+        Object.keys(timetableData).forEach(key => {
+            if (viewType === 'division' && !key.includes('Batch')) {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = key.replace(/_/g, ' ');
+                selector.appendChild(option);
+            } else if (viewType === 'batch' && key.includes('Batch')) {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = key.replace(/_/g, ' ');
+                selector.appendChild(option);
+            }
+        });
+    }
 
     // Update view
     updateTimetableView();
 }
 
 function updateTimetableView() {
+    const viewType = document.querySelector('input[name="viewType"]:checked').value;
     const selectedView = document.getElementById('viewSelector').value;
-    if (!selectedView || !timetableData[selectedView]) return;
+    if (!selectedView) return;
+
+    if (viewType === 'faculty') {
+        currentView = selectedView;
+        document.getElementById('currentViewTitle').innerHTML =
+            '<i class="fas fa-chalkboard-teacher me-2"></i>' + selectedView;
+        renderFacultyView(selectedView);
+        return;
+    }
+
+    if (!timetableData[selectedView]) return;
 
     currentView = selectedView;
     document.getElementById('currentViewTitle').innerHTML =
@@ -498,6 +529,181 @@ function calculateStatistics() {
     document.getElementById('utilizationRate').textContent = utilization + '%';
 }
 
+function generateFacultySchedules(data) {
+    const schedules = {};
+    const sampleKey = Object.keys(data)[0];
+    if (!sampleKey) return schedules;
+    const sampleView = data[sampleKey];
+    const days = Object.keys(sampleView);
+
+    Object.keys(data).forEach(viewKey => {
+        const isBatchView = viewKey.includes('Batch');
+        const viewData = data[viewKey];
+        const context = viewKey.replace(/_/g, ' ');
+
+        days.forEach(day => {
+            const slots = viewData[day];
+            if (!slots) return;
+
+            Object.keys(slots).forEach(timeSlot => {
+                const session = slots[timeSlot];
+                if (!session || session.type === 'break') return;
+
+                if (session.type === 'practical_block') {
+                    if (!isBatchView) return;
+                    const batches = session.batches || {};
+                    Object.keys(batches).forEach(bNum => {
+                        const bInfo = batches[bNum];
+                        if (!bInfo || !bInfo.faculty) return;
+                        const fname = bInfo.faculty;
+                        if (!schedules[fname]) schedules[fname] = {};
+                        if (!schedules[fname][day]) schedules[fname][day] = {};
+                        if (!schedules[fname][day][timeSlot]) {
+                            schedules[fname][day][timeSlot] = {
+                                subject: bInfo.subject, room: bInfo.room || '',
+                                type: 'practical', span: session.span || 1,
+                                slot_position: session.slot_position || 'start', context: context
+                            };
+                        }
+                    });
+                } else if (!isBatchView) {
+                    const fname = session.faculty;
+                    if (!fname) return;
+                    if (!schedules[fname]) schedules[fname] = {};
+                    if (!schedules[fname][day]) schedules[fname][day] = {};
+                    if (!schedules[fname][day][timeSlot]) {
+                        schedules[fname][day][timeSlot] = {
+                            subject: session.subject, room: session.room || '',
+                            type: session.type || 'theory', span: session.span || 1,
+                            slot_position: session.slot_position || 'start', context: context
+                        };
+                    }
+                } else {
+                    if (session.type === 'theory' || session.type === 'tutorial') return;
+                    const fname = session.faculty;
+                    if (!fname) return;
+                    if (!schedules[fname]) schedules[fname] = {};
+                    if (!schedules[fname][day]) schedules[fname][day] = {};
+                    if (!schedules[fname][day][timeSlot]) {
+                        schedules[fname][day][timeSlot] = {
+                            subject: session.subject, room: session.room || '',
+                            type: session.type || 'practical', span: session.span || 1,
+                            slot_position: session.slot_position || 'start', context: context
+                        };
+                    }
+                }
+            });
+        });
+    });
+    return schedules;
+}
+
+function renderFacultyView(facultyName) {
+    const schedule = facultySchedules[facultyName];
+    if (!schedule) return;
+
+    const tbody = document.getElementById('timetableBody');
+    tbody.innerHTML = '';
+
+    const sampleKey = Object.keys(timetableData)[0];
+    const sampleView = timetableData[sampleKey];
+    const days = Object.keys(sampleView);
+    const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    days.sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+    const timeSlots = Object.keys(sampleView[days[0]] || {});
+
+    const thead = document.getElementById('timetableHead');
+    thead.innerHTML = '';
+    const headRow = document.createElement('tr');
+    const timeTh = document.createElement('th');
+    timeTh.textContent = 'Time';
+    headRow.appendChild(timeTh);
+    days.forEach(d => {
+        const th = document.createElement('th');
+        th.textContent = d;
+        headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+
+    function isBreakSlot(ts) {
+        const s = sampleView[days[0]] && sampleView[days[0]][ts];
+        return s && s.type === 'break';
+    }
+
+    const skipCells = {};
+
+    timeSlots.forEach((timeSlot, slotIndex) => {
+        const row = document.createElement('tr');
+        const timeCell = document.createElement('td');
+        timeCell.className = 'fw-bold text-center align-middle';
+        timeCell.textContent = timeSlot;
+        row.appendChild(timeCell);
+
+        if (isBreakSlot(timeSlot)) {
+            const firstSession = sampleView[days[0]][timeSlot];
+            const breakCell = document.createElement('td');
+            breakCell.colSpan = days.length;
+            breakCell.className = 'break-cell text-center align-middle';
+            const breakType = firstSession.break_type || 'break';
+            const breakIcon = breakType === 'lunch' ? 'fa-utensils' : 'fa-coffee';
+            breakCell.innerHTML = `
+                <div class="break-slot p-3 rounded" style="background-color: rgba(108, 117, 125, 0.15);">
+                    <i class="fas ${breakIcon} me-2"></i>
+                    <strong style="font-size: 1.1em;">${firstSession.subject}</strong>
+                </div>
+            `;
+            row.appendChild(breakCell);
+        } else {
+            days.forEach((day, dayIndex) => {
+                const cellKey = `${slotIndex}-${dayIndex}`;
+                if (skipCells[cellKey]) return;
+
+                const cell = document.createElement('td');
+                const entry = schedule[day] && schedule[day][timeSlot];
+
+                if (entry && entry.slot_position !== 'continuation') {
+                    const span = entry.span || 1;
+                    if (span > 1) {
+                        let actualRowspan = 1;
+                        for (let offset = 1; offset < span; offset++) {
+                            const nextSlotIdx = slotIndex + offset;
+                            if (nextSlotIdx < timeSlots.length && !isBreakSlot(timeSlots[nextSlotIdx])) {
+                                actualRowspan++;
+                                skipCells[`${nextSlotIdx}-${dayIndex}`] = true;
+                            }
+                        }
+                        cell.rowSpan = actualRowspan;
+                    }
+                    cell.className = 'align-middle';
+
+                    const typeBadgeClass = entry.type === 'practical' ? 'bg-warning' :
+                                           entry.type === 'tutorial' ? 'bg-purple' : 'bg-info';
+                    const durationLabel = span > 1 ? ` (${span} hrs)` : '';
+
+                    cell.innerHTML = `
+                        <div class="session-card faculty-session">
+                            <div class="session-subject">${entry.subject}${durationLabel}</div>
+                            <div class="session-details">
+                                <small class="d-block"><i class="fas fa-map-marker-alt me-1"></i>${entry.room}</small>
+                                <span class="badge ${typeBadgeClass} mt-1">${entry.type.toUpperCase()}</span>
+                            </div>
+                            <div class="session-context">
+                                <i class="fas fa-graduation-cap me-1"></i>${entry.context}
+                            </div>
+                        </div>
+                    `;
+                } else if (!entry || entry.slot_position !== 'continuation') {
+                    cell.innerHTML = '<div class="free-slot">Free</div>';
+                }
+
+                row.appendChild(cell);
+            });
+        }
+
+        tbody.appendChild(row);
+    });
+}
+
 function enableAIModifications() {
     // Save current timetable for AI operations
     if (!timetableData || Object.keys(timetableData).length === 0) {
@@ -660,11 +866,30 @@ function exportTimetable() {
     color: var(--bs-secondary);
 }
 
+.session-card.faculty-session {
+    border-left-color: #20c997;
+    background: rgba(32, 201, 151, 0.1);
+}
+
+.session-context {
+    font-size: 0.7rem;
+    color: var(--bs-info);
+    margin-top: 0.25rem;
+}
+
 .empty-slot {
     text-align: center;
     color: var(--bs-secondary);
     font-style: italic;
     padding: 1rem;
+}
+
+.free-slot {
+    text-align: center;
+    color: var(--bs-success);
+    font-style: italic;
+    padding: 0.5rem;
+    opacity: 0.6;
 }
 
 .timetable-table td {
