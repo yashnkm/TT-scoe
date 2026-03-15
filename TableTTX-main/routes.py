@@ -1086,8 +1086,14 @@ def export_timetable_excel():
         break_font = Font(bold=True, size=11, color="FFFFFF")
         break_fill = PatternFill(start_color="5A7D7A", end_color="5A7D7A", fill_type="solid")
         
+        # Cell fills for theory/practical
+        theory_fill = PatternFill(start_color="E8F4FD", end_color="E8F4FD", fill_type="solid")
+        practical_fill = PatternFill(start_color="FFF3E0", end_color="FFF3E0", fill_type="solid")
+        free_fill = PatternFill(start_color="F5F5F5", end_color="F5F5F5", fill_type="solid")
+
         # Regular cell style
         regular_alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+        left_alignment = Alignment(horizontal='left', vertical='center', wrap_text=True)
         break_alignment = Alignment(horizontal='center', vertical='center')
         
         # Border styles
@@ -1158,40 +1164,27 @@ def export_timetable_excel():
             def is_break_slot(time_slot, days_data):
                 """Check if all days have the same break for this time slot"""
                 break_keywords = ['break', 'lunch', 'recess']
-                first_day_sessions = days_data.get(days[0], {}).get(time_slot, [])
-                
-                if not first_day_sessions:
+                first_session = days_data.get(days[0], {}).get(time_slot)
+
+                if not first_session:
                     return None
-                
-                # Ensure it's a list
-                if not isinstance(first_day_sessions, list):
-                    first_day_sessions = [first_day_sessions] if first_day_sessions else []
-                
-                # Check if first session is a break
-                if not first_day_sessions or not first_day_sessions[0]:
+
+                # Handle both dict (single session) and list formats
+                if isinstance(first_session, list):
+                    first_session = first_session[0] if first_session else None
+                if not first_session or not isinstance(first_session, dict):
                     return None
-                    
-                first_subject = first_day_sessions[0].get('subject', '').lower()
-                
-                # Check if it's a break
+
+                # Check if it's a break by type or subject
+                if first_session.get('type') == 'break':
+                    return first_session.get('subject', 'Break')
+
+                first_subject = first_session.get('subject', '').lower()
                 is_break = any(keyword in first_subject for keyword in break_keywords)
                 if not is_break:
                     return None
-                
-                # Check if all days have the same break
-                break_name = first_day_sessions[0].get('subject', '')
-                for day in days:
-                    day_sessions = days_data.get(day, {}).get(time_slot, [])
-                    if not isinstance(day_sessions, list):
-                        day_sessions = [day_sessions] if day_sessions else []
-                    
-                    if not day_sessions or not day_sessions[0]:
-                        return None
-                    
-                    if day_sessions[0].get('subject', '') != break_name:
-                        return None
-                
-                return break_name
+
+                return first_session.get('subject', 'Break')
             
             # Data rows
             current_row = header_row + 1
@@ -1241,77 +1234,107 @@ def export_timetable_excel():
                     max_lines = 1
                     for col_idx, day in enumerate(days, start=2):
                         cell = ws.cell(row=current_row, column=col_idx)
-                        # Get sessions for this day and time slot
-                        slot_sessions = view_data.get(day, {}).get(time_slot, [])
+                        # Get session for this day and time slot
+                        slot_data = view_data.get(day, {}).get(time_slot)
 
-                        # Ensure it's a list
-                        if not isinstance(slot_sessions, list):
-                            slot_sessions = [slot_sessions] if slot_sessions else []
+                        # Normalize to list
+                        if slot_data is None:
+                            slot_sessions = []
+                        elif isinstance(slot_data, list):
+                            slot_sessions = slot_data
+                        elif isinstance(slot_data, dict):
+                            slot_sessions = [slot_data]
+                        else:
+                            slot_sessions = []
 
                         if slot_sessions:
                             cell_text = []
                             for session_item in slot_sessions:
-                                if session_item:  # Check session is not None
-                                    # Show continuation marker for multi-hour practicals
-                                    if session_item.get('slot_position') == 'continuation':
-                                        cell_text.append('↑ (contd.)')
-                                        continue
+                                if not session_item or not isinstance(session_item, dict):
+                                    continue
 
-                                    session_type = session_item.get('type', '')
+                                # Skip break type sessions
+                                if session_item.get('type') == 'break':
+                                    continue
 
-                                    # Handle practical_block type (division view)
-                                    if session_type == 'practical_block':
-                                        span = session_item.get('span', 1)
-                                        duration_label = f" ({span} hrs)" if span > 1 else ""
-                                        cell_text.append(f"Practicals{duration_label}")
-                                        batches = session_item.get('batches', {})
-                                        for b_num in sorted(batches.keys(), key=lambda x: int(x)):
-                                            b_letter = chr(64 + int(b_num))
-                                            b_info = batches[b_num]
-                                            if b_info:
-                                                cell_text.append(f"Batch {b_letter}: {b_info.get('subject', '')} ({b_info.get('room', '')})")
-                                            else:
-                                                cell_text.append(f"Batch {b_letter}: Free")
-                                        cell_text.append('')
-                                        continue
+                                # Show continuation marker for multi-hour practicals
+                                if session_item.get('slot_position') == 'continuation':
+                                    cell_text.append('↑ (contd.)')
+                                    continue
 
-                                    subject = session_item.get('subject', '')
-                                    faculty = session_item.get('faculty', '')
-                                    room = session_item.get('room', '')
+                                session_type = session_item.get('type', '')
+
+                                # Handle practical_block type (division view)
+                                if session_type == 'practical_block':
                                     span = session_item.get('span', 1)
-
                                     duration_label = f" ({span} hrs)" if span > 1 else ""
+                                    cell_text.append(f"PRACTICALS{duration_label}")
+                                    batches = session_item.get('batches', {})
+                                    for b_num in sorted(batches.keys(), key=lambda x: int(x)):
+                                        b_letter = chr(64 + int(b_num))
+                                        b_info = batches[b_num]
+                                        if b_info:
+                                            faculty_name = b_info.get('faculty', '')
+                                            subject_name = b_info.get('subject', '')
+                                            room_name = b_info.get('room', '')
+                                            cell_text.append(f"Batch {b_letter}: {subject_name}")
+                                            cell_text.append(f"  {faculty_name} | {room_name}")
+                                        else:
+                                            cell_text.append(f"Batch {b_letter}: Free")
+                                    continue
 
-                                    if session_type:
-                                        cell_text.append(f"{subject} ({session_type}){duration_label}")
-                                    else:
-                                        cell_text.append(f"{subject}{duration_label}")
+                                subject = session_item.get('subject', '')
+                                faculty = session_item.get('faculty', '')
+                                room = session_item.get('room', '')
+                                span = session_item.get('span', 1)
 
-                                    if faculty:
-                                        cell_text.append(f"Faculty: {faculty}")
-                                    if room:
-                                        cell_text.append(f"Room: {room}")
-                                    cell_text.append('')  # Empty line between sessions
+                                duration_label = f" ({span} hrs)" if span > 1 else ""
+
+                                if session_type == 'practical':
+                                    cell_text.append(f"{subject} (Practical){duration_label}")
+                                elif session_type:
+                                    cell_text.append(f"{subject} ({session_type.title()}){duration_label}")
+                                else:
+                                    cell_text.append(f"{subject}{duration_label}")
+
+                                if faculty:
+                                    cell_text.append(f"Faculty: {faculty}")
+                                if room:
+                                    cell_text.append(f"Room: {room}")
 
                             cell_value = '\n'.join(cell_text).strip()
-                            cell.value = cell_value
-                            max_lines = max(max_lines, len(cell_value.split('\n')))
-                        else:
-                            cell.value = '-'
+                            cell.value = cell_value if cell_value else 'Free'
+                            max_lines = max(max_lines, len(cell_value.split('\n')) if cell_value else 1)
 
-                        cell.alignment = regular_alignment
+                            # Apply color based on content type
+                            first_session = slot_sessions[0] if slot_sessions else None
+                            if first_session and isinstance(first_session, dict):
+                                stype = first_session.get('type', '')
+                                if stype == 'practical_block' or stype == 'practical':
+                                    cell.fill = practical_fill
+                                elif stype in ['theory', 'tutorial']:
+                                    cell.fill = theory_fill
+                                elif not cell_value or cell_value == 'Free':
+                                    cell.fill = free_fill
+                            elif not cell_value or cell_value == 'Free':
+                                cell.fill = free_fill
+                        else:
+                            cell.value = 'Free'
+                            cell.fill = free_fill
+
+                        cell.alignment = left_alignment
                         cell.border = border
 
                     # Set row height based on content
-                    ws.row_dimensions[current_row].height = max(40, max_lines * 15)
-                
+                    ws.row_dimensions[current_row].height = max(40, max_lines * 16)
+
                 current_row += 1
-            
+
             # Set column widths
-            ws.column_dimensions['A'].width = 18
+            ws.column_dimensions['A'].width = 16
             for col_idx in range(2, len(days) + 2):
-                col_letter = chr(64 + col_idx)  # Convert column index to letter
-                ws.column_dimensions[col_letter].width = 28
+                col_letter = chr(64 + col_idx)
+                ws.column_dimensions[col_letter].width = 35
         
         # Save to buffer
         buffer = BytesIO()

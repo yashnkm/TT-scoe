@@ -55,7 +55,6 @@ function generateFacultySchedules(data) {
 
                 if (session.type === 'practical_block') {
                     // Only process practicals from batch views to avoid double-counting
-                    // Division view practical_blocks are summaries of the batch views
                     if (!isBatchView) return;
 
                     const batches = session.batches || {};
@@ -63,9 +62,9 @@ function generateFacultySchedules(data) {
                         const bInfo = batches[bNum];
                         if (!bInfo || !bInfo.faculty) return;
                         const fname = bInfo.faculty;
+                        const bLetter = String.fromCharCode(64 + parseInt(bNum));
                         if (!schedules[fname]) schedules[fname] = {};
                         if (!schedules[fname][day]) schedules[fname][day] = {};
-                        // Don't overwrite if already set (dedup)
                         if (!schedules[fname][day][timeSlot]) {
                             schedules[fname][day][timeSlot] = {
                                 subject: bInfo.subject,
@@ -73,8 +72,16 @@ function generateFacultySchedules(data) {
                                 type: 'practical',
                                 span: session.span || 1,
                                 slot_position: session.slot_position || 'start',
-                                context: context
+                                context: context,
+                                batches: ['Batch ' + bLetter]
                             };
+                        } else {
+                            const existing = schedules[fname][day][timeSlot];
+                            if (!existing.batches) existing.batches = [];
+                            existing.batches.push('Batch ' + bLetter);
+                            if (bInfo.room && !existing.room.includes(bInfo.room)) {
+                                existing.room += ', ' + bInfo.room;
+                            }
                         }
                     });
                 } else if (!isBatchView) {
@@ -95,9 +102,10 @@ function generateFacultySchedules(data) {
                     }
                 } else {
                     // Batch-view individual practicals (non-block)
-                    if (session.type === 'theory' || session.type === 'tutorial') return; // already from division
+                    if (session.type === 'theory' || session.type === 'tutorial') return;
                     const fname = session.faculty;
                     if (!fname) return;
+                    const batchPart = viewKey.split('Batch_')[1] || '';
                     if (!schedules[fname]) schedules[fname] = {};
                     if (!schedules[fname][day]) schedules[fname][day] = {};
                     if (!schedules[fname][day][timeSlot]) {
@@ -107,8 +115,16 @@ function generateFacultySchedules(data) {
                             type: session.type || 'practical',
                             span: session.span || 1,
                             slot_position: session.slot_position || 'start',
-                            context: context
+                            context: context,
+                            batches: batchPart ? ['Batch ' + batchPart] : []
                         };
+                    } else {
+                        const existing = schedules[fname][day][timeSlot];
+                        if (!existing.batches) existing.batches = [];
+                        if (batchPart) existing.batches.push('Batch ' + batchPart);
+                        if (session.room && !existing.room.includes(session.room)) {
+                            existing.room += ', ' + session.room;
+                        }
                     }
                 }
             });
@@ -459,11 +475,16 @@ function renderFacultyView(facultyName) {
                                            entry.type === 'tutorial' ? 'bg-purple' : 'bg-info';
                     const durationLabel = span > 1 ? ` (${span} hrs)` : '';
 
+                    const batchesLabel = entry.batches && entry.batches.length > 0
+                        ? `<small class="d-block text-warning"><i class="fas fa-users me-1"></i>${entry.batches.join(', ')}</small>`
+                        : '';
+
                     cell.innerHTML = `
                         <div class="session-card faculty-session">
                             <div class="session-subject">${entry.subject}${durationLabel}</div>
                             <div class="session-details">
                                 <small class="d-block"><i class="fas fa-map-marker-alt me-1"></i>${entry.room}</small>
+                                ${batchesLabel}
                                 <span class="badge ${typeBadgeClass} mt-1">${entry.type.toUpperCase()}</span>
                             </div>
                             <div class="session-context">
