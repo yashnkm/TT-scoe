@@ -1,7 +1,7 @@
 {
   "years": 4,
   "divisions_per_year": 2,
-  "batches_per_division": 4,
+  "batches_per_division": 2,
   "theory_duration": 60,
   "practical_duration": 120,
   "time_slots": [

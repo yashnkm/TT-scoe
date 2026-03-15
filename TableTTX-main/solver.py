@@ -1248,26 +1248,44 @@ class SimpleTimetableSolver:
                         used_faculty_theory[(day, slot)].add(fac_name)
 
             # Assign room
-            if subject_type == "practical":
-                room_pool = labs
-                # Flexible practicals (projects, seminars) can use classrooms as fallback
-                if self._is_flexible_practical(session["subject"]):
-                    room_name = self._assign_room_for_session(
-                        room_pool, day, spanned_slots, used_rooms
-                    )
-                    if room_name == "TBD":
+            # For practicals: if same faculty already has a room for same subject at same slot, share it
+            room_name = "TBD"
+            if subject_type == "practical" and fac_name != "Unassigned":
+                # Check if this faculty already has a room for same subject at this slot
+                for prev_session in sorted_sessions:
+                    if prev_session is session:
+                        continue
+                    prev_key = self._session_key(prev_session)
+                    if (prev_session["subject_id"] == session["subject_id"]
+                            and prev_session["day"] == day
+                            and prev_session["time_slot"] == session["time_slot"]
+                            and prev_session["subject"].get("type") == "practical"
+                            and faculty_assignment.get(prev_key) == fac_name
+                            and room_assignment.get(prev_key) not in [None, "TBD"]):
+                        room_name = room_assignment[prev_key]
+                        break
+
+            if room_name == "TBD":
+                if subject_type == "practical":
+                    room_pool = labs
+                    # Flexible practicals (projects, seminars) can use classrooms as fallback
+                    if self._is_flexible_practical(session["subject"]):
                         room_name = self._assign_room_for_session(
-                            classrooms, day, spanned_slots, used_rooms
+                            room_pool, day, spanned_slots, used_rooms
+                        )
+                        if room_name == "TBD":
+                            room_name = self._assign_room_for_session(
+                                classrooms, day, spanned_slots, used_rooms
+                            )
+                    else:
+                        room_name = self._assign_room_for_session(
+                            room_pool, day, spanned_slots, used_rooms
                         )
                 else:
+                    room_pool = classrooms
                     room_name = self._assign_room_for_session(
                         room_pool, day, spanned_slots, used_rooms
                     )
-            else:
-                room_pool = classrooms
-                room_name = self._assign_room_for_session(
-                    room_pool, day, spanned_slots, used_rooms
-                )
             room_assignment[skey] = room_name
 
             # Mark room as used for all spanned slots
