@@ -2,7 +2,7 @@
   "timetables": [
     {
       "id": 1,
-      "name": "Odd Semester - 2026-03-14",
+      "name": "Odd Semester - 2026-03-15",
       "timetable": {
         "Year_1_Division_A": {
           "Monday": {
@@ -1243,13 +1243,13 @@
                 },
                 "3": {
                   "subject": "LDCO Lab ",
-                  "faculty": "D G Jadhav",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 36",
                   "code": "214446"
                 },
                 "4": {
                   "subject": "LDCO Lab ",
-                  "faculty": "D G Jadhav",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 38",
                   "code": "214446"
                 }
@@ -1274,13 +1274,13 @@
                 },
                 "3": {
                   "subject": "LDCO Lab ",
-                  "faculty": "D G Jadhav",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 36",
                   "code": "214446"
                 },
                 "4": {
                   "subject": "LDCO Lab ",
-                  "faculty": "D G Jadhav",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 38",
                   "code": "214446"
                 }
@@ -1481,7 +1481,7 @@
                 },
                 "4": {
                   "subject": "DSA lab ",
-                  "faculty": "J S Pawar",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 38",
                   "code": "214447"
                 }
@@ -1512,7 +1512,7 @@
                 },
                 "4": {
                   "subject": "DSA lab ",
-                  "faculty": "J S Pawar",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 38",
                   "code": "214447"
                 }
@@ -1583,13 +1583,13 @@
                 },
                 "3": {
                   "subject": "OOP lab ",
-                  "faculty": "V V Banerjee",
+                  "faculty": "S S Gadekar",
                   "room": "Lab No. 36",
                   "code": "214448"
                 },
                 "4": {
                   "subject": "OOP lab ",
-                  "faculty": "V V Banerjee",
+                  "faculty": "S S Gadekar",
                   "room": "Lab No. 38",
                   "code": "214448"
                 }
@@ -1614,13 +1614,13 @@
                 },
                 "3": {
                   "subject": "OOP lab ",
-                  "faculty": "V V Banerjee",
+                  "faculty": "S S Gadekar",
                   "room": "Lab No. 36",
                   "code": "214448"
                 },
                 "4": {
                   "subject": "OOP lab ",
-                  "faculty": "V V Banerjee",
+                  "faculty": "S S Gadekar",
                   "room": "Lab No. 38",
                   "code": "214448"
                 }
@@ -1689,7 +1689,7 @@
                 },
                 "3": {
                   "subject": "DSA lab ",
-                  "faculty": "J S Pawar",
+                  "faculty": "S M Joshi",
                   "room": "Lab No. 36",
                   "code": "214447"
                 },
@@ -1720,7 +1720,7 @@
                 },
                 "3": {
                   "subject": "DSA lab ",
-                  "faculty": "J S Pawar",
+                  "faculty": "S M Joshi",
                   "room": "Lab No. 36",
                   "code": "214447"
                 },
@@ -2365,7 +2365,7 @@
             "09:15-10:15": {
               "subject": "LDCO Lab ",
               "type": "practical",
-              "faculty": "D G Jadhav",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 36",
               "code": "214446",
               "batch": 3,
@@ -2376,7 +2376,7 @@
             "10:15-11:15": {
               "subject": "LDCO Lab ",
               "type": "practical",
-              "faculty": "D G Jadhav",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 36",
               "code": "214446",
               "batch": 3,
@@ -2585,7 +2585,7 @@
             "11:30-12:30": {
               "subject": "OOP lab ",
               "type": "practical",
-              "faculty": "V V Banerjee",
+              "faculty": "S S Gadekar",
               "room": "Lab No. 36",
               "code": "214448",
               "batch": 3,
@@ -2596,7 +2596,7 @@
             "12:30-13:30": {
               "subject": "OOP lab ",
               "type": "practical",
-              "faculty": "V V Banerjee",
+              "faculty": "S S Gadekar",
               "room": "Lab No. 36",
               "code": "214448",
               "batch": 3,
@@ -2651,7 +2651,7 @@
             "14:30-15:30": {
               "subject": "DSA lab ",
               "type": "practical",
-              "faculty": "J S Pawar",
+              "faculty": "S M Joshi",
               "room": "Lab No. 36",
               "code": "214447",
               "batch": 3,
@@ -2662,7 +2662,7 @@
             "15:30-16:30": {
               "subject": "DSA lab ",
               "type": "practical",
-              "faculty": "J S Pawar",
+              "faculty": "S M Joshi",
               "room": "Lab No. 36",
               "code": "214447",
               "batch": 3,
@@ -2677,7 +2677,7 @@
             "09:15-10:15": {
               "subject": "LDCO Lab ",
               "type": "practical",
-              "faculty": "D G Jadhav",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 38",
               "code": "214446",
               "batch": 4,
@@ -2688,7 +2688,7 @@
             "10:15-11:15": {
               "subject": "LDCO Lab ",
               "type": "practical",
-              "faculty": "D G Jadhav",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 38",
               "code": "214446",
               "batch": 4,
@@ -2829,7 +2829,7 @@
             "11:30-12:30": {
               "subject": "DSA lab ",
               "type": "practical",
-              "faculty": "J S Pawar",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 38",
               "code": "214447",
               "batch": 4,
@@ -2840,7 +2840,7 @@
             "12:30-13:30": {
               "subject": "DSA lab ",
               "type": "practical",
-              "faculty": "J S Pawar",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 38",
               "code": "214447",
               "batch": 4,
@@ -2897,7 +2897,7 @@
             "11:30-12:30": {
               "subject": "OOP lab ",
               "type": "practical",
-              "faculty": "V V Banerjee",
+              "faculty": "S S Gadekar",
               "room": "Lab No. 38",
               "code": "214448",
               "batch": 4,
@@ -2908,7 +2908,7 @@
             "12:30-13:30": {
               "subject": "OOP lab ",
               "type": "practical",
-              "faculty": "V V Banerjee",
+              "faculty": "S S Gadekar",
               "room": "Lab No. 38",
               "code": "214448",
               "batch": 4,
@@ -3433,7 +3433,7 @@
                 },
                 "4": {
                   "subject": "OOP lab ",
-                  "faculty": "A S Shinde",
+                  "faculty": "S H Thengil",
                   "room": "Lab No. 38",
                   "code": "214448"
                 }
@@ -3464,7 +3464,7 @@
                 },
                 "4": {
                   "subject": "OOP lab ",
-                  "faculty": "A S Shinde",
+                  "faculty": "S H Thengil",
                   "room": "Lab No. 38",
                   "code": "214448"
                 }
@@ -4701,7 +4701,7 @@
             "11:30-12:30": {
               "subject": "OOP lab ",
               "type": "practical",
-              "faculty": "A S Shinde",
+              "faculty": "S H Thengil",
               "room": "Lab No. 38",
               "code": "214448",
               "batch": 4,
@@ -4712,7 +4712,7 @@
             "12:30-13:30": {
               "subject": "OOP lab ",
               "type": "practical",
-              "faculty": "A S Shinde",
+              "faculty": "S H Thengil",
               "room": "Lab No. 38",
               "code": "214448",
               "batch": 4,
@@ -5059,7 +5059,7 @@
                 },
                 "4": {
                   "subject": "LP1",
-                  "faculty": "S A Sharma",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 38",
                   "code": "314448"
                 }
@@ -5090,7 +5090,7 @@
                 },
                 "4": {
                   "subject": "LP1",
-                  "faculty": "S A Sharma",
+                  "faculty": "K K Bansal",
                   "room": "Lab No. 38",
                   "code": "314448"
                 }
@@ -5139,13 +5139,13 @@
                 },
                 "3": {
                   "subject": "OS Lab",
-                  "faculty": "A D Tawlare",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 42",
                   "code": "314446"
                 },
                 "4": {
                   "subject": "OS Lab",
-                  "faculty": "A D Tawlare",
+                  "faculty": "S R Ganorkar",
                   "room": "Office Building 3rd Floor",
                   "code": "314446"
                 }
@@ -5170,13 +5170,13 @@
                 },
                 "3": {
                   "subject": "OS Lab",
-                  "faculty": "A D Tawlare",
+                  "faculty": "S R Ganorkar",
                   "room": "Lab No. 42",
                   "code": "314446"
                 },
                 "4": {
                   "subject": "OS Lab",
-                  "faculty": "A D Tawlare",
+                  "faculty": "S R Ganorkar",
                   "room": "Office Building 3rd Floor",
                   "code": "314446"
                 }
@@ -6101,7 +6101,7 @@
             "11:30-12:30": {
               "subject": "OS Lab",
               "type": "practical",
-              "faculty": "A D Tawlare",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 42",
               "code": "314446",
               "batch": 3,
@@ -6112,7 +6112,7 @@
             "12:30-13:30": {
               "subject": "OS Lab",
               "type": "practical",
-              "faculty": "A D Tawlare",
+              "faculty": "S R Ganorkar",
               "room": "Lab No. 42",
               "code": "314446",
               "batch": 3,
@@ -6367,7 +6367,7 @@
             "14:30-15:30": {
               "subject": "LP1",
               "type": "practical",
-              "faculty": "S A Sharma",
+              "faculty": "K K Bansal",
               "room": "Lab No. 38",
               "code": "314448",
               "batch": 4,
@@ -6378,7 +6378,7 @@
             "15:30-16:30": {
               "subject": "LP1",
               "type": "practical",
-              "faculty": "S A Sharma",
+              "faculty": "K K Bansal",
               "room": "Lab No. 38",
               "code": "314448",
               "batch": 4,
@@ -6413,7 +6413,7 @@
             "11:30-12:30": {
               "subject": "OS Lab",
               "type": "practical",
-              "faculty": "A D Tawlare",
+              "faculty": "S R Ganorkar",
               "room": "Office Building 3rd Floor",
               "code": "314446",
               "batch": 4,
@@ -6424,7 +6424,7 @@
             "12:30-13:30": {
               "subject": "OS Lab",
               "type": "practical",
-              "faculty": "A D Tawlare",
+              "faculty": "S R Ganorkar",
               "room": "Office Building 3rd Floor",
               "code": "314446",
               "batch": 4,
@@ -6545,13 +6545,13 @@
                 },
                 "3": {
                   "subject": "OS Lab",
-                  "faculty": "N H Deshpande",
+                  "faculty": "S A Sharma",
                   "room": "Lab No. 42",
                   "code": "314446"
                 },
                 "4": {
                   "subject": "OS Lab",
-                  "faculty": "N H Deshpande",
+                  "faculty": "S A Sharma",
                   "room": "Office Building 3rd Floor",
                   "code": "314446"
                 }
@@ -6576,13 +6576,13 @@
                 },
                 "3": {
                   "subject": "OS Lab",
-                  "faculty": "N H Deshpande",
+                  "faculty": "S A Sharma",
                   "room": "Lab No. 42",
                   "code": "314446"
                 },
                 "4": {
                   "subject": "OS Lab",
-                  "faculty": "N H Deshpande",
+                  "faculty": "S A Sharma",
                   "room": "Office Building 3rd Floor",
                   "code": "314446"
                 }
@@ -6625,7 +6625,7 @@
                 },
                 "4": {
                   "subject": "LP1",
-                  "faculty": "A D Tawlare",
+                  "faculty": "A S Pujari",
                   "room": "Lab No. 38",
                   "code": "314448"
                 }
@@ -6656,7 +6656,7 @@
                 },
                 "4": {
                   "subject": "LP1",
-                  "faculty": "A D Tawlare",
+                  "faculty": "A S Pujari",
                   "room": "Lab No. 38",
                   "code": "314448"
                 }
@@ -7667,7 +7667,7 @@
             "11:30-12:30": {
               "subject": "OS Lab",
               "type": "practical",
-              "faculty": "N H Deshpande",
+              "faculty": "S A Sharma",
               "room": "Lab No. 42",
               "code": "314446",
               "batch": 3,
@@ -7678,7 +7678,7 @@
             "12:30-13:30": {
               "subject": "OS Lab",
               "type": "practical",
-              "faculty": "N H Deshpande",
+              "faculty": "S A Sharma",
               "room": "Lab No. 42",
               "code": "314446",
               "batch": 3,
@@ -7979,7 +7979,7 @@
             "11:30-12:30": {
               "subject": "OS Lab",
               "type": "practical",
-              "faculty": "N H Deshpande",
+              "faculty": "S A Sharma",
               "room": "Office Building 3rd Floor",
               "code": "314446",
               "batch": 4,
@@ -7990,7 +7990,7 @@
             "12:30-13:30": {
               "subject": "OS Lab",
               "type": "practical",
-              "faculty": "N H Deshpande",
+              "faculty": "S A Sharma",
               "room": "Office Building 3rd Floor",
               "code": "314446",
               "batch": 4,
@@ -8013,7 +8013,7 @@
             "09:15-10:15": {
               "subject": "LP1",
               "type": "practical",
-              "faculty": "A D Tawlare",
+              "faculty": "A S Pujari",
               "room": "Lab No. 38",
               "code": "314448",
               "batch": 4,
@@ -8024,7 +8024,7 @@
             "10:15-11:15": {
               "subject": "LP1",
               "type": "practical",
-              "faculty": "A D Tawlare",
+              "faculty": "A S Pujari",
               "room": "Lab No. 38",
               "code": "314448",
               "batch": 4,
@@ -8567,7 +8567,7 @@
                 },
                 "3": {
                   "subject": "LP3",
-                  "faculty": "M S Bhosale",
+                  "faculty": "D G Jadhav",
                   "room": "Lab No. 36",
                   "code": "414446"
                 },
@@ -8598,7 +8598,7 @@
                 },
                 "3": {
                   "subject": "LP3",
-                  "faculty": "M S Bhosale",
+                  "faculty": "D G Jadhav",
                   "room": "Lab No. 36",
                   "code": "414446"
                 },
@@ -8647,7 +8647,7 @@
                 },
                 "3": {
                   "subject": "Project Stage 1",
-                  "faculty": "S A Sharma",
+                  "faculty": "S S Mishra",
                   "room": "CR45",
                   "code": "414448"
                 },
@@ -8678,7 +8678,7 @@
                 },
                 "3": {
                   "subject": "Project Stage 1",
-                  "faculty": "S A Sharma",
+                  "faculty": "S S Mishra",
                   "room": "CR45",
                   "code": "414448"
                 },
@@ -9509,7 +9509,7 @@
             "14:30-15:30": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "M S Bhosale",
+              "faculty": "D G Jadhav",
               "room": "Lab No. 36",
               "code": "414446",
               "batch": 3,
@@ -9520,7 +9520,7 @@
             "15:30-16:30": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "M S Bhosale",
+              "faculty": "D G Jadhav",
               "room": "Lab No. 36",
               "code": "414446",
               "batch": 3,
@@ -9549,7 +9549,7 @@
             "11:30-12:30": {
               "subject": "Project Stage 1",
               "type": "practical",
-              "faculty": "S A Sharma",
+              "faculty": "S S Mishra",
               "room": "CR45",
               "code": "414448",
               "batch": 3,
@@ -9560,7 +9560,7 @@
             "12:30-13:30": {
               "subject": "Project Stage 1",
               "type": "practical",
-              "faculty": "S A Sharma",
+              "faculty": "S S Mishra",
               "room": "CR45",
               "code": "414448",
               "batch": 3,
@@ -9999,7 +9999,7 @@
                 },
                 "4": {
                   "subject": "Project Stage 1",
-                  "faculty": "K K Bansal",
+                  "faculty": "D G Jadhav",
                   "room": "Office Building 3rd Floor",
                   "code": "414448"
                 }
@@ -10030,7 +10030,7 @@
                 },
                 "4": {
                   "subject": "Project Stage 1",
-                  "faculty": "K K Bansal",
+                  "faculty": "D G Jadhav",
                   "room": "Office Building 3rd Floor",
                   "code": "414448"
                 }
@@ -10199,7 +10199,7 @@
                 },
                 "4": {
                   "subject": "LP3",
-                  "faculty": "S L Dawkhar",
+                  "faculty": "A S Shinde",
                   "room": "Office Building 3rd Floor",
                   "code": "414446"
                 }
@@ -10230,7 +10230,7 @@
                 },
                 "4": {
                   "subject": "LP3",
-                  "faculty": "S L Dawkhar",
+                  "faculty": "A S Shinde",
                   "room": "Office Building 3rd Floor",
                   "code": "414446"
                 }
@@ -11267,7 +11267,7 @@
             "09:15-10:15": {
               "subject": "Project Stage 1",
               "type": "practical",
-              "faculty": "K K Bansal",
+              "faculty": "D G Jadhav",
               "room": "Office Building 3rd Floor",
               "code": "414448",
               "batch": 4,
@@ -11278,7 +11278,7 @@
             "10:15-11:15": {
               "subject": "Project Stage 1",
               "type": "practical",
-              "faculty": "K K Bansal",
+              "faculty": "D G Jadhav",
               "room": "Office Building 3rd Floor",
               "code": "414448",
               "batch": 4,
@@ -11427,7 +11427,7 @@
             "14:30-15:30": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "S L Dawkhar",
+              "faculty": "A S Shinde",
               "room": "Office Building 3rd Floor",
               "code": "414446",
               "batch": 4,
@@ -11438,7 +11438,7 @@
             "15:30-16:30": {
               "subject": "LP3",
               "type": "practical",
-              "faculty": "S L Dawkhar",
+              "faculty": "A S Shinde",
               "room": "Office Building 3rd Floor",
               "code": "414446",
               "batch": 4,
@@ -11505,8 +11505,8 @@
           }
         }
       },
-      "saved_at": "2026-03-14T14:07:09.850241",
-      "saved_at_formatted": "2026-03-14 14:07:09",
+      "saved_at": "2026-03-15T05:41:30.272011",
+      "saved_at_formatted": "2026-03-15 05:41:30",
       "semester_mode": "odd",
       "fingerprint": "f341f1b433f9810a98b99738b12303ba",
       "auto_saved": true

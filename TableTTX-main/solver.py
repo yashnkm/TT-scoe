@@ -1193,9 +1193,9 @@ class SimpleTimetableSolver:
 
         # Track faculty usage separately:
         # - theory blocks everything
-        # - practicals block different-subject practicals (faculty can supervise multiple batches of SAME subject)
+        # - practicals: faculty can handle max 2 batches of the SAME subject simultaneously
         used_faculty_theory = {}    # (day, slot) -> set of faculty in theory sessions
-        used_faculty_practical = {} # (day, slot) -> dict: faculty_name -> subject_id
+        used_faculty_practical = {} # (day, slot) -> dict: faculty_name -> (subject_id, count)
         used_rooms = {}             # (day, slot) -> set of room names
 
         for day in days:
@@ -1239,7 +1239,11 @@ class SimpleTimetableSolver:
             if fac_name != "Unassigned":
                 for slot in spanned_slots:
                     if is_practical:
-                        used_faculty_practical[(day, slot)][fac_name] = session["subject_id"]
+                        prev = used_faculty_practical[(day, slot)].get(fac_name)
+                        if prev:
+                            used_faculty_practical[(day, slot)][fac_name] = (prev[0], prev[1] + 1)
+                        else:
+                            used_faculty_practical[(day, slot)][fac_name] = (session["subject_id"], 1)
                     else:
                         used_faculty_theory[(day, slot)].add(fac_name)
 
@@ -1350,20 +1354,26 @@ class SimpleTimetableSolver:
                         break
 
                 if not cand_blocked_by_theory:
-                    # Check if blocked by a different-subject practical
-                    blocked_by_diff_prac = False
+                    # Check if blocked by practical (max 2 batches of same subject)
+                    blocked_by_prac = False
                     for slot in spanned:
-                        prac_dict = used_faculty_practical.get((day, slot), {})
-                        if cand_name in prac_dict and prac_dict[cand_name] != prac_session["subject_id"]:
-                            blocked_by_diff_prac = True
-                            break
-                    if blocked_by_diff_prac:
+                        prac_entry = used_faculty_practical.get((day, slot), {}).get(cand_name)
+                        if prac_entry:
+                            existing_subj, existing_count = prac_entry
+                            if existing_subj != prac_session["subject_id"] or existing_count >= 2:
+                                blocked_by_prac = True
+                                break
+                    if blocked_by_prac:
                         continue
 
                     # Candidate is free! Assign directly
                     faculty_assignment[prac_key] = cand_name
                     for slot in spanned:
-                        used_faculty_practical[(day, slot)][cand_name] = prac_session["subject_id"]
+                        prev = used_faculty_practical[(day, slot)].get(cand_name)
+                        if prev:
+                            used_faculty_practical[(day, slot)][cand_name] = (prev[0], prev[1] + 1)
+                        else:
+                            used_faculty_practical[(day, slot)][cand_name] = (prac_session["subject_id"], 1)
                     repairs += 1
                     break
 
@@ -1423,7 +1433,11 @@ class SimpleTimetableSolver:
                     # Assign practical to freed candidate
                     faculty_assignment[prac_key] = cand_name
                     for slot in spanned:
-                        used_faculty_practical[(day, slot)][cand_name] = prac_session["subject_id"]
+                        prev = used_faculty_practical[(day, slot)].get(cand_name)
+                        if prev:
+                            used_faculty_practical[(day, slot)][cand_name] = (prev[0], prev[1] + 1)
+                        else:
+                            used_faculty_practical[(day, slot)][cand_name] = (prac_session["subject_id"], 1)
 
                     # Update theory_lookup
                     for slot in blocked_spanned:
@@ -1441,7 +1455,7 @@ class SimpleTimetableSolver:
     def _assign_faculty_for_session(self, session, faculty_list, day, spanned_slots,
                                      used_faculty_theory, used_faculty_practical=None):
         """Pick a faculty member for this session.
-        For practicals: check batch assignment, only blocked by theory (can supervise multiple practicals).
+        For practicals: check batch assignment, blocked by theory AND other practicals (one lab at a time).
         For theory: blocked by both theory and practical sessions.
         """
         div_map = {"A": 1, "B": 2, "C": 3, "D": 4, "E": 5}
@@ -1508,12 +1522,15 @@ class SimpleTimetableSolver:
                         if (day, slot) in used_faculty_practical and fac_name in used_faculty_practical[(day, slot)]:
                             is_free = False
                             break
-                    # Practicals: blocked by DIFFERENT-subject practicals, allowed for same subject
+                    # Practicals: max 2 batches of SAME subject, blocked by different subjects
                     if is_practical and (day, slot) in used_faculty_practical:
-                        prac_dict = used_faculty_practical[(day, slot)]
-                        if fac_name in prac_dict and prac_dict[fac_name] != session["subject_id"]:
-                            is_free = False
-                            break
+                        prac_entry = used_faculty_practical[(day, slot)].get(fac_name)
+                        if prac_entry:
+                            existing_subj, existing_count = prac_entry
+                            # Block if different subject OR already at max 2 batches
+                            if existing_subj != session["subject_id"] or existing_count >= 2:
+                                is_free = False
+                                break
 
                 if is_free:
                     return fac_name
