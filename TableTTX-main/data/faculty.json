@@ -106,6 +106,216 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 12,
@@ -208,6 +418,216 @@
           "subject_id": 47,
           "year": 4,
           "semester": 2,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
           "divisions": [
             1
           ],
@@ -328,6 +748,216 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 10,
@@ -416,6 +1046,216 @@
           "subject_id": 45,
           "year": 4,
           "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
           "divisions": [
             2
           ],
@@ -536,6 +1376,216 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 12,
@@ -640,6 +1690,202 @@
           "semester": 1,
           "divisions": [
             1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
           ],
           "batches": [
             1,
@@ -758,6 +2004,216 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 11,
@@ -860,6 +2316,216 @@
           "subject_id": 47,
           "year": 4,
           "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
           "divisions": [
             2
           ],
@@ -982,6 +2648,230 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 17,
@@ -1068,6 +2958,202 @@
         },
         {
           "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
           "year": 4,
           "semester": 1,
           "divisions": [
@@ -1190,6 +3276,216 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 10,
@@ -1301,6 +3597,216 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 11,
@@ -1391,6 +3897,230 @@
           "semester": 2,
           "divisions": [
             1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
           ],
           "batches": [
             1,
@@ -1495,6 +4225,230 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 9,
@@ -1585,6 +4539,230 @@
           "semester": 2,
           "divisions": [
             1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
           ],
           "batches": [
             1,
@@ -1698,6 +4876,216 @@
           "subject_id": 47,
           "year": 4,
           "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
           "divisions": [
             2
           ],
@@ -1836,6 +5224,216 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 19,
@@ -1937,6 +5535,202 @@
         {
           "subject_id": 24,
           "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
           "semester": 1,
           "divisions": [
             2
@@ -2058,6 +5852,230 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 10,
@@ -2160,6 +6178,216 @@
           "subject_id": 31,
           "year": 3,
           "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
           "divisions": [
             2
           ],
@@ -2280,6 +6508,202 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 10,
@@ -2391,6 +6815,202 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 11,
@@ -2493,6 +7113,216 @@
           "subject_id": 31,
           "year": 3,
           "semester": 2,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
           "divisions": [
             2
           ],
@@ -2614,6 +7444,230 @@
             3,
             4
           ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
         }
       ],
       "hours_per_week": 14,
@@ -2719,6 +7773,244 @@
           "semester": 2,
           "divisions": [
             1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 6,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 7,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 8,
+          "year": 2,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 22,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 23,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 24,
+          "year": 3,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 38,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 39,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            1
+          ],
+          "batches": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "subject_id": 40,
+          "year": 4,
+          "semester": 1,
+          "divisions": [
+            2
           ],
           "batches": [
             1,

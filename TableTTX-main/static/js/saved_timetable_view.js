@@ -4,13 +4,15 @@
 
 let timetableData = {};
 let facultySchedules = {};
+let roomSchedules = {};
 
 document.addEventListener('DOMContentLoaded', function () {
     try {
         timetableData = JSON.parse(document.getElementById('timetableData').textContent);
 
-        // Pre-compute faculty schedules
+        // Pre-compute faculty and room schedules
         facultySchedules = generateFacultySchedules(timetableData);
+        roomSchedules = generateRoomSchedules(timetableData);
 
         // Event listeners
         document.getElementById('viewSelector').addEventListener('change', onViewChanged);
@@ -161,9 +163,16 @@ function filterViewOptions() {
                 selector.appendChild(opt);
             }
         });
-    } else {
-        // Faculty view
+    } else if (viewType === 'faculty') {
         const names = Object.keys(facultySchedules).sort();
+        names.forEach(name => {
+            const opt = document.createElement('option');
+            opt.value = name;
+            opt.textContent = name;
+            selector.appendChild(opt);
+        });
+    } else if (viewType === 'room') {
+        const names = Object.keys(roomSchedules).sort();
         names.forEach(name => {
             const opt = document.createElement('option');
             opt.value = name;
@@ -188,6 +197,10 @@ function onViewChanged() {
         document.getElementById('currentViewTitle').innerHTML =
             '<i class="fas fa-chalkboard-teacher me-2"></i>' + selected;
         renderFacultyView(selected);
+    } else if (viewType === 'room') {
+        document.getElementById('currentViewTitle').innerHTML =
+            '<i class="fas fa-door-open me-2"></i>' + selected;
+        renderRoomView(selected);
     } else {
         document.getElementById('currentViewTitle').innerHTML =
             '<i class="fas fa-table me-2"></i>' + selected.replace(/_/g, ' ');
@@ -484,6 +497,212 @@ function renderFacultyView(facultyName) {
                             <div class="session-subject">${entry.subject}${durationLabel}</div>
                             <div class="session-details">
                                 <small class="d-block"><i class="fas fa-map-marker-alt me-1"></i>${entry.room}</small>
+                                ${batchesLabel}
+                                <span class="badge ${typeBadgeClass} mt-1">${entry.type.toUpperCase()}</span>
+                            </div>
+                            <div class="session-context">
+                                <i class="fas fa-graduation-cap me-1"></i>${entry.context}
+                            </div>
+                        </div>
+                    `;
+                } else if (!entry || entry.slot_position !== 'continuation') {
+                    cell.innerHTML = '<div class="free-slot">Free</div>';
+                }
+
+                row.appendChild(cell);
+            });
+        }
+
+        tbody.appendChild(row);
+    });
+}
+
+/* ------------------------------------------------------------------ */
+/*  Room schedule generation                                           */
+/* ------------------------------------------------------------------ */
+
+function generateRoomSchedules(data) {
+    const schedules = {};
+    const sampleKey = Object.keys(data)[0];
+    if (!sampleKey) return schedules;
+    const sampleView = data[sampleKey];
+    const days = Object.keys(sampleView);
+
+    Object.keys(data).forEach(viewKey => {
+        const isBatchView = viewKey.includes('Batch');
+        const viewData = data[viewKey];
+        const context = viewKey.replace(/_/g, ' ');
+
+        days.forEach(day => {
+            const slots = viewData[day];
+            if (!slots) return;
+
+            Object.keys(slots).forEach(timeSlot => {
+                const session = slots[timeSlot];
+                if (!session || session.type === 'break') return;
+
+                if (session.type === 'practical_block') {
+                    if (!isBatchView) return;
+                    const batches = session.batches || {};
+                    Object.keys(batches).forEach(bNum => {
+                        const bInfo = batches[bNum];
+                        if (!bInfo || !bInfo.room) return;
+                        const roomName = bInfo.room;
+                        const bLetter = String.fromCharCode(64 + parseInt(bNum));
+                        if (!schedules[roomName]) schedules[roomName] = {};
+                        if (!schedules[roomName][day]) schedules[roomName][day] = {};
+                        if (!schedules[roomName][day][timeSlot]) {
+                            schedules[roomName][day][timeSlot] = {
+                                subject: bInfo.subject, faculty: bInfo.faculty || '',
+                                type: 'practical', span: session.span || 1,
+                                slot_position: session.slot_position || 'start', context: context,
+                                batches: ['Batch ' + bLetter]
+                            };
+                        } else {
+                            const existing = schedules[roomName][day][timeSlot];
+                            if (!existing.batches) existing.batches = [];
+                            existing.batches.push('Batch ' + bLetter);
+                            if (bInfo.faculty && !existing.faculty.includes(bInfo.faculty)) {
+                                existing.faculty += ', ' + bInfo.faculty;
+                            }
+                        }
+                    });
+                } else if (!isBatchView) {
+                    const roomName = session.room;
+                    if (!roomName) return;
+                    if (!schedules[roomName]) schedules[roomName] = {};
+                    if (!schedules[roomName][day]) schedules[roomName][day] = {};
+                    if (!schedules[roomName][day][timeSlot]) {
+                        schedules[roomName][day][timeSlot] = {
+                            subject: session.subject, faculty: session.faculty || '',
+                            type: session.type || 'theory', span: session.span || 1,
+                            slot_position: session.slot_position || 'start', context: context
+                        };
+                    }
+                } else {
+                    if (session.type === 'theory' || session.type === 'tutorial') return;
+                    const roomName = session.room;
+                    if (!roomName) return;
+                    const batchPart = viewKey.split('Batch_')[1] || '';
+                    if (!schedules[roomName]) schedules[roomName] = {};
+                    if (!schedules[roomName][day]) schedules[roomName][day] = {};
+                    if (!schedules[roomName][day][timeSlot]) {
+                        schedules[roomName][day][timeSlot] = {
+                            subject: session.subject, faculty: session.faculty || '',
+                            type: session.type || 'practical', span: session.span || 1,
+                            slot_position: session.slot_position || 'start', context: context,
+                            batches: batchPart ? ['Batch ' + batchPart] : []
+                        };
+                    } else {
+                        const existing = schedules[roomName][day][timeSlot];
+                        if (!existing.batches) existing.batches = [];
+                        if (batchPart) existing.batches.push('Batch ' + batchPart);
+                        if (session.faculty && !existing.faculty.includes(session.faculty)) {
+                            existing.faculty += ', ' + session.faculty;
+                        }
+                    }
+                }
+            });
+        });
+    });
+    return schedules;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Room View rendering                                                */
+/* ------------------------------------------------------------------ */
+
+function renderRoomView(roomName) {
+    const schedule = roomSchedules[roomName];
+    if (!schedule) return;
+
+    const tbody = document.getElementById('timetableBody');
+    tbody.innerHTML = '';
+
+    const sampleKey = Object.keys(timetableData)[0];
+    const sampleView = timetableData[sampleKey];
+    const days = Object.keys(sampleView);
+    const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    days.sort((a, b) => dayOrder.indexOf(a) - dayOrder.indexOf(b));
+    const timeSlots = Object.keys(sampleView[days[0]] || {});
+
+    const thead = document.getElementById('timetableHead');
+    thead.innerHTML = '';
+    const headRow = document.createElement('tr');
+    const timeTh = document.createElement('th');
+    timeTh.textContent = 'Time';
+    headRow.appendChild(timeTh);
+    days.forEach(d => {
+        const th = document.createElement('th');
+        th.textContent = d;
+        headRow.appendChild(th);
+    });
+    thead.appendChild(headRow);
+
+    function isBreakSlot(timeSlot) {
+        const firstSession = sampleView[days[0]] && sampleView[days[0]][timeSlot];
+        return firstSession && firstSession.type === 'break';
+    }
+
+    const skipCells = {};
+
+    timeSlots.forEach((timeSlot, slotIndex) => {
+        const row = document.createElement('tr');
+        const timeCell = document.createElement('td');
+        timeCell.className = 'fw-bold text-center align-middle';
+        timeCell.textContent = timeSlot;
+        row.appendChild(timeCell);
+
+        if (isBreakSlot(timeSlot)) {
+            const firstSession = sampleView[days[0]][timeSlot];
+            const breakCell = document.createElement('td');
+            breakCell.colSpan = days.length;
+            breakCell.className = 'break-cell text-center align-middle';
+            const breakType = firstSession.break_type || 'break';
+            const breakIcon = breakType === 'lunch' ? 'fa-utensils' : 'fa-coffee';
+            breakCell.innerHTML = `
+                <div class="break-slot p-3 rounded" style="background-color: rgba(108, 117, 125, 0.15);">
+                    <i class="fas ${breakIcon} me-2"></i>
+                    <strong style="font-size: 1.1em;">${firstSession.subject}</strong>
+                </div>
+            `;
+            row.appendChild(breakCell);
+        } else {
+            days.forEach((day, dayIndex) => {
+                const cellKey = `${slotIndex}-${dayIndex}`;
+                if (skipCells[cellKey]) return;
+
+                const cell = document.createElement('td');
+                const entry = schedule[day] && schedule[day][timeSlot];
+
+                if (entry && entry.slot_position !== 'continuation') {
+                    const span = entry.span || 1;
+                    if (span > 1) {
+                        let actualRowspan = 1;
+                        for (let offset = 1; offset < span; offset++) {
+                            const nextSlotIdx = slotIndex + offset;
+                            if (nextSlotIdx < timeSlots.length && !isBreakSlot(timeSlots[nextSlotIdx])) {
+                                actualRowspan++;
+                                skipCells[`${nextSlotIdx}-${dayIndex}`] = true;
+                            }
+                        }
+                        cell.rowSpan = actualRowspan;
+                    }
+                    cell.className = 'align-middle';
+
+                    const typeBadgeClass = entry.type === 'practical' ? 'bg-warning' :
+                                           entry.type === 'tutorial' ? 'bg-purple' : 'bg-info';
+                    const durationLabel = span > 1 ? ` (${span} hrs)` : '';
+
+                    const batchesLabel = entry.batches && entry.batches.length > 0
+                        ? `<small class="d-block text-warning"><i class="fas fa-users me-1"></i>${entry.batches.join(', ')}</small>`
+                        : '';
+
+                    cell.innerHTML = `
+                        <div class="session-card room-session">
+                            <div class="session-subject">${entry.subject}${durationLabel}</div>
+                            <div class="session-details">
+                                <small class="d-block"><i class="fas fa-chalkboard-teacher me-1"></i>${entry.faculty}</small>
                                 ${batchesLabel}
                                 <span class="badge ${typeBadgeClass} mt-1">${entry.type.toUpperCase()}</span>
                             </div>

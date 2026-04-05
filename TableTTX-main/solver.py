@@ -1248,23 +1248,7 @@ class SimpleTimetableSolver:
                         used_faculty_theory[(day, slot)].add(fac_name)
 
             # Assign room
-            # For practicals: if same faculty already has a room for same subject at same slot, share it
             room_name = "TBD"
-            if subject_type == "practical" and fac_name != "Unassigned":
-                # Check if this faculty already has a room for same subject at this slot
-                for prev_session in sorted_sessions:
-                    if prev_session is session:
-                        continue
-                    prev_key = self._session_key(prev_session)
-                    if (prev_session["subject_id"] == session["subject_id"]
-                            and prev_session["day"] == day
-                            and prev_session["time_slot"] == session["time_slot"]
-                            and prev_session["subject"].get("type") == "practical"
-                            and faculty_assignment.get(prev_key) == fac_name
-                            and room_assignment.get(prev_key) not in [None, "TBD"]):
-                        room_name = room_assignment[prev_key]
-                        break
-
             if room_name == "TBD":
                 if subject_type == "practical":
                     room_pool = labs
@@ -1372,13 +1356,13 @@ class SimpleTimetableSolver:
                         break
 
                 if not cand_blocked_by_theory:
-                    # Check if blocked by practical (max 2 batches of same subject)
+                    # Check if blocked by practical (max 1 batch per teacher)
                     blocked_by_prac = False
                     for slot in spanned:
                         prac_entry = used_faculty_practical.get((day, slot), {}).get(cand_name)
                         if prac_entry:
                             existing_subj, existing_count = prac_entry
-                            if existing_subj != prac_session["subject_id"] or existing_count >= 2:
+                            if existing_subj != prac_session["subject_id"] or existing_count >= 1:
                                 blocked_by_prac = True
                                 break
                     if blocked_by_prac:
@@ -1540,13 +1524,13 @@ class SimpleTimetableSolver:
                         if (day, slot) in used_faculty_practical and fac_name in used_faculty_practical[(day, slot)]:
                             is_free = False
                             break
-                    # Practicals: max 2 batches of SAME subject, blocked by different subjects
+                    # Practicals: max 1 batch per teacher
                     if is_practical and (day, slot) in used_faculty_practical:
                         prac_entry = used_faculty_practical[(day, slot)].get(fac_name)
                         if prac_entry:
                             existing_subj, existing_count = prac_entry
-                            # Block if different subject OR already at max 2 batches
-                            if existing_subj != session["subject_id"] or existing_count >= 2:
+                            # Block if different subject OR already at max 1 batch
+                            if existing_subj != session["subject_id"] or existing_count >= 1:
                                 is_free = False
                                 break
 

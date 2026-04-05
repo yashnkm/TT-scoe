@@ -1110,237 +1110,467 @@ def export_timetable_excel():
         batch_views = [v for v in all_views if 'Batch' in v]
         sorted_views = division_views + batch_views
         
+        # Helper: get column letter for 1-based index (supports beyond Z)
+        def col_letter(idx):
+            """Convert 1-based column index to Excel column letter(s)."""
+            from openpyxl.utils import get_column_letter
+            return get_column_letter(idx)
+
+        # Helper function to check if a time slot is a break
+        def is_break_slot(time_slot, days_data, days_list):
+            first_session = days_data.get(days_list[0], {}).get(time_slot)
+            if not first_session:
+                return None
+            if isinstance(first_session, list):
+                first_session = first_session[0] if first_session else None
+            if not first_session or not isinstance(first_session, dict):
+                return None
+            if first_session.get('type') == 'break':
+                return first_session.get('subject', 'Break')
+            break_keywords = ['break', 'lunch', 'recess']
+            first_subject = first_session.get('subject', '').lower()
+            if any(kw in first_subject for kw in break_keywords):
+                return first_session.get('subject', 'Break')
+            return None
+
+        # Thin border for inner practical cells
+        thin_border = Border(
+            left=Side(style='thin', color='999999'),
+            right=Side(style='thin', color='999999'),
+            top=Side(style='thin', color='999999'),
+            bottom=Side(style='thin', color='999999')
+        )
+        faculty_font = Font(size=9, italic=True)
+
         # Create a sheet for each division/batch
         for view_key in sorted_views:
             view_data = timetable[view_key]
             view_name = view_key.replace('_', ' ')
-            
-            # Create sheet with truncated name (Excel limit is 31 chars)
             sheet_name = view_name[:31]
             ws = wb.create_sheet(title=sheet_name)
-            
-            # Get data - viewData structure is {Day: {TimeSlot: [sessions]}}
+
             days = list(view_data.keys())
             day_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
             days.sort(key=lambda x: day_order.index(x) if x in day_order else 999)
-            
-            # Get time slots from first day
             time_slots = list(view_data[days[0]].keys()) if days and days[0] in view_data else []
-            
-            # Add title
-            merge_range = f'A1:{chr(65 + len(days))}1'
-            ws.merge_cells(merge_range)
-            title_cell = ws['A1']
+
+            # Each day gets 2 sub-columns (subject | room)
+            # Col 1 = Time, then for each day: left_col, right_col
+            total_cols = 1 + len(days) * 2
+
+            # Title row
+            ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=total_cols)
+            title_cell = ws.cell(row=1, column=1)
             title_cell.value = view_name
             title_cell.font = Font(bold=True, size=14, color="2C7873")
             title_cell.alignment = Alignment(horizontal='center', vertical='center')
             ws.row_dimensions[1].height = 25
-            
-            # Add timestamp
-            merge_range_2 = f'A2:{chr(65 + len(days))}2'
-            ws.merge_cells(merge_range_2)
-            timestamp_cell = ws['A2']
-            timestamp_cell.value = f"Generated on: {datetime.now().strftime('%B %d, %Y at %I:%M %p')}"
-            timestamp_cell.font = Font(size=10, italic=True)
-            timestamp_cell.alignment = Alignment(horizontal='center', vertical='center')
+
+            # Timestamp row
+            ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=total_cols)
+            ts_cell = ws.cell(row=2, column=1)
+            ts_cell.value = f"Generated on: {datetime.now().strftime('%B %d, %Y at %I:%M %p')}"
+            ts_cell.font = Font(size=10, italic=True)
+            ts_cell.alignment = Alignment(horizontal='center', vertical='center')
             ws.row_dimensions[2].height = 20
-            
-            # Header row (row 4)
+
+            # Header row (row 4) — Time + each day merged across 2 cols
             header_row = 4
-            ws.cell(row=header_row, column=1).value = 'Time'
-            for col_idx, day in enumerate(days, start=2):
-                ws.cell(row=header_row, column=col_idx).value = day
-            
-            # Apply header style
-            for col in range(1, len(days) + 2):
-                cell = ws.cell(row=header_row, column=col)
-                cell.font = header_font
-                cell.fill = header_fill
-                cell.alignment = Alignment(horizontal='center', vertical='center')
-                cell.border = border
+            time_hdr = ws.cell(row=header_row, column=1)
+            time_hdr.value = 'Time'
+            time_hdr.font = header_font
+            time_hdr.fill = header_fill
+            time_hdr.alignment = Alignment(horizontal='center', vertical='center')
+            time_hdr.border = border
+
+            for d_idx, day in enumerate(days):
+                left_col = 2 + d_idx * 2
+                right_col = left_col + 1
+                ws.merge_cells(start_row=header_row, start_column=left_col, end_row=header_row, end_column=right_col)
+                hdr_cell = ws.cell(row=header_row, column=left_col)
+                hdr_cell.value = day
+                hdr_cell.font = header_font
+                hdr_cell.fill = header_fill
+                hdr_cell.alignment = Alignment(horizontal='center', vertical='center')
+                hdr_cell.border = border
+                ws.cell(row=header_row, column=right_col).border = border
             ws.row_dimensions[header_row].height = 25
-            
-            # Helper function to check if a time slot is a break
-            def is_break_slot(time_slot, days_data):
-                """Check if all days have the same break for this time slot"""
-                break_keywords = ['break', 'lunch', 'recess']
-                first_session = days_data.get(days[0], {}).get(time_slot)
 
-                if not first_session:
-                    return None
-
-                # Handle both dict (single session) and list formats
-                if isinstance(first_session, list):
-                    first_session = first_session[0] if first_session else None
-                if not first_session or not isinstance(first_session, dict):
-                    return None
-
-                # Check if it's a break by type or subject
-                if first_session.get('type') == 'break':
-                    return first_session.get('subject', 'Break')
-
-                first_subject = first_session.get('subject', '').lower()
-                is_break = any(keyword in first_subject for keyword in break_keywords)
-                if not is_break:
-                    return None
-
-                return first_session.get('subject', 'Break')
-            
             # Data rows
             current_row = header_row + 1
+
             for time_slot in time_slots:
-                # Check if this is a break slot
-                break_name = is_break_slot(time_slot, view_data)
-                
+                break_name = is_break_slot(time_slot, view_data, days)
+
                 if break_name:
-                    # This is a break - merge cells across all days
-                    # Time slot cell
+                    # Break row
                     time_cell = ws.cell(row=current_row, column=1)
                     time_cell.value = time_slot
                     time_cell.font = time_font
                     time_cell.fill = time_fill
                     time_cell.alignment = break_alignment
                     time_cell.border = border
-                    
-                    # Merge cells for break across all days
-                    merge_range = f'{chr(65 + 1)}{current_row}:{chr(65 + len(days))}{current_row}'
-                    ws.merge_cells(merge_range)
-                    
-                    # Set break cell value and style
-                    break_cell = ws.cell(row=current_row, column=2)
-                    break_cell.value = break_name
-                    break_cell.font = break_font
-                    break_cell.fill = break_fill
-                    break_cell.alignment = break_alignment
-                    break_cell.border = border
-                    
-                    # Apply border to all merged cells
-                    for col in range(2, len(days) + 2):
-                        ws.cell(row=current_row, column=col).border = border
-                    
+
+                    ws.merge_cells(start_row=current_row, start_column=2, end_row=current_row, end_column=total_cols)
+                    bc = ws.cell(row=current_row, column=2)
+                    bc.value = break_name
+                    bc.font = break_font
+                    bc.fill = break_fill
+                    bc.alignment = break_alignment
+                    bc.border = border
+                    for c in range(2, total_cols + 1):
+                        ws.cell(row=current_row, column=c).border = border
                     ws.row_dimensions[current_row].height = 30
-                    
-                else:
-                    # Regular time slot
-                    # Time slot cell
+                    current_row += 1
+                    continue
+
+                # Determine how many sub-rows this time slot needs
+                # Each practical batch needs 2 sub-rows (subject|room + faculty)
+                # Theory needs 2 sub-rows (subject merged + faculty)
+                max_batch_count = 0
+                day_sessions = {}
+                for day in days:
+                    slot_data = view_data.get(day, {}).get(time_slot)
+                    if isinstance(slot_data, list):
+                        slot_data = slot_data[0] if slot_data else None
+                    day_sessions[day] = slot_data
+                    if slot_data and isinstance(slot_data, dict):
+                        if slot_data.get('type') == 'practical_block':
+                            batch_count = len(slot_data.get('batches', {}))
+                            max_batch_count = max(max_batch_count, batch_count)
+
+                # Each entry (theory or practical batch) takes 2 sub-rows
+                # Use max(1, max_batch_count) entries, each 2 rows
+                entries_count = max(1, max_batch_count)
+                sub_rows = entries_count * 2
+
+                # Time cell — merge vertically across all sub-rows
+                ws.merge_cells(start_row=current_row, start_column=1,
+                               end_row=current_row + sub_rows - 1, end_column=1)
+                time_cell = ws.cell(row=current_row, column=1)
+                time_cell.value = time_slot
+                time_cell.font = time_font
+                time_cell.fill = time_fill
+                time_cell.alignment = Alignment(horizontal='center', vertical='center')
+                time_cell.border = border
+                for sr in range(sub_rows):
+                    ws.cell(row=current_row + sr, column=1).border = border
+
+                # Fill each day's columns
+                for d_idx, day in enumerate(days):
+                    left_col = 2 + d_idx * 2
+                    right_col = left_col + 1
+                    session = day_sessions[day]
+
+                    if not session or not isinstance(session, dict) or session.get('type') == 'break':
+                        # Free — merge both cols across all sub-rows
+                        ws.merge_cells(start_row=current_row, start_column=left_col,
+                                       end_row=current_row + sub_rows - 1, end_column=right_col)
+                        fc = ws.cell(row=current_row, column=left_col)
+                        fc.value = 'Free'
+                        fc.fill = free_fill
+                        fc.alignment = Alignment(horizontal='center', vertical='center')
+                        fc.border = border
+                        for sr in range(sub_rows):
+                            ws.cell(row=current_row + sr, column=left_col).border = border
+                            ws.cell(row=current_row + sr, column=right_col).border = border
+                        continue
+
+                    if session.get('slot_position') == 'continuation':
+                        # Continuation — merge and show marker
+                        ws.merge_cells(start_row=current_row, start_column=left_col,
+                                       end_row=current_row + sub_rows - 1, end_column=right_col)
+                        cc = ws.cell(row=current_row, column=left_col)
+                        cc.value = '↑ (contd.)'
+                        cc.fill = practical_fill
+                        cc.alignment = Alignment(horizontal='center', vertical='center')
+                        cc.border = border
+                        for sr in range(sub_rows):
+                            ws.cell(row=current_row + sr, column=left_col).border = border
+                            ws.cell(row=current_row + sr, column=right_col).border = border
+                        continue
+
+                    session_type = session.get('type', '')
+
+                    if session_type == 'practical_block':
+                        batches = session.get('batches', {})
+                        sorted_batches = sorted(batches.keys(), key=lambda x: int(x))
+                        for b_idx, b_num in enumerate(sorted_batches):
+                            b_info = batches[b_num]
+                            row_offset = b_idx * 2
+                            r1 = current_row + row_offset      # subject | room
+                            r2 = current_row + row_offset + 1  # faculty (merged)
+
+                            if b_info:
+                                b_letter = chr(64 + int(b_num))
+                                subj_name = b_info.get('subject', '')
+                                room_name = b_info.get('room', '')
+                                fac_name = b_info.get('faculty', '')
+
+                                # Row 1: Subject (left) | Room (right)
+                                sc = ws.cell(row=r1, column=left_col)
+                                sc.value = f"{subj_name}"
+                                sc.fill = practical_fill
+                                sc.alignment = Alignment(horizontal='center', vertical='center')
+                                sc.border = thin_border
+
+                                rc = ws.cell(row=r1, column=right_col)
+                                rc.value = room_name
+                                rc.fill = practical_fill
+                                rc.alignment = Alignment(horizontal='center', vertical='center')
+                                rc.border = thin_border
+
+                                # Row 2: Faculty (merged across both cols)
+                                ws.merge_cells(start_row=r2, start_column=left_col,
+                                               end_row=r2, end_column=right_col)
+                                fcc = ws.cell(row=r2, column=left_col)
+                                fcc.value = fac_name
+                                fcc.font = faculty_font
+                                fcc.fill = practical_fill
+                                fcc.alignment = Alignment(horizontal='center', vertical='center')
+                                fcc.border = thin_border
+                                ws.cell(row=r2, column=right_col).border = thin_border
+                            else:
+                                # Free batch
+                                ws.merge_cells(start_row=r1, start_column=left_col,
+                                               end_row=r2, end_column=right_col)
+                                fc = ws.cell(row=r1, column=left_col)
+                                fc.value = 'Free'
+                                fc.fill = free_fill
+                                fc.alignment = Alignment(horizontal='center', vertical='center')
+                                fc.border = thin_border
+
+                        # Fill remaining sub-rows if this day has fewer batches
+                        filled = len(sorted_batches)
+                        for extra in range(filled, entries_count):
+                            row_offset = extra * 2
+                            r1 = current_row + row_offset
+                            r2 = current_row + row_offset + 1
+                            ws.merge_cells(start_row=r1, start_column=left_col,
+                                           end_row=r2, end_column=right_col)
+                            ec = ws.cell(row=r1, column=left_col)
+                            ec.fill = free_fill
+                            ec.border = thin_border
+
+                    else:
+                        # Theory/tutorial/individual practical — merge both cols AND all sub-rows
+                        subject = session.get('subject', '')
+                        faculty_name = session.get('faculty', '')
+                        room_name = session.get('room', '')
+                        span = session.get('span', 1)
+                        duration_label = f" ({span} hrs)" if span > 1 else ""
+
+                        fill = theory_fill if session_type in ('theory', 'tutorial') else practical_fill
+
+                        # Merge entire area (both cols, all sub-rows) into one cell
+                        r_end = current_row + sub_rows - 1
+                        ws.merge_cells(start_row=current_row, start_column=left_col,
+                                       end_row=r_end, end_column=right_col)
+                        tc = ws.cell(row=current_row, column=left_col)
+                        cell_lines = [f"{subject}{duration_label}"]
+                        if faculty_name:
+                            cell_lines.append(f"{faculty_name}")
+                        if room_name:
+                            cell_lines.append(f"{room_name}")
+                        tc.value = '\n'.join(cell_lines)
+                        tc.fill = fill
+                        tc.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+                        tc.border = thin_border
+                        # Apply border to all cells in the merged range
+                        for sr in range(sub_rows):
+                            ws.cell(row=current_row + sr, column=left_col).border = thin_border
+                            ws.cell(row=current_row + sr, column=right_col).border = thin_border
+
+                # Set row heights for sub-rows
+                for sr in range(sub_rows):
+                    ws.row_dimensions[current_row + sr].height = 20
+
+                current_row += sub_rows
+
+            # Set column widths
+            ws.column_dimensions[col_letter(1)].width = 14  # Time
+            for d_idx in range(len(days)):
+                left_c = 2 + d_idx * 2
+                right_c = left_c + 1
+                ws.column_dimensions[col_letter(left_c)].width = 18  # Subject
+                ws.column_dimensions[col_letter(right_c)].width = 14  # Room
+        
+        # ---- Room View sheets ----
+        # Build room schedules from timetable data
+        room_schedules = {}  # { room_name: { day: { slot: { subject, faculty, type, context, batches } } } }
+        for view_key, view_data in timetable.items():
+            is_batch_view = 'Batch' in view_key
+            context = view_key.replace('_', ' ')
+            for day in view_data:
+                slots = view_data[day]
+                for time_slot, session in slots.items():
+                    if not session or not isinstance(session, dict):
+                        continue
+                    if session.get('type') == 'break':
+                        continue
+                    if session.get('type') == 'practical_block':
+                        if not is_batch_view:
+                            continue
+                        for b_num, b_info in (session.get('batches') or {}).items():
+                            if not b_info or not b_info.get('room'):
+                                continue
+                            rname = b_info['room']
+                            b_letter = chr(64 + int(b_num))
+                            room_schedules.setdefault(rname, {}).setdefault(day, {})
+                            if time_slot not in room_schedules[rname][day]:
+                                room_schedules[rname][day][time_slot] = {
+                                    'subject': b_info.get('subject', ''),
+                                    'faculty': b_info.get('faculty', ''),
+                                    'type': 'practical',
+                                    'context': context,
+                                    'batches': ['Batch ' + b_letter]
+                                }
+                            else:
+                                existing = room_schedules[rname][day][time_slot]
+                                existing.setdefault('batches', []).append('Batch ' + b_letter)
+                                if b_info.get('faculty') and b_info['faculty'] not in existing.get('faculty', ''):
+                                    existing['faculty'] = existing.get('faculty', '') + ', ' + b_info['faculty']
+                    elif not is_batch_view:
+                        rname = session.get('room')
+                        if not rname:
+                            continue
+                        room_schedules.setdefault(rname, {}).setdefault(day, {})
+                        if time_slot not in room_schedules[rname][day]:
+                            room_schedules[rname][day][time_slot] = {
+                                'subject': session.get('subject', ''),
+                                'faculty': session.get('faculty', ''),
+                                'type': session.get('type', 'theory'),
+                                'context': context
+                            }
+                    else:
+                        if session.get('type') in ('theory', 'tutorial'):
+                            continue
+                        rname = session.get('room')
+                        if not rname:
+                            continue
+                        room_schedules.setdefault(rname, {}).setdefault(day, {})
+                        if time_slot not in room_schedules[rname][day]:
+                            room_schedules[rname][day][time_slot] = {
+                                'subject': session.get('subject', ''),
+                                'faculty': session.get('faculty', ''),
+                                'type': session.get('type', 'practical'),
+                                'context': context
+                            }
+
+        # Get standard day order and time slots
+        sample_key = sorted_views[0] if sorted_views else None
+        if sample_key:
+            sample_view = timetable[sample_key]
+            room_days = list(sample_view.keys())
+            day_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+            room_days.sort(key=lambda x: day_order.index(x) if x in day_order else 999)
+            room_time_slots = list(sample_view[room_days[0]].keys()) if room_days else []
+
+            room_fill = PatternFill(start_color="E0F7FA", end_color="E0F7FA", fill_type="solid")
+
+            for room_name in sorted(room_schedules.keys()):
+                schedule = room_schedules[room_name]
+                sheet_name = f"Room {room_name}"[:31]
+                ws = wb.create_sheet(title=sheet_name)
+
+                # Title
+                merge_range = f'A1:{chr(65 + len(room_days))}1'
+                ws.merge_cells(merge_range)
+                title_cell = ws['A1']
+                title_cell.value = f"Room: {room_name}"
+                title_cell.font = Font(bold=True, size=14, color="2C7873")
+                title_cell.alignment = Alignment(horizontal='center', vertical='center')
+                ws.row_dimensions[1].height = 25
+
+                # Timestamp
+                merge_range_2 = f'A2:{chr(65 + len(room_days))}2'
+                ws.merge_cells(merge_range_2)
+                ts_cell = ws['A2']
+                ts_cell.value = f"Generated on: {datetime.now().strftime('%B %d, %Y at %I:%M %p')}"
+                ts_cell.font = Font(size=10, italic=True)
+                ts_cell.alignment = Alignment(horizontal='center', vertical='center')
+                ws.row_dimensions[2].height = 20
+
+                # Header
+                header_row = 4
+                ws.cell(row=header_row, column=1).value = 'Time'
+                for col_idx, day in enumerate(room_days, start=2):
+                    ws.cell(row=header_row, column=col_idx).value = day
+                for col in range(1, len(room_days) + 2):
+                    cell = ws.cell(row=header_row, column=col)
+                    cell.font = header_font
+                    cell.fill = header_fill
+                    cell.alignment = Alignment(horizontal='center', vertical='center')
+                    cell.border = border
+                ws.row_dimensions[header_row].height = 25
+
+                # Data rows
+                current_row = header_row + 1
+                for time_slot in room_time_slots:
+                    # Check break
+                    first_session = timetable[sample_key].get(room_days[0], {}).get(time_slot)
+                    is_break = first_session and isinstance(first_session, dict) and first_session.get('type') == 'break'
+
                     time_cell = ws.cell(row=current_row, column=1)
                     time_cell.value = time_slot
                     time_cell.font = time_font
                     time_cell.fill = time_fill
                     time_cell.alignment = Alignment(horizontal='center', vertical='center')
                     time_cell.border = border
-                    
-                    # Day cells
-                    max_lines = 1
-                    for col_idx, day in enumerate(days, start=2):
-                        cell = ws.cell(row=current_row, column=col_idx)
-                        # Get session for this day and time slot
-                        slot_data = view_data.get(day, {}).get(time_slot)
 
-                        # Normalize to list
-                        if slot_data is None:
-                            slot_sessions = []
-                        elif isinstance(slot_data, list):
-                            slot_sessions = slot_data
-                        elif isinstance(slot_data, dict):
-                            slot_sessions = [slot_data]
-                        else:
-                            slot_sessions = []
-
-                        if slot_sessions:
-                            cell_text = []
-                            for session_item in slot_sessions:
-                                if not session_item or not isinstance(session_item, dict):
-                                    continue
-
-                                # Skip break type sessions
-                                if session_item.get('type') == 'break':
-                                    continue
-
-                                # Show continuation marker for multi-hour practicals
-                                if session_item.get('slot_position') == 'continuation':
-                                    cell_text.append('↑ (contd.)')
-                                    continue
-
-                                session_type = session_item.get('type', '')
-
-                                # Handle practical_block type (division view)
-                                if session_type == 'practical_block':
-                                    span = session_item.get('span', 1)
-                                    duration_label = f" ({span} hrs)" if span > 1 else ""
-                                    cell_text.append(f"PRACTICALS{duration_label}")
-                                    batches = session_item.get('batches', {})
-                                    for b_num in sorted(batches.keys(), key=lambda x: int(x)):
-                                        b_letter = chr(64 + int(b_num))
-                                        b_info = batches[b_num]
-                                        if b_info:
-                                            faculty_name = b_info.get('faculty', '')
-                                            subject_name = b_info.get('subject', '')
-                                            room_name = b_info.get('room', '')
-                                            cell_text.append(f"Batch {b_letter}: {subject_name}")
-                                            cell_text.append(f"  {faculty_name} | {room_name}")
-                                        else:
-                                            cell_text.append(f"Batch {b_letter}: Free")
-                                    continue
-
-                                subject = session_item.get('subject', '')
-                                faculty = session_item.get('faculty', '')
-                                room = session_item.get('room', '')
-                                span = session_item.get('span', 1)
-
-                                duration_label = f" ({span} hrs)" if span > 1 else ""
-
-                                if session_type == 'practical':
-                                    cell_text.append(f"{subject} (Practical){duration_label}")
-                                elif session_type:
-                                    cell_text.append(f"{subject} ({session_type.title()}){duration_label}")
-                                else:
-                                    cell_text.append(f"{subject}{duration_label}")
-
-                                if faculty:
-                                    cell_text.append(f"Faculty: {faculty}")
-                                if room:
-                                    cell_text.append(f"Room: {room}")
-
-                            cell_value = '\n'.join(cell_text).strip()
-                            cell.value = cell_value if cell_value else 'Free'
-                            max_lines = max(max_lines, len(cell_value.split('\n')) if cell_value else 1)
-
-                            # Apply color based on content type
-                            first_session = slot_sessions[0] if slot_sessions else None
-                            if first_session and isinstance(first_session, dict):
-                                stype = first_session.get('type', '')
-                                if stype == 'practical_block' or stype == 'practical':
+                    if is_break:
+                        merge_r = f'{chr(66)}{current_row}:{chr(65 + len(room_days))}{current_row}'
+                        ws.merge_cells(merge_r)
+                        bc = ws.cell(row=current_row, column=2)
+                        bc.value = first_session.get('subject', 'Break')
+                        bc.font = break_font
+                        bc.fill = break_fill
+                        bc.alignment = break_alignment
+                        bc.border = border
+                        for col in range(2, len(room_days) + 2):
+                            ws.cell(row=current_row, column=col).border = border
+                        ws.row_dimensions[current_row].height = 30
+                    else:
+                        max_lines = 1
+                        for col_idx, day in enumerate(room_days, start=2):
+                            cell = ws.cell(row=current_row, column=col_idx)
+                            entry = schedule.get(day, {}).get(time_slot)
+                            if entry:
+                                lines = []
+                                lines.append(f"{entry.get('subject', '')}")
+                                lines.append(f"Faculty: {entry.get('faculty', '')}")
+                                if entry.get('batches'):
+                                    lines.append(f"{', '.join(entry['batches'])}")
+                                lines.append(f"{entry.get('type', '').upper()} | {entry.get('context', '')}")
+                                cell.value = '\n'.join(lines)
+                                stype = entry.get('type', '')
+                                if stype == 'practical':
                                     cell.fill = practical_fill
-                                elif stype in ['theory', 'tutorial']:
+                                elif stype in ('theory', 'tutorial'):
                                     cell.fill = theory_fill
-                                elif not cell_value or cell_value == 'Free':
-                                    cell.fill = free_fill
-                            elif not cell_value or cell_value == 'Free':
+                                else:
+                                    cell.fill = room_fill
+                                max_lines = max(max_lines, len(lines))
+                            else:
+                                cell.value = 'Free'
                                 cell.fill = free_fill
-                        else:
-                            cell.value = 'Free'
-                            cell.fill = free_fill
+                            cell.alignment = left_alignment
+                            cell.border = border
+                        ws.row_dimensions[current_row].height = max(40, max_lines * 16)
 
-                        cell.alignment = left_alignment
-                        cell.border = border
+                    current_row += 1
 
-                    # Set row height based on content
-                    ws.row_dimensions[current_row].height = max(40, max_lines * 16)
+                # Column widths
+                ws.column_dimensions['A'].width = 16
+                for col_idx in range(2, len(room_days) + 2):
+                    col_letter = chr(64 + col_idx)
+                    ws.column_dimensions[col_letter].width = 35
 
-                current_row += 1
-
-            # Set column widths
-            ws.column_dimensions['A'].width = 16
-            for col_idx in range(2, len(days) + 2):
-                col_letter = chr(64 + col_idx)
-                ws.column_dimensions[col_letter].width = 35
-        
         # Save to buffer
         buffer = BytesIO()
         wb.save(buffer)
         buffer.seek(0)
-        
+
         # Generate filename
         filename = f"Complete_Timetable_All_Divisions_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
         
