@@ -478,7 +478,7 @@ def generate_timetable():
             except Exception as save_err:
                 logging.error(f"Auto-save failed: {save_err}")
 
-        return render_template('timetable.html', result=result)
+        return render_template('timetable.html', result=result, semester_mode=semester_mode)
         
     except Exception as e:
         logging.error(f"Error in generate_timetable: {str(e)}")

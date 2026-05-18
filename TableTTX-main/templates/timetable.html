@@ -13,13 +13,20 @@
                 </h1>
                 <p class="lead">AI-powered unified timetable with theory and practical sessions</p>
             </div>
-            <div>
+            <div class="d-flex align-items-center">
                 <button class="btn btn-primary me-2" onclick="enableAIModifications()">
                     <i class="fas fa-robot me-2"></i>Enable AI Modifications
                 </button>
                 <button class="btn btn-success me-2" onclick="exportTimetable()">
                     <i class="fas fa-download me-2"></i>Export
                 </button>
+                <form method="POST" action="{{ url_for('generate_timetable') }}" class="d-inline me-2" id="regenerateForm">
+                    <input type="hidden" name="semester_mode" value="{{ semester_mode | default('odd') }}">
+                    <button type="submit" class="btn btn-warning" id="regenerateBtn"
+                            title="Re-run the solver for the same semester ({{ semester_mode | default('odd') }}). Produces a different valid layout.">
+                        <i class="fas fa-sync-alt me-2"></i><span id="regenerateText">Regenerate</span>
+                    </button>
+                </form>
                 <a href="{{ url_for('generate') }}" class="btn btn-secondary">
                     <i class="fas fa-redo me-2"></i>Generate New
                 </a>
@@ -201,6 +208,16 @@ let facultySchedules = {};
 let roomSchedules = {};
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Regenerate button loading state
+    const regenForm = document.getElementById('regenerateForm');
+    if (regenForm) {
+        regenForm.addEventListener('submit', function() {
+            const btn = document.getElementById('regenerateBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Regenerating...';
+        });
+    }
+
     // Load timetable data
     try {
         timetableData = JSON.parse(document.getElementById('timetableData').textContent);

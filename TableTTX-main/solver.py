@@ -108,17 +108,23 @@ class SimpleTimetableSolver:
             self._add_practical_synchronization_constraint(sessions, years, divisions, batches, days, time_slots, practical_slots_needed)
             self._add_practical_faculty_limit_constraint(sessions, years, divisions, batches, days, time_slots, faculty)
             self._add_no_consecutive_same_subject_constraint(sessions, days, time_slots, breaks)
+            self._add_max_one_theory_per_day_constraint(sessions)
+            self._add_practical_spread_constraint(sessions, years, divisions, days)
 
             # Combined soft constraint objective:
             # Faculty limit violations are heavily penalized (weight 1000)
             # Consecutive same-subject is penalized (weight 100)
+            # Practical front-loading is penalized (weight 50)
             objective_terms = []
             fac_penalties = getattr(self, '_faculty_limit_penalties', [])
             consec_penalties = getattr(self, '_consecutive_penalties', [])
+            spread_penalties = getattr(self, '_practical_spread_penalties', [])
             if fac_penalties:
                 objective_terms.append(1000 * sum(fac_penalties))
             if consec_penalties:
                 objective_terms.append(100 * sum(consec_penalties))
+            if spread_penalties:
+                objective_terms.append(50 * sum(spread_penalties))
             if objective_terms:
                 self.model.Minimize(sum(objective_terms))
 
@@ -919,6 +925,59 @@ class SimpleTimetableSolver:
 
         self._consecutive_penalties = penalty_vars
         logger.info(f"Added {constraint_count} no-consecutive-same-subject soft constraints")
+
+    def _add_max_one_theory_per_day_constraint(self, sessions):
+        """HARD constraint: a theory/tutorial subject may appear at most once per day
+        for a given year+division. A 3-hr/week subject is therefore forced to spread
+        across 3 different days instead of being stacked on a single day."""
+        groups = defaultdict(list)
+        for s in sessions:
+            if s["subject"].get("type", "theory") in ("theory", "tutorial"):
+                key = (s["subject_id"], s["year"], s["division"], s["day"])
+                groups[key].append(s["variable"])
+
+        constraint_count = 0
+        for key, vars_on_day in groups.items():
+            if len(vars_on_day) > 1:
+                self.model.Add(sum(vars_on_day) <= 1)
+                constraint_count += 1
+
+        logger.info(f"Added {constraint_count} max-one-theory-per-day hard constraints")
+
+    def _add_practical_spread_constraint(self, sessions, years, divisions, days):
+        """SOFT constraint: discourage clustering all practical blocks onto a few days
+        (e.g. all labs on Mon/Tue). Penalizes a division having 2+ practical blocks on
+        the same day, nudging the solver to spread practicals across the week."""
+        penalty_vars = []
+        constraint_count = 0
+
+        for year in years:
+            for division in divisions:
+                for day in days:
+                    # Batch 1 is representative: practical blocks are synchronized
+                    # across batches, so counting one batch's session starts gives
+                    # the number of practical blocks that day for this division.
+                    block_starts = [
+                        s["variable"] for s in sessions
+                        if (s["year"] == year
+                            and s["division"] == division
+                            and s.get("batch") == 1
+                            and s["day"] == day
+                            and s["subject"].get("type") == "practical")
+                    ]
+
+                    if len(block_starts) > 1:
+                        # penalty >= (#blocks that day) - 1  → 0 if <=1 block, grows if more
+                        penalty = self.model.NewIntVar(
+                            0, len(block_starts),
+                            f"prac_spread_{year}_{division}_{day}"
+                        )
+                        self.model.Add(penalty >= sum(block_starts) - 1)
+                        penalty_vars.append(penalty)
+                        constraint_count += 1
+
+        self._practical_spread_penalties = penalty_vars
+        logger.info(f"Added {constraint_count} practical-spread soft constraints")
 
     def _build_timetable(self, sessions, structure, required_classes, batches):
         """Extract solution and build timetable with dual output:
