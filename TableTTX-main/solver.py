@@ -1,4 +1,5 @@
 import logging
+import os
 from collections import defaultdict
 from ortools.sat.python import cp_model
 from typing import Dict, List, Optional
@@ -130,9 +131,11 @@ class SimpleTimetableSolver:
 
             # Solve
             self.solver = cp_model.CpSolver()
-            self.solver.parameters.max_time_in_seconds = 120.0
-            self.solver.parameters.num_search_workers = 4
-            logger.info("Solving... (timeout: 120s)")
+            # Configurable so small hosts (e.g. AWS free-tier 1 vCPU / 1 GB) don't
+            # over-subscribe CPU or OOM. Defaults preserve original local behaviour.
+            self.solver.parameters.max_time_in_seconds = float(os.environ.get("SOLVER_TIMEOUT", "120"))
+            self.solver.parameters.num_search_workers = int(os.environ.get("SOLVER_WORKERS", "4"))
+            logger.info("Solving... (timeout: %ss)", self.solver.parameters.max_time_in_seconds)
             status = self.solver.Solve(self.model)
 
             status_name = {
